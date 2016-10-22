@@ -1,4 +1,4 @@
-package org.muni.fi.pa165.lang_school.enitities;
+package org.muni.fi.pa165.lang_school.entities;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -37,4 +37,52 @@ public class Lecture
 
     @Column(name="LECTURE_TIME")
     private Date lectureTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getLectureTime() {
+        return lectureTime;
+    }
+
+    public void setLectureTime(Date lectureTime) {
+        this.lectureTime = lectureTime;
+    }
 }

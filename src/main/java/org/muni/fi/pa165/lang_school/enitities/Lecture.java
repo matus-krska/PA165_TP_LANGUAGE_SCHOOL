@@ -1,10 +1,10 @@
-package enitities;
+package org.muni.fi.pa165.lang_school.enitities;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Entity Lecture represents a lecture of a course. It is stored as a entry of database table T_LECTURE.
+ * Entity Lecture represents a lecture of a course. It is stored as an entry of database table T_LECTURE.
  * It contains unique identification ID, time of creation, unique code, topic, lecture time and description
  *
  * @author Matus Krska, 410073

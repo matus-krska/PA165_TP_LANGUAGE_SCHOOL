@@ -1,7 +1,7 @@
 package org.muni.fi.pa165.lang_school.entities;
 
 import javax.persistence.*;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Entity Lecturer represents a lecturer of a course. It is stored as an entry of database table T_LECTURER.
@@ -31,7 +31,7 @@ public class Lecturer
     private String surname;
 
     @Column(name="TAUGHT_LANGUAGES")
-    private HashMap<String, Boolean> taughtLanguages; //<Language, is lecturer native speaker?>
+    private Map<String, Boolean> taughtLanguages; //<Language, is lecturer native speaker?>
                                                       // Ako vyjadrime jazyky? Enum?
 
     public Long getId() {
@@ -58,11 +58,11 @@ public class Lecturer
         this.surname = surname;
     }
 
-    public HashMap<String, Boolean> getTaughtLanguages() {
+    public Map<String, Boolean> getTaughtLanguages() {
         return taughtLanguages;
     }
 
-    public void setDescription(HashMap<String, Boolean> taughtLanguages) {
+    public void setDescription(Map<String, Boolean> taughtLanguages) {
         this.taughtLanguages = taughtLanguages;
     }
 }

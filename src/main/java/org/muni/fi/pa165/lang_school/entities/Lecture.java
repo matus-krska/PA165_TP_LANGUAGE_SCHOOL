@@ -45,8 +45,12 @@ public class Lecture
     @Column(name="LECTURE_TIME")
     private Date lectureTime;
 
-    @OneToMany(mappedBy="lecture", fetch = FetchType.LAZY)
-    private List<StudentLecture> students;
+//    @ManyToMany
+//    @JoinTable(
+//            name="STUDENT_LECTURE",
+//            joinColumns=@JoinColumn(name="LECTURE_ID", referencedColumnName="ID"),
+//            inverseJoinColumns=@JoinColumn(name="STUDENT_ID", referencedColumnName="ID"))
+//    private List<Student> students;
 
     public Lecturer getCreatedBy() {
         return createdBy;
@@ -64,13 +68,13 @@ public class Lecture
         this.taughtBy = taughtBy;
     }
 
-    public List<StudentLecture> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<StudentLecture> students) {
-        this.students = students;
-    }
+//    public List<Student> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
 
     public Long getId() {
         return id;

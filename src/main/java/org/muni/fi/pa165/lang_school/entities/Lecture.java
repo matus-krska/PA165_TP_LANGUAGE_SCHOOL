@@ -2,10 +2,13 @@ package org.muni.fi.pa165.lang_school.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Entity Lecture represents a lecture of a course. It is stored as an entry of database table T_LECTURE.
  * It contains unique identification ID, time of creation, unique code, topic, lecture time and description
+ * It is created by Lecturer and also taught by a Lecturer (it doesn't have to be the same person)
+ * Arbitrary number of students can enroll in it.
  *
  * @author Matus Krska, 410073
  * @since 1.0
@@ -19,9 +22,13 @@ public class Lecture
     @Column(name="ID")
     private Long id;
 
-//    @ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name="CREATED_BY")
-//    private Lecturer createdBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="CREATED_BY")
+    private Lecturer createdBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="TAUGHT_BY")
+    private Lecturer taughtBy;
 
     @Column(name="CODE")
     private String code;
@@ -37,6 +44,37 @@ public class Lecture
 
     @Column(name="LECTURE_TIME")
     private Date lectureTime;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name="STUDENT_LECTURE",
+//            joinColumns=@JoinColumn(name="LECTURE_ID", referencedColumnName="ID"),
+//            inverseJoinColumns=@JoinColumn(name="STUDENT_ID", referencedColumnName="ID"))
+//    private List<Student> students;
+
+    public Lecturer getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Lecturer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Lecturer getTaughtBy() {
+        return taughtBy;
+    }
+
+    public void setTaughtBy(Lecturer taughtBy) {
+        this.taughtBy = taughtBy;
+    }
+
+//    public List<Student> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
 
     public Long getId() {
         return id;

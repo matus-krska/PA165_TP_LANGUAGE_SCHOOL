@@ -8,6 +8,7 @@ import java.util.List;
  * Entity Lecture represents a lecture of a course. It is stored as an entry of database table T_LECTURE.
  * It contains unique identification ID, time of creation, unique code, topic, lecture time and description
  * It is created by Lecturer and also taught by a Lecturer (it doesn't have to be the same person)
+ * Lecture belongs to a Course
  * Arbitrary number of students can enroll in it.
  *
  * @author Matus Krska, 410073
@@ -44,6 +45,10 @@ public class Lecture
 
     @Column(name="LECTURE_TIME")
     private Date lectureTime;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="COURSE_ID")
+    private Course course;
 
 //    @ManyToMany
 //    @JoinTable(
@@ -122,5 +127,13 @@ public class Lecture
 
     public void setLectureTime(Date lectureTime) {
         this.lectureTime = lectureTime;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

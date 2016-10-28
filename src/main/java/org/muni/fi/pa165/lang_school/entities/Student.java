@@ -1,0 +1,71 @@
+package org.muni.fi.pa165.lang_school.entities;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+/**
+ * Entity student represents a student of a course. It is stored as an entry of database table T_STUDENT.
+ * It contains unique ID, name, surname and list of enrolled lectures. 
+ *
+ * @author Richard Zan, 396380
+ * @since 1.0
+ */
+
+@Entity
+@Table(name="T_STUDENT")
+public class Student {
+    @Id
+    @Column(name="ID")
+    private Long id;
+
+    @Column(name="NAME")
+    private String name;
+
+    @Column(name="SURNAME")
+    private String surname;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name="LECTURE_ID")
+    private List<Lecture> lectures;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+     public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public List<Lecture> getLecture() {
+        return lectures;
+    }
+
+    public void setLecture(List<Lecture> lectures) {
+        this.lectures = lectures;
+    }
+}

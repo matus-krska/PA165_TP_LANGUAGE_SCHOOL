@@ -50,12 +50,40 @@ public class Lecture
     @JoinColumn(name="COURSE_ID")
     private Course course;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name="STUDENT_LECTURE",
-//            joinColumns=@JoinColumn(name="LECTURE_ID", referencedColumnName="ID"),
-//            inverseJoinColumns=@JoinColumn(name="STUDENT_ID", referencedColumnName="ID"))
-//    private List<Student> students;
+    @ManyToMany
+    @JoinTable(
+            name="STUDENT_LECTURE",
+            joinColumns=@JoinColumn(name="LECTURE_ID", referencedColumnName="ID"),
+            inverseJoinColumns=@JoinColumn(name="STUDENT_ID", referencedColumnName="ID"))
+    private List<Student> students;
+
+    /**
+     * Overrides hashCode of Object
+     * @return id as a hash value
+     */
+    public int hashCode()
+    {
+        return id.intValue();
+    }
+
+    /**
+     * Overrides equals of Object
+     * @param o any object
+     * @return true only if object is isntance of Lecture and their hashes are equal
+     */
+    public boolean equals(Object o)
+    {
+        boolean equals = false;
+        if(!(o instanceof Lecture))
+        {
+            return equals;
+        }
+        if(((Lecture) o).hashCode() == this.hashCode())
+        {
+            equals = true;
+        }
+        return equals;
+    }
 
     public Lecturer getCreatedBy() {
         return createdBy;

@@ -69,7 +69,7 @@ public class Lecture
     /**
      * Overrides equals of Object
      * @param o any object
-     * @return true only if object is isntance of Lecture and their hashes are equal
+     * @return true only if object is instance of Lecture and their hashes are equal
      */
     public boolean equals(Object o)
     {

@@ -1,5 +1,6 @@
-package org.muni.fi.pa165.lang_school.interfaceDAO;
+package org.muni.fi.pa165.lang_school.genericDAO;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @author Matus Krska, 410073
  * @since 1.0
  */
-public interface InterfaceDAO<T>
+public interface GenericDAOInteface<T,PK extends Serializable>
 {
 
     /**
@@ -29,7 +30,7 @@ public interface InterfaceDAO<T>
      * @param id primary key of object T
      * @return Object T with primary key id or null if object wasnt found
      */
-    public T readById(Long id);
+    public T readById(PK id);
 
     /**
      * Method for reading object T from database based on a column value

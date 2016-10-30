@@ -152,5 +152,5 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
 	Assert.assertNotNull(studentDAO.readById(studentA.getId()));
 	studentDAO.delete(studentA);
 	Assert.assertNull(studentDAO.readById(studentA.getId()));        
-    }   
+    }          
 }

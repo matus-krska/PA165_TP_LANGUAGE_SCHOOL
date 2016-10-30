@@ -42,7 +42,8 @@ public class GenericDAOImplementation<T, PK extends Serializable> implements Gen
 
     public T readById(PK id)
     {
-        String query = "SELECT * FROM " + entityClass.getName() + " WHERE ID = :id";
+        //String query = "SELECT * FROM " + entityClass.getName() + " WHERE ID = :id";
+        String query = " FROM " + entityClass.getName() + " WHERE ID = :id";
         Query q = em.createQuery(query);
         q.setParameter("ID",id);
         return (T) q.getSingleResult();
@@ -50,7 +51,8 @@ public class GenericDAOImplementation<T, PK extends Serializable> implements Gen
 
     public List<T> readByColumn(String column, Object value)
     {
-        String query = "SELECT * FROM " + entityClass.getName() + " WHERE "+ column +" = " + ":value";
+        //String query = "SELECT * FROM " + entityClass.getName() + " WHERE "+ column +" = " + ":value";
+        String query = " FROM " + entityClass.getName() + " WHERE "+ column +" = " + ":value";
         Query q = em.createQuery(query);
         q.setParameter("value",value);
         return q.getResultList();

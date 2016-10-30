@@ -31,8 +31,9 @@ public class Lecturer
     @Column(name="SURNAME")
     private String surname;
 
-    @Column(name="TAUGHT_LANGUAGES")
-    private Map<String, Boolean> taughtLanguages; //<Language, is lecturer native speaker?>
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="LECTURER_LANGUAGE_ID")
+    private List<LecturerLanguage> taughtLanguages; //<Language, is lecturer native speaker?>
                                                       // Ako vyjadrime jazyky? Enum?
 
     public Long getId() {
@@ -59,11 +60,11 @@ public class Lecturer
         this.surname = surname;
     }
 
-    public Map<String, Boolean> getTaughtLanguages() {
+    public List<LecturerLanguage> getTaughtLanguages() {
         return taughtLanguages;
     }
 
-    public void setDescription(Map<String, Boolean> taughtLanguages) {
+    public void setTaughtLanguages(List<LecturerLanguage> taughtLanguages) {
         this.taughtLanguages = taughtLanguages;
     }
     

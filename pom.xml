@@ -21,14 +21,37 @@
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
         </dependency>
+
+        <!--Added dependencies-->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>4.0.3.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <scope>test</scope>
+        </dependency>
+        <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.1.0.Final</version>
+        </dependency>
+        <!--End of added dependencies-->
+
+
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
@@ -42,6 +65,8 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+
+
 
     </dependencies>
 

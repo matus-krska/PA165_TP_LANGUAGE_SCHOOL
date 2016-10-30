@@ -1,16 +1,17 @@
 package org.muni.fi.pa165.lang_school.entities;
 
-import java.util.List;
+import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Simon Hyben, 421112
  */
+@Entity
+@Table(name="T_LECTURER_LANGUAGE")
 public class LecturerLanguage {
     @Id
     @Column(name="ID")
@@ -19,8 +20,8 @@ public class LecturerLanguage {
     @Column(name="ID_LECTURER")
     private Long lecturerId;
 
-    @Column(name="LANGUAGE")
-    private String language;
+    @Column(name="LANGUAGE_TAUGHT")
+    private String languageTaught;
 
     @Column(name="NATIVE")
     private Boolean nativeSpeaker;
@@ -45,13 +46,13 @@ public class LecturerLanguage {
         this.lecturerId = id;
     }
     
-    public String getLanguage()
+    public String getLanguageTaught()
     {
-        return this.language;
+        return this.languageTaught;
     }
-    public void setLanguage(String language)
+    public void setLanguageTaught(String language)
     {
-        this.language = language;
+        this.languageTaught = language;
     }
     
     public Boolean getNative()
@@ -91,6 +92,6 @@ public class LecturerLanguage {
 
     @Override
     public String toString() {
-        return "LecturerLanguage{" + "id=" + id + ", lecturerId=" + lecturerId + ", language=" + language + ", nativeSpeaker=" + nativeSpeaker + '}';
+        return "LecturerLanguage{" + "id=" + id + ", lecturerId=" + lecturerId + ", language=" + languageTaught + ", nativeSpeaker=" + nativeSpeaker + '}';
     }
 }

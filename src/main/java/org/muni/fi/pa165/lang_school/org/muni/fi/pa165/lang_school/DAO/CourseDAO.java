@@ -2,6 +2,7 @@ package org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO;
 
 import org.muni.fi.pa165.lang_school.entities.Course;
 import org.muni.fi.pa165.lang_school.genericDAO.GenericDAOImplementation;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @author Matus Krska, 410073
  * @since 1.0
  */
+@Component
 public class CourseDAO extends GenericDAOImplementation<Course, Long>
 {
     /**

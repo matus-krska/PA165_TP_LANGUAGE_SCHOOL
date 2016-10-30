@@ -4,6 +4,7 @@ import java.util.List;
 import org.muni.fi.pa165.lang_school.entities.Student;
 import org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO.StudentDAO;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -31,7 +32,7 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
     @PersistenceContext
     private EntityManager em;
 
-    @Autowired
+    @Inject
     private StudentDAO studentDAO;
 
     Student studentA;

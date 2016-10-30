@@ -2,8 +2,11 @@ package org.muni.fi.pa165.lang_school.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
+ * Entity Course represents a language course. It is stored as an entry of database table T_COURSE.
+ * It contains unique ID, name, language, langugage proficiency, description and list of lectures.
  *
  * @author Petra Kamenickova, 396179
  * @since 1.0
@@ -12,7 +15,6 @@ import java.util.Date;
 @Entity
 @Table(name = "T_COURSE")
 public class Course {
-
 
     @Id
     @Column(name = "ID")
@@ -36,6 +38,7 @@ public class Course {
 
     @Column(name = "CREATED")
     private Date created;
+
 
 
     public Long getId() {
@@ -93,6 +96,5 @@ public class Course {
     public void setCreated(Date created) {
         this.created = created;
     }
-
 }
 

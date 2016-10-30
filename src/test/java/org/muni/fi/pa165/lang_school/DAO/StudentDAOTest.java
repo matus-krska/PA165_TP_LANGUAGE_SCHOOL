@@ -43,7 +43,7 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
     public void createTestingSubject() 
     {            
         studentA = new Student();
-        studentB.setId(1l);
+        studentA.setId(1l);
         studentA.setName("Simon");
         studentA.setSurname("Hyben");
         

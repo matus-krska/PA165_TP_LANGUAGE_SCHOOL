@@ -2,6 +2,7 @@ package org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO;
 
 import org.muni.fi.pa165.lang_school.genericDAO.GenericDAOImplementation;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * @author Petra Kamenickova, 396179
  * @since 1.0
  */
-
+@Component
 public class LecturerDAO extends GenericDAOImplementation<Lecturer, Long>{
     /**
      * Method for finding Lecturer by name and surname

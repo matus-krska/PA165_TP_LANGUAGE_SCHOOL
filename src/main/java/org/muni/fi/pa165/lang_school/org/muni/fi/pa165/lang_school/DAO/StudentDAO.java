@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.Query;
 import org.muni.fi.pa165.lang_school.entities.Student;
 import org.muni.fi.pa165.lang_school.genericDAO.GenericDAOImplementation;
+import org.springframework.stereotype.Component;
 
 /**
  * Implementation of DAO for entity Student
@@ -11,6 +12,7 @@ import org.muni.fi.pa165.lang_school.genericDAO.GenericDAOImplementation;
  * @author Richard Zan, 396380
  * @since 1.0
  */
+@Component
 public class StudentDAO extends GenericDAOImplementation<Student, Long>{
     /**
      * Method for finding Student by id, name and surname

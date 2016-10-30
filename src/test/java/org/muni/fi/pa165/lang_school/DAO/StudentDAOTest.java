@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
  * @since 1.0
  */
 
-//@ContextConfiguration(classes = )
+@ContextConfiguration(classes = org.muni.fi.pa165.lang_school.ApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class StudentDAOTest extends AbstractTestNGSpringContextTests {

@@ -39,6 +39,9 @@ public class Course {
     @Column(name = "CREATED")
     private Date created;
 
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="LECTURE_ID")
+    private List<Lecture> lectureList;
 
 
     public Long getId() {
@@ -96,5 +99,12 @@ public class Course {
     public void setCreated(Date created) {
         this.created = created;
     }
-}
 
+    public List<Lecture> getLectureList() {
+        return lectureList;
+    }
+
+    public void setLectureList(List<Lecture> lectureList) {
+        this.lectureList = lectureList;
+    }
+}

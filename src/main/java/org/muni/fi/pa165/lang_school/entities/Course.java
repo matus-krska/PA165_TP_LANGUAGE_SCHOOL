@@ -43,6 +43,46 @@ public class Course {
     @JoinColumn(name="LECTURE_ID")
     private List<Lecture> lectureList;
 
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
+        result = 31 * result + (language_level != null ? language_level.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
+        result = 31 * result + (created != null ? created.hashCode() : 0);
+        result = 31 * result + (lectureList != null ? lectureList.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Course course = (Course) o;
+
+        if (!id.equals(course.id)) return false;
+        if (name != null ? !name.equals(course.name) : course.name != null) return false;
+        if (language != null ? !language.equals(course.language) : course.language != null) return false;
+        if (language_level != null ? !language_level.equals(course.language_level) : course.language_level != null)
+            return false;
+        if (description != null ? !description.equals(course.description) : course.description != null) return false;
+        if (createdBy != null ? !createdBy.equals(course.createdBy) : course.createdBy != null) return false;
+        if (created != null ? !created.equals(course.created) : course.created != null) return false;
+        return lectureList != null ? lectureList.equals(course.lectureList) : course.lectureList == null;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", language='" + language + '\'' +
+                ", language_level='" + language_level + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;

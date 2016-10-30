@@ -13,15 +13,19 @@ import org.muni.fi.pa165.lang_school.genericDAO.GenericDAOImplementation;
  */
 public class StudentDAO extends GenericDAOImplementation<Lecture, Long>{
     /**
-     * Method for finding Student by id
+     * Method for finding Student by id, name and surname
      * @param id id/uco of student
+     * @param name name of student
+     * @param surname surname of student
      * @return List of Students that match the query, can be empty
      */
-    public List<Lecture> findByID(String id)
+    public List<Lecture> findByID(String id, String name, String surname)
     {
-        String query = "SELECT * FROM " + entityClass.getName() + " WHERE ID = :id";
+        String query = "SELECT * FROM " + entityClass.getName() + " WHERE ID = :id AND NAME = :name AND SURNAME = :surname";
         Query q = em.createQuery(query);
         q.setParameter("ID",id);
+        q.setParameter("NAME",name);
+        q.setParameter("SURNAME",surname);
         return q.getResultList();
     }
 }

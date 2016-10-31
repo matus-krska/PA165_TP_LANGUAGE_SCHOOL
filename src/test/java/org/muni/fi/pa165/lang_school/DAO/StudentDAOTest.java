@@ -1,16 +1,13 @@
 package org.muni.fi.pa165.lang_school.DAO;
 
-//import java.util.ArrayList;
 import java.util.List;
 import org.muni.fi.pa165.lang_school.entities.Student;
-//import org.muni.fi.pa165.lang_school.entities.Lecture;
 import org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO.StudentDAO;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -205,57 +202,4 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(tmpStudent.getSurname(), "Hyben");
         studentDAO.delete(studentA);
     } 
-    
-    /*
-    @Test
-    public void testStudentLectures() 
-    { 
-        Lecture lectureA = new Lecture();
-        lectureA.setId(1l);
-        lectureA.setCode("PA165");
-        
-        Lecture lectureB = new Lecture();
-        lectureB.setId(2l);
-        lectureB.setCode("PA154");
-        
-        Lecture lectureC = new Lecture();
-        lectureC.setId(3l);
-        lectureC.setCode("MB103");
-        
-        List<Lecture> listA = new ArrayList();
-        listA.add(lectureA);
-        listA.add(lectureB);
-        
-        List<Lecture> listB = new ArrayList();
-        listB.add(lectureC);
-        
-        studentA.setLecture(listA);
-        studentC.setLecture(listB);
-        
-	studentDAO.create(studentA);
-        studentDAO.create(studentC);
-        
-        Assert.assertNotNull(studentDAO.readById(studentA.getId())); 
-        Assert.assertNotNull(studentDAO.readById(studentC.getId()));
-        
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getName(), "Simon");
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getSurname(), "Hyben");
-        Assert.assertEquals(studentDAO.readById(studentC.getId()).getName(), "Simon");
-        Assert.assertEquals(studentDAO.readById(studentC.getId()).getSurname(), "Lehotsky");
-        
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getLecture().get(0).getId(), (Long)1l);
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getLecture().get(1).getId(), (Long)2l);
-        Assert.assertEquals(studentDAO.readById(studentC.getId()).getLecture().get(0).getId(), (Long)3l);
-        
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getLecture().get(0).getCode(), "PA165");
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getLecture().get(1).getCode(), "PA154");
-        Assert.assertEquals(studentDAO.readById(studentC.getId()).getLecture().get(0).getCode(), "MB103");
-        
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getLecture(), listA);
-        Assert.assertEquals(studentDAO.readById(studentC.getId()).getLecture(), listB);
-        
-        studentDAO.delete(studentA);
-        studentDAO.delete(studentC);
-    } 
-    */
 }

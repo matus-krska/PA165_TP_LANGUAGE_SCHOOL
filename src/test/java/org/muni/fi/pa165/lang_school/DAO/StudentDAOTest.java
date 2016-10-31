@@ -173,7 +173,38 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
             Assert.fail();
         } catch (IllegalArgumentException e) {   
         }                   
-    }    
+    }        
+        
+    @Test
+    public void testFindByNameAndSurname() 
+    {        
+        studentDAO.create(studentA);
+        studentC.setSurname("Hyben");
+        studentDAO.create(studentC);
+        
+        List<Student> tmpRes = studentDAO.findByNameAndSurname("Simon", "Hyben");
+	Assert.assertEquals(tmpRes.size(), 2);
+        Assert.assertEquals(tmpRes.get(0).getName(), "Simon");
+        Assert.assertEquals(tmpRes.get(0).getName(), tmpRes.get(1).getName());
+        Assert.assertEquals(tmpRes.get(0).getSurname(), tmpRes.get(1).getSurname());
+        Assert.assertNotEquals(tmpRes.get(0).getId(), tmpRes.get(1).getId());
+        
+        studentDAO.delete(studentA);
+        studentDAO.delete(studentC);
+    }
+    
+    @Test
+    public void testFindByIdNameAndSurname() 
+    {        
+        studentDAO.create(studentA);
+        Object tmpObject = studentDAO.findByIdNameAndSurname(1l, "Simon", "Hyben");
+        Student tmpStudent = (Student)tmpObject;
+        
+        Assert.assertEquals(tmpStudent.getId(), (Long)1l); 
+        Assert.assertEquals(tmpStudent.getName(), "Simon");
+        Assert.assertEquals(tmpStudent.getSurname(), "Hyben");
+        studentDAO.delete(studentA);
+    } 
     
     /*
     @Test

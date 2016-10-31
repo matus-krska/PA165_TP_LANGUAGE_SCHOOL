@@ -24,7 +24,7 @@ public class LectureDAO extends GenericDAOImplementation<Lecture, Long>
      */
     public List<Lecture> findByCodeAndTopic(String code, String topic)
     {
-        String query = "SELECT * FROM " + entityClass.getName() + " WHERE CODE = :code AND TOPIC = :topic";
+        String query = " FROM " + entityClass.getName() + " WHERE CODE = :CODE AND TOPIC = :TOPIC";
         Query q = em.createQuery(query);
         q.setParameter("CODE",code);
         q.setParameter("TOPIC", topic);

@@ -24,7 +24,7 @@ public class CourseDAO extends GenericDAOImplementation<Course, Long>
      */
     public List<Course> findByLanguageAndLanguageLevel(String language, String languageLevel)
     {
-        String query = "SELECT * FROM " + entityClass.getName() + " WHERE LANGUAGE = :language AND LANGUAGE_LEVEL = :languageLevel";
+        String query = " FROM " + entityClass.getName() + " WHERE LANGUAGE = :language AND LANGUAGE_LEVEL = :languageLevel";
         Query q = em.createQuery(query);
         q.setParameter("LANGUAGE",language);
         q.setParameter("LANGUAGE_LEVEL", languageLevel);

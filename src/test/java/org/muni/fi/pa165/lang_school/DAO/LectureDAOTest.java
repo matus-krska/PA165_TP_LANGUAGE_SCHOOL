@@ -1,7 +1,6 @@
 package org.muni.fi.pa165.lang_school.DAO;
 
 import org.muni.fi.pa165.lang_school.entities.Lecture;
-import org.muni.fi.pa165.lang_school.entities.Student;
 import org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO.LectureDAO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;

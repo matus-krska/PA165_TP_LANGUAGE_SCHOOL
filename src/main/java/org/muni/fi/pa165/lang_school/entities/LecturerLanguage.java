@@ -1,15 +1,20 @@
 package org.muni.fi.pa165.lang_school.entities;
 
-import java.io.Serializable;
+//import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
+ * Entity represents one language taught by Lecturer. 
+ * It is stored as an entry of database table T_LECTURER_LANGUAGE.
+ * It contains unique ID, lecturerId, languageTaught and 
+ * indication if Lecturer is native speaker. 
+ * 
  * @author Simon Hyben, 421112
  */
+
 @Entity
 @Table(name="T_LECTURER_LANGUAGE")
 public class LecturerLanguage {

@@ -1,7 +1,6 @@
 package org.muni.fi.pa165.lang_school.entities;
 
 import javax.persistence.*;
-import java.util.Map;
 import java.util.List;
 /**
  * Entity Lecturer represents a lecturer of a course. It is stored as an entry of database table T_LECTURER.
@@ -64,6 +63,14 @@ public class Lecturer
 
     public void setTaughtLanguages(List<LecturerLanguage> taughtLanguages) {
         this.taughtLanguages = taughtLanguages;
+    }
+    
+    public List<Lecture> getLessons() {
+        return this.lessons;
+    }
+    
+    public void setLessons(List<Lecture> lessons) {
+        this.lessons = lessons;
     }
     
     @Override

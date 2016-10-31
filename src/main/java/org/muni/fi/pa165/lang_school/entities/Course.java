@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Entity Course represents a language course. It is stored as an entry of database table T_COURSE.
- * It contains unique ID, name, language, langugage proficiency, description and list of lectures.
+ * It contains unique ID, name, language, language proficiency, description and list of lectures.
  *
  * @author Petra Kamenickova, 396179
  * @since 1.0

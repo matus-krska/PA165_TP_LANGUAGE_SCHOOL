@@ -16,9 +16,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- *
- * @author zanri
+ * Test class for CourseDAO
+ * Tests CRUD operations
+ * 
+ * @author Richard Zan, 396380
+ * @since 1.0
  */
+
 @ContextConfiguration(classes = org.muni.fi.pa165.lang_school.ApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional

@@ -61,7 +61,7 @@ public class LecturerDAOTest extends AbstractTestNGSpringContextTests
     }
 
     @Test
-    public void testCreateNullSLecturer()
+    public void testCreateNullLecturer()
     {
         try {
             lecturerDAO.create(null);
@@ -71,7 +71,7 @@ public class LecturerDAOTest extends AbstractTestNGSpringContextTests
     }
 
     @Test
-    public void testCreateStudent()
+    public void testCreateLecturer()
     {
         lecturerDAO.create(lecturerA);
         Assert.assertNotNull(lecturerDAO.readById(lecturerA.getId()));

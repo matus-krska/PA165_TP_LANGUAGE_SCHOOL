@@ -36,20 +36,26 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
 
     Lecture lectureA;
     Lecture lectureB;
+    Lecture lectureC;
 
 
     @BeforeMethod
     public void init() 
     {            
         lectureA = new Lecture();
-        lectureA.setId(1l);
+        lectureA.setId(1L);
         lectureA.setCode("X");
         lectureA.setDescription("Y");
         
         lectureB = new Lecture();
-        lectureB.setId(2l);
-        lectureA.setCode("Y");
-        lectureA.setDescription("X");   
+        lectureB.setId(1L);
+        lectureB.setCode("Y");
+        lectureB.setDescription("X");
+
+        lectureC = new Lecture();
+        lectureC.setId(2L);
+        lectureC.setCode("A");
+        lectureC.setDescription("Y");
     }
     
     @Test
@@ -68,8 +74,8 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
         lectureDAO.create(lectureA);
         Assert.assertNotNull(lectureDAO.readById(lectureA.getId())); 
         Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getId(), (Long)1l);
-        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getName(), "Simon");
-        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getSurname(), "Hyben");
+        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getCode(), "X");
+        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getDescription(), "Y");
         lectureDAO.delete(lectureA);
     } 
     
@@ -91,8 +97,8 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
     {        
         lectureDAO.create(lectureA);
         Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getId(), (Long)1l); 
-        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getName(), "Simon");
-        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getSurname(), "Hyben");
+        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getCode(), "X");
+        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getDescription(), "Y");
         lectureDAO.delete(lectureA);
     }    
     
@@ -108,14 +114,14 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
     
     @Test
     public void testUpdateLecture() 
-    { 
-	lectureDAO.create(lectureA);
-	lectureA.setSurname("Mover");
-	lectureDAO.update(lectureA);
+    {
+        lectureDAO.create(lectureA);
+        lectureA.setDescription("Z");
+        lectureDAO.update(lectureA);
         Assert.assertNotNull(lectureDAO.readById(lectureA.getId())); 
         Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getId(), (Long)1l);
-        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getName(), "Simon");
-        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getSurname(), "Mover");
+        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getCode(), "X");
+        Assert.assertEquals(lectureDAO.readById(lectureA.getId()).getDescription(), "Z");
         lectureDAO.delete(lectureA);
     }   
     
@@ -133,14 +139,14 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
     public void testReadByColumn() 
     {        
         lectureDAO.create(lectureA);
-	lectureDAO.create(studentC);
-        List<Student> tmpRes = lectureDAO.readByColumn("NAME", "Simon");
+	lectureDAO.create(lectureC);
+        List<Lecture> tmpRes = lectureDAO.readByColumn("DESCRIPTION", "Y");
 	Assert.assertEquals(tmpRes.size(), 2);
-        Assert.assertEquals(tmpRes.get(0).getName(), "Simon");
-        Assert.assertEquals(tmpRes.get(0).getName(), tmpRes.get(1).getName());
+        Assert.assertEquals(tmpRes.get(0).getDescription(), "Y");
+        Assert.assertEquals(tmpRes.get(0).getDescription(), tmpRes.get(1).getDescription());
         Assert.assertNotEquals(tmpRes.get(0).getId(), tmpRes.get(1).getId());
         lectureDAO.delete(lectureA);
-        lectureDAO.delete(studentC);
+        lectureDAO.delete(lectureC);
     }
     
     @Test
@@ -168,32 +174,15 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
         
     @Test
     public void testFindByNameAndSurname() 
-    {        
+    {
+        lectureA.setTopic("T");
         lectureDAO.create(lectureA);
-        studentC.setSurname("Hyben");
-        lectureDAO.create(studentC);
         
-        List<Student> tmpRes = lectureDAO.findByNameAndSurname("Simon", "Hyben");
-	Assert.assertEquals(tmpRes.size(), 2);
-        Assert.assertEquals(tmpRes.get(0).getName(), "Simon");
-        Assert.assertEquals(tmpRes.get(0).getName(), tmpRes.get(1).getName());
-        Assert.assertEquals(tmpRes.get(0).getSurname(), tmpRes.get(1).getSurname());
-        Assert.assertNotEquals(tmpRes.get(0).getId(), tmpRes.get(1).getId());
+        List<Lecture> tmpRes = lectureDAO.findByCodeAndTopic("X","T");
+	    Assert.assertEquals(tmpRes.size(), 1);
+        Assert.assertEquals(tmpRes.get(0).getCode(), "X");
+        Assert.assertEquals(tmpRes.get(0).getTopic(), "T");
         
         lectureDAO.delete(lectureA);
-        lectureDAO.delete(studentC);
     }
-    
-    @Test
-    public void testFindByIdNameAndSurname() 
-    {        
-        lectureDAO.create(lectureA);
-        Object tmpObject = lectureDAO.findByIdNameAndSurname(1l, "Simon", "Hyben");
-        Student tmpStudent = (Student)tmpObject;
-        
-        Assert.assertEquals(tmpStudent.getId(), (Long)1l); 
-        Assert.assertEquals(tmpStudent.getName(), "Simon");
-        Assert.assertEquals(tmpStudent.getSurname(), "Hyben");
-        lectureDAO.delete(lectureA);
-    } 
 }

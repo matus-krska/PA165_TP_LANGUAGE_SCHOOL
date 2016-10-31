@@ -11,6 +11,8 @@ import java.util.List;
  * Generic implementation of Interface GenericDAOInterface
  * Implements basic CRUD operations
  * @author Matus Krska, 410073
+ * @param <T> class
+ * @param <PK> primary key
  * @since 1.0
  */
 public class GenericDAOImplementation<T, PK extends Serializable> implements GenericDAOInteface<T,PK>
@@ -37,13 +39,12 @@ public class GenericDAOImplementation<T, PK extends Serializable> implements Gen
     public void update(T o)
     {
         em.merge(o);
-        return;
     }
 
     public T readById(PK id)
     {
         //String query = "SELECT * FROM " + entityClass.getName() + " WHERE ID = :id";
-        String query = " FROM " + entityClass.getName() + " WHERE ID = :id";
+        String query = " FROM " + entityClass.getName() + " WHERE ID = :ID";
         Query q = em.createQuery(query);
         q.setParameter("ID",id);
         return (T) q.getSingleResult();
@@ -52,7 +53,7 @@ public class GenericDAOImplementation<T, PK extends Serializable> implements Gen
     public List<T> readByColumn(String column, Object value)
     {
         //String query = "SELECT * FROM " + entityClass.getName() + " WHERE "+ column +" = " + ":value";
-        String query = " FROM " + entityClass.getName() + " WHERE "+ column +" = " + ":value";
+        String query = " FROM " + entityClass.getName() + " WHERE " + column + " = " + ":value";
         Query q = em.createQuery(query);
         q.setParameter("value",value);
         return q.getResultList();

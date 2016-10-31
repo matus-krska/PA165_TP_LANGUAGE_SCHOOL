@@ -21,7 +21,7 @@ public class StudentDAO extends GenericDAOImplementation<Student, Long>{
      * @param surname surname of student
      * @return List of Students that match the query, can be empty
      */
-    public List<Student> findByID(String id, String name, String surname)
+    public List<Student> findByIdNameAndSurname(Long id, String name, String surname)
     {
         String query = "SELECT * FROM " + entityClass.getName() + " WHERE ID = :id AND NAME = :name AND SURNAME = :surname";
         Query q = em.createQuery(query);

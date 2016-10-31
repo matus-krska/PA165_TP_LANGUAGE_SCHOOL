@@ -1,5 +1,6 @@
 package org.muni.fi.pa165.lang_school.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;

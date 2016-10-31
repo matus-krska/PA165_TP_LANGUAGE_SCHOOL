@@ -3,7 +3,6 @@ package org.muni.fi.pa165.lang_school.entities;
 import javax.persistence.*;
 import java.util.Map;
 import java.util.List;
-
 /**
  * Entity Lecturer represents a lecturer of a course. It is stored as an entry of database table T_LECTURER.
  * It contains unique identification ID, name, surname and map of languages taught by lecturer. 
@@ -33,8 +32,7 @@ public class Lecturer
 
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="LECTURER_LANGUAGE_ID")
-    private List<LecturerLanguage> taughtLanguages; //<Language, is lecturer native speaker?>
-                                                      // Ako vyjadrime jazyky? Enum?
+    private List<LecturerLanguage> taughtLanguages; 
 
     public Long getId() {
         return id;

@@ -1,4 +1,4 @@
-package org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO;
+package org.muni.fi.pa165.lang_school.DAO;
 
 import org.muni.fi.pa165.lang_school.genericDAO.GenericDAOImplementation;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;

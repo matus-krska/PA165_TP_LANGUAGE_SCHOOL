@@ -2,7 +2,6 @@ package org.muni.fi.pa165.lang_school.DAO;
 
 import java.util.List;
 import org.muni.fi.pa165.lang_school.entities.Student;
-import org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO.StudentDAO;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

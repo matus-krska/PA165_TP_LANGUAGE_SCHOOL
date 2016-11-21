@@ -1,7 +1,7 @@
 package org.muni.fi.pa165.lang_school;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO.StudentDAO;
+import org.muni.fi.pa165.lang_school.DAO.StudentDAO;
 
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;

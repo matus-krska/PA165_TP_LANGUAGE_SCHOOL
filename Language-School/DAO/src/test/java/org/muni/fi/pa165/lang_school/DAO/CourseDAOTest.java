@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.muni.fi.pa165.lang_school.entities.Course;
-import org.muni.fi.pa165.lang_school.org.muni.fi.pa165.lang_school.DAO.CourseDAO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;

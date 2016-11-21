@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Surefire_suite">
+              <span class="suite-name border-passed">Surefire suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Surefire_suite">
+                    <span>[unset file name]</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Surefire_suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Surefire_suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Surefire_suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Surefire_suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Surefire_suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Surefire_suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">45 methods,   45 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Surefire_suite" class="hide-methods passed suite-Surefire_suite"> (hide)</a> <!-- hide-methods passed suite-Surefire_suite -->
+                      <a href="#" panel-name="suite-Surefire_suite" class="show-methods passed suite-Surefire_suite"> (show)</a> <!-- show-methods passed suite-Surefire_suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Surefire_suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testCreate">testCreate</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testCreateCourse">testCreateCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testCreateLecturer">testCreateLecturer</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testCreateNullCourse">testCreateNullCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testCreateNullCourse">testCreateNullCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testCreateNullLecturer">testCreateNullLecturer</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testCreateNullStudent">testCreateNullStudent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testCreateStudent">testCreateStudent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testDeleteCourse">testDeleteCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testDeleteCourse">testDeleteCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testDeleteLecturer">testDeleteLecturer</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testDeleteNullCourse">testDeleteNullCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testDeleteNullCourse">testDeleteNullCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testDeleteNullLecturer">testDeleteNullLecturer</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testDeleteNullStudent">testDeleteNullStudent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testDeleteStudent">testDeleteStudent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testDuplicateId">testDuplicateId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testDuplicateId">testDuplicateId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testDuplicateId">testDuplicateId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testFindByCodeAndTopicMatchMultiple">testFindByCodeAndTopicMatchMultiple</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testFindByCodeAndTopicNoMatchCode">testFindByCodeAndTopicNoMatchCode</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testFindByCodeAndTopicNoMatchTopic">testFindByCodeAndTopicNoMatchTopic</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testFindByCodeAndTopicOneMatch">testFindByCodeAndTopicOneMatch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testFindByIdNameAndSurname">testFindByIdNameAndSurname</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testFindByName">testFindByName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testFindByNameAndSurname">testFindByNameAndSurname</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testReadByColumn">testReadByColumn</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testReadByColumn">testReadByColumn</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testReadByColumn">testReadByColumn</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testReadById">testReadById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testReadById">testReadById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testReadById">testReadById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testReadById">testReadById</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testReadByNullId">testReadByNullId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testReadByNullId">testReadByNullId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testReadByNullId">testReadByNullId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testReadByNullId">testReadByNullId</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testUpdateCourse">testUpdateCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testUpdateCourse">testUpdateCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testUpdateLecturer">testUpdateLecturer</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LectureDAOTest" hash-for-method="testUpdateNullCourse">testUpdateNullCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.CourseDAOTest" hash-for-method="testUpdateNullCourse">testUpdateNullCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest" hash-for-method="testUpdateNullLecturer">testUpdateNullLecturer</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testUpdateNullStudent">testUpdateNullStudent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="org.muni.fi.pa165.lang_school.DAO.StudentDAOTest" hash-for-method="testUpdateStudent">testUpdateStudent</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Surefire_suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Surefire_suite" class="panel Surefire_suite">
+          <div class="suite-Surefire_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">org.muni.fi.pa165.lang_school.DAO.CourseDAOTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateCourse">
+                  </a> <!-- testCreateCourse -->
+                  <span class="method-name">testCreateCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateNullCourse">
+                  </a> <!-- testCreateNullCourse -->
+                  <span class="method-name">testCreateNullCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteCourse">
+                  </a> <!-- testDeleteCourse -->
+                  <span class="method-name">testDeleteCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteNullCourse">
+                  </a> <!-- testDeleteNullCourse -->
+                  <span class="method-name">testDeleteNullCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDuplicateId">
+                  </a> <!-- testDuplicateId -->
+                  <span class="method-name">testDuplicateId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadById">
+                  </a> <!-- testReadById -->
+                  <span class="method-name">testReadById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadByNullId">
+                  </a> <!-- testReadByNullId -->
+                  <span class="method-name">testReadByNullId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateCourse">
+                  </a> <!-- testUpdateCourse -->
+                  <span class="method-name">testUpdateCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateNullCourse">
+                  </a> <!-- testUpdateNullCourse -->
+                  <span class="method-name">testUpdateNullCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Surefire_suite-class-passed -->
+          <div class="suite-Surefire_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateLecturer">
+                  </a> <!-- testCreateLecturer -->
+                  <span class="method-name">testCreateLecturer</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateNullLecturer">
+                  </a> <!-- testCreateNullLecturer -->
+                  <span class="method-name">testCreateNullLecturer</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteLecturer">
+                  </a> <!-- testDeleteLecturer -->
+                  <span class="method-name">testDeleteLecturer</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteNullLecturer">
+                  </a> <!-- testDeleteNullLecturer -->
+                  <span class="method-name">testDeleteNullLecturer</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDuplicateId">
+                  </a> <!-- testDuplicateId -->
+                  <span class="method-name">testDuplicateId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByName">
+                  </a> <!-- testFindByName -->
+                  <span class="method-name">testFindByName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadByColumn">
+                  </a> <!-- testReadByColumn -->
+                  <span class="method-name">testReadByColumn</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadById">
+                  </a> <!-- testReadById -->
+                  <span class="method-name">testReadById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadByNullId">
+                  </a> <!-- testReadByNullId -->
+                  <span class="method-name">testReadByNullId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateLecturer">
+                  </a> <!-- testUpdateLecturer -->
+                  <span class="method-name">testUpdateLecturer</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateNullLecturer">
+                  </a> <!-- testUpdateNullLecturer -->
+                  <span class="method-name">testUpdateNullLecturer</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Surefire_suite-class-passed -->
+          <div class="suite-Surefire_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">org.muni.fi.pa165.lang_school.DAO.StudentDAOTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateNullStudent">
+                  </a> <!-- testCreateNullStudent -->
+                  <span class="method-name">testCreateNullStudent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateStudent">
+                  </a> <!-- testCreateStudent -->
+                  <span class="method-name">testCreateStudent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteNullStudent">
+                  </a> <!-- testDeleteNullStudent -->
+                  <span class="method-name">testDeleteNullStudent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteStudent">
+                  </a> <!-- testDeleteStudent -->
+                  <span class="method-name">testDeleteStudent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDuplicateId">
+                  </a> <!-- testDuplicateId -->
+                  <span class="method-name">testDuplicateId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByIdNameAndSurname">
+                  </a> <!-- testFindByIdNameAndSurname -->
+                  <span class="method-name">testFindByIdNameAndSurname</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByNameAndSurname">
+                  </a> <!-- testFindByNameAndSurname -->
+                  <span class="method-name">testFindByNameAndSurname</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadByColumn">
+                  </a> <!-- testReadByColumn -->
+                  <span class="method-name">testReadByColumn</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadById">
+                  </a> <!-- testReadById -->
+                  <span class="method-name">testReadById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadByNullId">
+                  </a> <!-- testReadByNullId -->
+                  <span class="method-name">testReadByNullId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateNullStudent">
+                  </a> <!-- testUpdateNullStudent -->
+                  <span class="method-name">testUpdateNullStudent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateStudent">
+                  </a> <!-- testUpdateStudent -->
+                  <span class="method-name">testUpdateStudent</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Surefire_suite-class-passed -->
+          <div class="suite-Surefire_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">org.muni.fi.pa165.lang_school.DAO.LectureDAOTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreate">
+                  </a> <!-- testCreate -->
+                  <span class="method-name">testCreate</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateNullCourse">
+                  </a> <!-- testCreateNullCourse -->
+                  <span class="method-name">testCreateNullCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteCourse">
+                  </a> <!-- testDeleteCourse -->
+                  <span class="method-name">testDeleteCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDeleteNullCourse">
+                  </a> <!-- testDeleteNullCourse -->
+                  <span class="method-name">testDeleteNullCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByCodeAndTopicMatchMultiple">
+                  </a> <!-- testFindByCodeAndTopicMatchMultiple -->
+                  <span class="method-name">testFindByCodeAndTopicMatchMultiple</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByCodeAndTopicNoMatchCode">
+                  </a> <!-- testFindByCodeAndTopicNoMatchCode -->
+                  <span class="method-name">testFindByCodeAndTopicNoMatchCode</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByCodeAndTopicNoMatchTopic">
+                  </a> <!-- testFindByCodeAndTopicNoMatchTopic -->
+                  <span class="method-name">testFindByCodeAndTopicNoMatchTopic</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByCodeAndTopicOneMatch">
+                  </a> <!-- testFindByCodeAndTopicOneMatch -->
+                  <span class="method-name">testFindByCodeAndTopicOneMatch</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadByColumn">
+                  </a> <!-- testReadByColumn -->
+                  <span class="method-name">testReadByColumn</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadById">
+                  </a> <!-- testReadById -->
+                  <span class="method-name">testReadById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testReadByNullId">
+                  </a> <!-- testReadByNullId -->
+                  <span class="method-name">testReadByNullId</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateCourse">
+                  </a> <!-- testUpdateCourse -->
+                  <span class="method-name">testUpdateCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateNullCourse">
+                  </a> <!-- testUpdateNullCourse -->
+                  <span class="method-name">testUpdateNullCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Surefire_suite-class-passed -->
+        </div> <!-- panel Surefire_suite -->
+        <div panel-name="test-xml-Surefire_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite thread-count=&quot;1&quot; verbose=&quot;0&quot; name=&quot;Surefire suite&quot;&gt;
+  &lt;test name=&quot;Surefire test&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;org.muni.fi.pa165.lang_school.DAO.CourseDAOTest&quot;/&gt;
+      &lt;class name=&quot;org.muni.fi.pa165.lang_school.DAO.LectureDAOTest&quot;/&gt;
+      &lt;class name=&quot;org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest&quot;/&gt;
+      &lt;class name=&quot;org.muni.fi.pa165.lang_school.DAO.StudentDAOTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Surefire test --&gt;
+&lt;/suite&gt; &lt;!-- Surefire suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Surefire_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Surefire suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Surefire test (4 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Surefire_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Surefire suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Surefire_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Surefire suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Surefire_suite');
+function tableData_Surefire_suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(45);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'testCreateCourse')
+data.setCell(0, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(0, 3, 196);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testCreate')
+data.setCell(1, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(1, 3, 28);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testUpdateLecturer')
+data.setCell(2, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(2, 3, 24);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testUpdateCourse')
+data.setCell(3, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(3, 3, 17);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'testFindByCodeAndTopicMatchMultiple')
+data.setCell(4, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(4, 3, 17);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'testCreateLecturer')
+data.setCell(5, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(5, 3, 12);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'testUpdateCourse')
+data.setCell(6, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(6, 3, 11);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'testReadByColumn')
+data.setCell(7, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(7, 3, 10);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'testCreateStudent')
+data.setCell(8, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(8, 3, 10);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'testReadByColumn')
+data.setCell(9, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(9, 3, 9);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'testReadByColumn')
+data.setCell(10, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(10, 3, 9);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'testFindByName')
+data.setCell(11, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(11, 3, 9);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'testFindByNameAndSurname')
+data.setCell(12, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(12, 3, 8);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'testFindByIdNameAndSurname')
+data.setCell(13, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(13, 3, 8);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'testDeleteLecturer')
+data.setCell(14, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(14, 3, 7);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'testUpdateStudent')
+data.setCell(15, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(15, 3, 7);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'testDeleteCourse')
+data.setCell(16, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(16, 3, 7);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'testFindByCodeAndTopicOneMatch')
+data.setCell(17, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(17, 3, 5);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'testReadById')
+data.setCell(18, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(18, 3, 5);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'testReadById')
+data.setCell(19, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(19, 3, 5);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'testReadById')
+data.setCell(20, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(20, 3, 4);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'testReadByNullId')
+data.setCell(21, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(21, 3, 4);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'testFindByCodeAndTopicNoMatchCode')
+data.setCell(22, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(22, 3, 4);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'testReadById')
+data.setCell(23, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(23, 3, 3);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'testDeleteCourse')
+data.setCell(24, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(24, 3, 3);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'testDuplicateId')
+data.setCell(25, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(25, 3, 3);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'testFindByCodeAndTopicNoMatchTopic')
+data.setCell(26, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(26, 3, 3);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'testDuplicateId')
+data.setCell(27, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(27, 3, 2);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'testReadByNullId')
+data.setCell(28, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(28, 3, 2);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'testReadByNullId')
+data.setCell(29, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(29, 3, 2);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'testDuplicateId')
+data.setCell(30, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(30, 3, 2);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'testDeleteStudent')
+data.setCell(31, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(31, 3, 2);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'testReadByNullId')
+data.setCell(32, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(32, 3, 1);
+data.setCell(33, 0, 33)
+data.setCell(33, 1, 'testUpdateNullCourse')
+data.setCell(33, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(33, 3, 1);
+data.setCell(34, 0, 34)
+data.setCell(34, 1, 'testCreateNullCourse')
+data.setCell(34, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(34, 3, 1);
+data.setCell(35, 0, 35)
+data.setCell(35, 1, 'testCreateNullLecturer')
+data.setCell(35, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(35, 3, 0);
+data.setCell(36, 0, 36)
+data.setCell(36, 1, 'testDeleteNullCourse')
+data.setCell(36, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(36, 3, 0);
+data.setCell(37, 0, 37)
+data.setCell(37, 1, 'testCreateNullStudent')
+data.setCell(37, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(37, 3, 0);
+data.setCell(38, 0, 38)
+data.setCell(38, 1, 'testUpdateNullLecturer')
+data.setCell(38, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(38, 3, 0);
+data.setCell(39, 0, 39)
+data.setCell(39, 1, 'testDeleteNullLecturer')
+data.setCell(39, 2, 'org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest')
+data.setCell(39, 3, 0);
+data.setCell(40, 0, 40)
+data.setCell(40, 1, 'testDeleteNullStudent')
+data.setCell(40, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(40, 3, 0);
+data.setCell(41, 0, 41)
+data.setCell(41, 1, 'testCreateNullCourse')
+data.setCell(41, 2, 'org.muni.fi.pa165.lang_school.DAO.LectureDAOTest')
+data.setCell(41, 3, 0);
+data.setCell(42, 0, 42)
+data.setCell(42, 1, 'testUpdateNullStudent')
+data.setCell(42, 2, 'org.muni.fi.pa165.lang_school.DAO.StudentDAOTest')
+data.setCell(42, 3, 0);
+data.setCell(43, 0, 43)
+data.setCell(43, 1, 'testUpdateNullCourse')
+data.setCell(43, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(43, 3, 0);
+data.setCell(44, 0, 44)
+data.setCell(44, 1, 'testDeleteNullCourse')
+data.setCell(44, 2, 'org.muni.fi.pa165.lang_school.DAO.CourseDAOTest')
+data.setCell(44, 3, 0);
+window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 441 ms</span>
+              <div id="times-div-Surefire_suite">
+              </div> <!-- times-div-Surefire_suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Surefire_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Surefire suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Surefire_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Surefire_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">org.muni.fi.pa165.lang_school.DAO.CourseDAOTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextBeforeTestClass</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextPrepareTestInstance</span>
+                <span class="method-start">9 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testCreateCourse())</span>
+                <span class="method-start">3294 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3349 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testCreateCourse</span>
+                <span class="method-start">3349 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testCreateCourse())</span>
+                <span class="method-start">3545 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testCreateNullCourse())</span>
+                <span class="method-start">3551 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3554 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testCreateNullCourse</span>
+                <span class="method-start">3554 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testCreateNullCourse())</span>
+                <span class="method-start">3555 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testDeleteCourse())</span>
+                <span class="method-start">3557 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3561 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDeleteCourse</span>
+                <span class="method-start">3562 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testDeleteCourse())</span>
+                <span class="method-start">3570 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testDeleteNullCourse())</span>
+                <span class="method-start">3572 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3575 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testDeleteNullCourse())</span>
+                <span class="method-start">3575 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testDeleteNullCourse</span>
+                <span class="method-start">3575 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testDuplicateId())</span>
+                <span class="method-start">3576 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3578 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDuplicateId</span>
+                <span class="method-start">3578 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testDuplicateId())</span>
+                <span class="method-start">3581 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testReadById())</span>
+                <span class="method-start">3583 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3585 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadById</span>
+                <span class="method-start">3585 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testReadById())</span>
+                <span class="method-start">3591 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testReadByNullId())</span>
+                <span class="method-start">3592 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3594 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadByNullId</span>
+                <span class="method-start">3594 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testReadByNullId())</span>
+                <span class="method-start">3598 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testUpdateCourse())</span>
+                <span class="method-start">3600 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3601 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testUpdateCourse</span>
+                <span class="method-start">3602 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testUpdateCourse())</span>
+                <span class="method-start">3619 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testUpdateNullCourse())</span>
+                <span class="method-start">3621 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3623 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testUpdateNullCourse</span>
+                <span class="method-start">3623 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.CourseDAOTest.testUpdateNullCourse())</span>
+                <span class="method-start">3624 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">springTestContextAfterTestClass</span>
+                <span class="method-start">3625 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">org.muni.fi.pa165.lang_school.DAO.LectureDAOTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextBeforeTestClass</span>
+                <span class="method-start">3626 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextPrepareTestInstance</span>
+                <span class="method-start">3626 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testCreate())</span>
+                <span class="method-start">3631 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3634 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testCreate</span>
+                <span class="method-start">3634 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testCreate())</span>
+                <span class="method-start">3662 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testCreateNullCourse())</span>
+                <span class="method-start">3665 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3669 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testCreateNullCourse())</span>
+                <span class="method-start">3669 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testCreateNullCourse</span>
+                <span class="method-start">3669 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testDeleteCourse())</span>
+                <span class="method-start">3671 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3673 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDeleteCourse</span>
+                <span class="method-start">3673 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testDeleteCourse())</span>
+                <span class="method-start">3677 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testDeleteNullCourse())</span>
+                <span class="method-start">3680 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3684 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testDeleteNullCourse())</span>
+                <span class="method-start">3684 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testDeleteNullCourse</span>
+                <span class="method-start">3684 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicMatchMultiple())</span>
+                <span class="method-start">3688 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3692 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testFindByCodeAndTopicMatchMultiple</span>
+                <span class="method-start">3692 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicMatchMultiple())</span>
+                <span class="method-start">3709 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicNoMatchCode())</span>
+                <span class="method-start">3711 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3713 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testFindByCodeAndTopicNoMatchCode</span>
+                <span class="method-start">3713 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicNoMatchCode())</span>
+                <span class="method-start">3717 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicNoMatchTopic())</span>
+                <span class="method-start">3719 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3722 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testFindByCodeAndTopicNoMatchTopic</span>
+                <span class="method-start">3722 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicNoMatchTopic())</span>
+                <span class="method-start">3725 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicOneMatch())</span>
+                <span class="method-start">3727 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3729 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testFindByCodeAndTopicOneMatch</span>
+                <span class="method-start">3729 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testFindByCodeAndTopicOneMatch())</span>
+                <span class="method-start">3734 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testReadByColumn())</span>
+                <span class="method-start">3736 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3738 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadByColumn</span>
+                <span class="method-start">3738 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testReadByColumn())</span>
+                <span class="method-start">3749 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testReadById())</span>
+                <span class="method-start">3751 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3752 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadById</span>
+                <span class="method-start">3752 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testReadById())</span>
+                <span class="method-start">3756 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testReadByNullId())</span>
+                <span class="method-start">3758 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3761 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadByNullId</span>
+                <span class="method-start">3761 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testReadByNullId())</span>
+                <span class="method-start">3763 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testUpdateCourse())</span>
+                <span class="method-start">3764 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3766 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testUpdateCourse</span>
+                <span class="method-start">3766 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testUpdateCourse())</span>
+                <span class="method-start">3777 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testUpdateNullCourse())</span>
+                <span class="method-start">3779 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">createTestingSubject</span>
+                <span class="method-start">3780 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testUpdateNullCourse</span>
+                <span class="method-start">3780 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LectureDAOTest.testUpdateNullCourse())</span>
+                <span class="method-start">3781 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">springTestContextAfterTestClass</span>
+                <span class="method-start">3782 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextBeforeTestClass</span>
+                <span class="method-start">3783 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextPrepareTestInstance</span>
+                <span class="method-start">3783 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testCreateLecturer())</span>
+                <span class="method-start">3787 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3788 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testCreateLecturer</span>
+                <span class="method-start">3788 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testCreateLecturer())</span>
+                <span class="method-start">3800 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testCreateNullLecturer())</span>
+                <span class="method-start">3802 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3804 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testCreateNullLecturer())</span>
+                <span class="method-start">3804 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testCreateNullLecturer</span>
+                <span class="method-start">3804 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testDeleteLecturer())</span>
+                <span class="method-start">3806 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3807 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDeleteLecturer</span>
+                <span class="method-start">3807 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testDeleteLecturer())</span>
+                <span class="method-start">3814 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testDeleteNullLecturer())</span>
+                <span class="method-start">3816 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3817 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testDeleteNullLecturer())</span>
+                <span class="method-start">3817 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testDeleteNullLecturer</span>
+                <span class="method-start">3817 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testDuplicateId())</span>
+                <span class="method-start">3818 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3820 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDuplicateId</span>
+                <span class="method-start">3820 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testDuplicateId())</span>
+                <span class="method-start">3822 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testFindByName())</span>
+                <span class="method-start">3824 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3825 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testFindByName</span>
+                <span class="method-start">3825 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testFindByName())</span>
+                <span class="method-start">3834 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testReadByColumn())</span>
+                <span class="method-start">3836 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3837 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadByColumn</span>
+                <span class="method-start">3837 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testReadByColumn())</span>
+                <span class="method-start">3846 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testReadById())</span>
+                <span class="method-start">3848 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3850 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadById</span>
+                <span class="method-start">3850 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testReadById())</span>
+                <span class="method-start">3855 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testReadByNullId())</span>
+                <span class="method-start">3861 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3864 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadByNullId</span>
+                <span class="method-start">3864 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testReadByNullId())</span>
+                <span class="method-start">3865 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testUpdateLecturer())</span>
+                <span class="method-start">3866 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3867 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testUpdateLecturer</span>
+                <span class="method-start">3867 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testUpdateLecturer())</span>
+                <span class="method-start">3891 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testUpdateNullLecturer())</span>
+                <span class="method-start">3894 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3895 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.LecturerDAOTest.testUpdateNullLecturer())</span>
+                <span class="method-start">3895 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testUpdateNullLecturer</span>
+                <span class="method-start">3895 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">springTestContextAfterTestClass</span>
+                <span class="method-start">3896 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">org.muni.fi.pa165.lang_school.DAO.StudentDAOTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextBeforeTestClass</span>
+                <span class="method-start">3896 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-class before">
+                <span class="method-name">springTestContextPrepareTestInstance</span>
+                <span class="method-start">3897 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testCreateNullStudent())</span>
+                <span class="method-start">3901 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3902 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testCreateNullStudent())</span>
+                <span class="method-start">3902 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testCreateNullStudent</span>
+                <span class="method-start">3902 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testCreateStudent())</span>
+                <span class="method-start">3903 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3905 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testCreateStudent</span>
+                <span class="method-start">3905 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testCreateStudent())</span>
+                <span class="method-start">3915 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testDeleteNullStudent())</span>
+                <span class="method-start">3917 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3918 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testDeleteNullStudent())</span>
+                <span class="method-start">3918 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testDeleteNullStudent</span>
+                <span class="method-start">3918 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testDeleteStudent())</span>
+                <span class="method-start">3919 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3920 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDeleteStudent</span>
+                <span class="method-start">3920 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testDeleteStudent())</span>
+                <span class="method-start">3922 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testDuplicateId())</span>
+                <span class="method-start">3924 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3925 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testDuplicateId</span>
+                <span class="method-start">3925 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testDuplicateId())</span>
+                <span class="method-start">3927 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testFindByIdNameAndSurname())</span>
+                <span class="method-start">3928 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3930 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testFindByIdNameAndSurname</span>
+                <span class="method-start">3930 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testFindByIdNameAndSurname())</span>
+                <span class="method-start">3938 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testFindByNameAndSurname())</span>
+                <span class="method-start">3940 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3941 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testFindByNameAndSurname</span>
+                <span class="method-start">3941 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testFindByNameAndSurname())</span>
+                <span class="method-start">3949 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testReadByColumn())</span>
+                <span class="method-start">3950 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3954 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadByColumn</span>
+                <span class="method-start">3955 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testReadByColumn())</span>
+                <span class="method-start">3964 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testReadById())</span>
+                <span class="method-start">3966 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3967 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadById</span>
+                <span class="method-start">3967 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testReadById())</span>
+                <span class="method-start">3970 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testReadByNullId())</span>
+                <span class="method-start">3972 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3973 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testReadByNullId</span>
+                <span class="method-start">3973 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testReadByNullId())</span>
+                <span class="method-start">3975 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testUpdateNullStudent())</span>
+                <span class="method-start">3976 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3977 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testUpdateNullStudent())</span>
+                <span class="method-start">3977 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testUpdateNullStudent</span>
+                <span class="method-start">3977 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">springTestContextBeforeTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testUpdateStudent())</span>
+                <span class="method-start">3978 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="configuration-method before">
+                <span class="method-name">init</span>
+                <span class="method-start">3980 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testUpdateStudent</span>
+                <span class="method-start">3980 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">springTestContextAfterTestMethod(public void org.muni.fi.pa165.lang_school.DAO.StudentDAOTest.testUpdateStudent())</span>
+                <span class="method-start">3987 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-class after">
+                <span class="method-name">springTestContextAfterTestClass</span>
+                <span class="method-start">3989 ms</span>
+              </div> <!-- configuration-class after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

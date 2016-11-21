@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FacadeImp;
+package DTO;
 
 /**
- * @author Richard Zan, 396380
- * @since 1.0
+ *
+ * @author zanri
  */
-public class StudentFacadeImpl {
+public class LectureDTO {
     
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -21,6 +23,7 @@ import javax.persistence.Table;
 @Table(name="T_STUDENT")
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
 
@@ -69,7 +72,9 @@ public class Student {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 53 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 53 * hash + (this.surname != null ? this.surname.hashCode() : 0);
         return hash;
     }
 
@@ -85,6 +90,12 @@ public class Student {
             return false;
         }
         final Student other = (Student) obj;
+        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+            return false;
+        }
+        if ((this.surname == null) ? (other.surname != null) : !this.surname.equals(other.surname)) {
+            return false;
+        }
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
@@ -93,6 +104,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", surname=" + surname + '}';
+        return "Student{" + "id=" + id + 
+                ", name=" + name + 
+                ", surname=" + surname + 
+                ", lectures=" + lectures + '}';
     }
+
+    
 }

@@ -17,6 +17,7 @@ import java.util.List;
 public class Course {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
@@ -42,47 +43,6 @@ public class Course {
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="LECTURE_ID")
     private List<Lecture> lectureList;
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (language != null ? language.hashCode() : 0);
-        result = 31 * result + (language_level != null ? language_level.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
-        result = 31 * result + (created != null ? created.hashCode() : 0);
-        result = 31 * result + (lectureList != null ? lectureList.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Course course = (Course) o;
-
-        if (!id.equals(course.id)) return false;
-        if (name != null ? !name.equals(course.name) : course.name != null) return false;
-        if (language != null ? !language.equals(course.language) : course.language != null) return false;
-        if (language_level != null ? !language_level.equals(course.language_level) : course.language_level != null)
-            return false;
-        if (description != null ? !description.equals(course.description) : course.description != null) return false;
-        if (createdBy != null ? !createdBy.equals(course.createdBy) : course.createdBy != null) return false;
-        if (created != null ? !created.equals(course.created) : course.created != null) return false;
-        return lectureList != null ? lectureList.equals(course.lectureList) : course.lectureList == null;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", language='" + language + '\'' +
-                ", language_level='" + language_level + '\'' +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -147,4 +107,67 @@ public class Course {
     public void setLectureList(List<Lecture> lectureList) {
         this.lectureList = lectureList;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 83 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 83 * hash + (this.language != null ? this.language.hashCode() : 0);
+        hash = 83 * hash + (this.language_level != null ? this.language_level.hashCode() : 0);
+        hash = 83 * hash + (this.description != null ? this.description.hashCode() : 0);
+        hash = 83 * hash + (this.createdBy != null ? this.createdBy.hashCode() : 0);
+        hash = 83 * hash + (this.created != null ? this.created.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Course other = (Course) obj;
+        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+            return false;
+        }
+        if ((this.language == null) ? (other.language != null) : !this.language.equals(other.language)) {
+            return false;
+        }
+        if ((this.language_level == null) ? (other.language_level != null) : !this.language_level.equals(other.language_level)) {
+            return false;
+        }
+        if ((this.description == null) ? (other.description != null) : !this.description.equals(other.description)) {
+            return false;
+        }
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.createdBy != other.createdBy && (this.createdBy == null || !this.createdBy.equals(other.createdBy))) {
+            return false;
+        }
+        if (this.created != other.created && (this.created == null || !this.created.equals(other.created))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" + 
+                "id=" + id + 
+                ", name=" + name + 
+                ", language=" + language + 
+                ", language_level=" + language_level + 
+                ", description=" + description + 
+                ", createdBy=" + createdBy + 
+                ", created=" + created + '}';
+    }
+    
+    
 }

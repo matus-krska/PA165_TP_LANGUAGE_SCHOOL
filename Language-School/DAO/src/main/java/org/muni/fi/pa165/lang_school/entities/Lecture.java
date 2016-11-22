@@ -58,41 +58,7 @@ public class Lecture
             inverseJoinColumns=@JoinColumn(name="STUDENT_ID", referencedColumnName="ID"))
     private List<Student> students;
 
-    /**
-     * Overrides hashCode of Object
-     * @return business key as a hash value
-     */
-    public int hashCode()
-    {
-        int result = 6 * code.hashCode();
-        result += 6 * (createdBy == null ? 0 : createdBy.hashCode());
-        result += 6 * (taughtBy == null ? 0 : taughtBy.hashCode());
-        result += 6 * (topic == null ? 0 :topic.hashCode());
-        result += 6 * (description == null ? 0 : description.hashCode());
-        result += 6 * (created == null ? 0 : created.hashCode());
-        result += 6 * (lectureTime == null ? 0 : lectureTime.hashCode());
-        result += 6 * (course == null ? 0 : course.hashCode());
-        return result;
-    }
-
-    /**
-     * Overrides equals of Object
-     * @param o any object
-     * @return true only if object is instance of Lecture and their hashes are equal
-     */
-    public boolean equals(Object o)
-    {
-        boolean equals = false;
-        if(!(o instanceof Lecture))
-        {
-            return equals;
-        }
-        if(((Lecture) o).hashCode() == this.hashCode())
-        {
-            equals = true;
-        }
-        return equals;
-    }
+    
 
     public Lecturer getCreatedBy() {
         return createdBy;
@@ -173,4 +139,77 @@ public class Lecture
     public void setCourse(Course course) {
         this.course = course;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 89 * hash + (this.createdBy != null ? this.createdBy.hashCode() : 0);
+        hash = 89 * hash + (this.taughtBy != null ? this.taughtBy.hashCode() : 0);
+        hash = 89 * hash + (this.code != null ? this.code.hashCode() : 0);
+        hash = 89 * hash + (this.topic != null ? this.topic.hashCode() : 0);
+        hash = 89 * hash + (this.description != null ? this.description.hashCode() : 0);
+        hash = 89 * hash + (this.created != null ? this.created.hashCode() : 0);
+        hash = 89 * hash + (this.lectureTime != null ? this.lectureTime.hashCode() : 0);
+        hash = 89 * hash + (this.course != null ? this.course.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Lecture other = (Lecture) obj;
+        if ((this.code == null) ? (other.code != null) : !this.code.equals(other.code)) {
+            return false;
+        }
+        if ((this.topic == null) ? (other.topic != null) : !this.topic.equals(other.topic)) {
+            return false;
+        }
+        if ((this.description == null) ? (other.description != null) : !this.description.equals(other.description)) {
+            return false;
+        }
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.createdBy != other.createdBy && (this.createdBy == null || !this.createdBy.equals(other.createdBy))) {
+            return false;
+        }
+        if (this.taughtBy != other.taughtBy && (this.taughtBy == null || !this.taughtBy.equals(other.taughtBy))) {
+            return false;
+        }
+        if (this.created != other.created && (this.created == null || !this.created.equals(other.created))) {
+            return false;
+        }
+        if (this.lectureTime != other.lectureTime && (this.lectureTime == null || !this.lectureTime.equals(other.lectureTime))) {
+            return false;
+        }
+        if (this.course != other.course && (this.course == null || !this.course.equals(other.course))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Lecture{" + "id=" + id + 
+                ", createdBy=" + createdBy + 
+                ", taughtBy=" + taughtBy + 
+                ", code=" + code + 
+                ", topic=" + topic + 
+                ", description=" + description + 
+                ", created=" + created + 
+                ", lectureTime=" + lectureTime + 
+                ", course=" + course + 
+                ", students=" + students + '}';
+    }
+    
+    
 }

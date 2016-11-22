@@ -3,6 +3,8 @@ package org.muni.fi.pa165.lang_school.entities;
 //import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +21,7 @@ import javax.persistence.Table;
 @Table(name="T_LECTURER_LANGUAGE")
 public class LecturerLanguage {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
     
@@ -69,11 +72,14 @@ public class LecturerLanguage {
     {
         this.nativeSpeaker = nativeSpeaker;
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 101;
-        hash = 47 * hash + (this.id != null ? this.id.hashCode() : 0);
+        int hash = 5;
+        hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 29 * hash + (this.lecturerId != null ? this.lecturerId.hashCode() : 0);
+        hash = 29 * hash + (this.languageTaught != null ? this.languageTaught.hashCode() : 0);
+        hash = 29 * hash + (this.nativeSpeaker != null ? this.nativeSpeaker.hashCode() : 0);
         return hash;
     }
 
@@ -89,7 +95,16 @@ public class LecturerLanguage {
             return false;
         }
         final LecturerLanguage other = (LecturerLanguage) obj;
+        if ((this.languageTaught == null) ? (other.languageTaught != null) : !this.languageTaught.equals(other.languageTaught)) {
+            return false;
+        }
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.lecturerId != other.lecturerId && (this.lecturerId == null || !this.lecturerId.equals(other.lecturerId))) {
+            return false;
+        }
+        if (this.nativeSpeaker != other.nativeSpeaker && (this.nativeSpeaker == null || !this.nativeSpeaker.equals(other.nativeSpeaker))) {
             return false;
         }
         return true;
@@ -97,6 +112,8 @@ public class LecturerLanguage {
 
     @Override
     public String toString() {
-        return "LecturerLanguage{" + "id=" + id + ", lecturerId=" + lecturerId + ", language=" + languageTaught + ", nativeSpeaker=" + nativeSpeaker + '}';
+        return "LecturerLanguage{" + "id=" + id + ", lecturerId=" + lecturerId + ", languageTaught=" + languageTaught + ", nativeSpeaker=" + nativeSpeaker + '}';
     }
+    
+    
 }

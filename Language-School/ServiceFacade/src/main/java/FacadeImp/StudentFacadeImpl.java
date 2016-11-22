@@ -6,9 +6,6 @@ import DTO.StudentDTO;
 import Facade.StudentFacadeInterface;
 import ServiceImp.StudentServiceImpl;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import javax.inject.Inject;
 import org.muni.fi.pa165.lang_school.entities.Student;
 
 import org.apache.commons.lang3.Validate;
@@ -16,7 +13,6 @@ import org.dozer.Mapper;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Optional;
 
 
 

@@ -16,6 +16,7 @@ import java.util.List;
 public class Lecturer
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
 
@@ -72,11 +73,14 @@ public class Lecturer
     public void setLessons(List<Lecture> lessons) {
         this.lessons = lessons;
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + (this.id != null ? this.id.hashCode() : 0);
+        int hash = 3;
+        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 97 * hash + (this.lessons != null ? this.lessons.hashCode() : 0);
+        hash = 97 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 97 * hash + (this.surname != null ? this.surname.hashCode() : 0);
         return hash;
     }
 
@@ -92,7 +96,16 @@ public class Lecturer
             return false;
         }
         final Lecturer other = (Lecturer) obj;
+        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+            return false;
+        }
+        if ((this.surname == null) ? (other.surname != null) : !this.surname.equals(other.surname)) {
+            return false;
+        }
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.lessons != other.lessons && (this.lessons == null || !this.lessons.equals(other.lessons))) {
             return false;
         }
         return true;
@@ -100,7 +113,12 @@ public class Lecturer
 
     @Override
     public String toString() {
-        return "Lecturer{" + "id=" + id + ", name=" + name + ", surname=" + surname + '}';
+        return "Lecturer{" + "id=" + id + 
+                ", lessons=" + lessons + 
+                ", name=" + name + 
+                ", surname=" + surname + '}';
     }
+    
+   
 }
 

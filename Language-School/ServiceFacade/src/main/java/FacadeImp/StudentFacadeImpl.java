@@ -5,11 +5,19 @@ package FacadeImp;
 import DTO.StudentDTO;
 import Facade.StudentFacadeInterface;
 import ServiceImp.StudentServiceImpl;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
 import org.muni.fi.pa165.lang_school.entities.Student;
+
+import org.apache.commons.lang3.Validate;
 import org.dozer.Mapper;
+
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Optional;
+
 
 
 /**
@@ -27,33 +35,39 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
     public StudentDTO registerStudent(StudentDTO studentDTO) {
         Validate.isTrue(studentDTO.getId() == null);
 
-        Student entity = convert(studentDTO);
-        Student saved = hotelService.registerHotel(entity);
+        Student entity = studentDtoToEntity(studentDTO);
+        Student saved = studentService.addStudent(entity);
 
-        return convert(saved);
+        return studentToStudentDto(saved);
     }
 
     @Override
     public StudentDTO updateStudent(StudentDTO studentDTO) {
-        Validate.notNull(user.getId());
-        UserEntity entity = this.studentDtoToEntity(user);
-        UserEntity updated = userService.updateUser(entity);
+        Validate.notNull(studentDTO.getId());
+        Student entity = this.studentDtoToEntity(studentDTO);
+        Student updated = studentService.updateUser(entity);
         return this.studentToStudentDto(updated);
     }
 
     @Override
-    public Optional<StudentDTO> findById(Long id) {
-        return userService.findByEmail(email).map(this::studentToStudentDto);
+    public StudentDTO findById(Long id) {
+        return studentToStudentDto(studentService.findById(id));
     }
 
     @Override
     public List<StudentDTO> filterByNameSurname(String name, String surname) {
-        return userService.findByEmail(email).map(this::studentToStudentDto);
+        List<Student> students = studentService.findByNameSurname(name, surname);
+        List<StudentDTO> studentsDTO = new ArrayList<>();
+        for(Student student : students){
+            StudentDTO studentDTO = studentToStudentDto(student);
+            studentsDTO.add(studentDTO);
+        }
+        return studentsDTO;
     }
 
     @Override
     public StudentDTO findByIdNameAndSurname(Long id, String name, String surname) {
-        return userService.findByEmail(email).map(this::studentToStudentDto);
+        return studentToStudentDto(studentService.findByIdNameAndSurname(id, name, surname));
     }
 
     private Student studentDtoToEntity(StudentDTO dto){

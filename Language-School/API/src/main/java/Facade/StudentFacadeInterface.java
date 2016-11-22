@@ -31,7 +31,7 @@ public interface StudentFacadeInterface {
      * @param id unique id
      * @return StudentDTO 
      */
-    public Optional<StudentDTO> findById(Long id);
+    public StudentDTO findById(Long id);
 
     /**
      * Returns filtered users

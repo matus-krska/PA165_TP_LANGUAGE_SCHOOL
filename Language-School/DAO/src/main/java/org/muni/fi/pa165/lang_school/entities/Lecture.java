@@ -20,6 +20,7 @@ import java.util.List;
 public class Lecture
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
 
@@ -31,7 +32,7 @@ public class Lecture
     @JoinColumn(name="TAUGHT_BY")
     private Lecturer taughtBy;
 
-    @Column(name="CODE")
+    @Column(name="CODE", nullable = false)
     private String code;
 
     @Column(name="TOPIC")
@@ -59,11 +60,19 @@ public class Lecture
 
     /**
      * Overrides hashCode of Object
-     * @return id as a hash value
+     * @return business key as a hash value
      */
     public int hashCode()
     {
-        return id.intValue();
+        int result = 6 * code.hashCode();
+        result += 6 * (createdBy == null ? 0 : createdBy.hashCode());
+        result += 6 * (taughtBy == null ? 0 : taughtBy.hashCode());
+        result += 6 * (topic == null ? 0 :topic.hashCode());
+        result += 6 * (description == null ? 0 : description.hashCode());
+        result += 6 * (created == null ? 0 : created.hashCode());
+        result += 6 * (lectureTime == null ? 0 : lectureTime.hashCode());
+        result += 6 * (course == null ? 0 : course.hashCode());
+        return result;
     }
 
     /**

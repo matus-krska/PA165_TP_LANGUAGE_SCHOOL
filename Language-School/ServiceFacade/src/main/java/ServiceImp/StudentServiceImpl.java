@@ -1,6 +1,8 @@
 package ServiceImp;
 
 import java.util.List;
+import org.apache.commons.lang3.Validate;
+import org.muni.fi.pa165.lang_school.DAO.StudentDAO;
 import org.muni.fi.pa165.lang_school.entities.Student;
 
 /**
@@ -8,25 +10,37 @@ import org.muni.fi.pa165.lang_school.entities.Student;
  * @since 1.0
  */
 public class StudentServiceImpl {
+    
+    private StudentDAO studentDAO;
 
     public Student addStudent(Student entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.isTrue(entity.getId() == null);
+        studentDAO.create(entity);
+        return studentDAO.readById(entity.getId());
     }
 
     public Student updateUser(Student entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.isTrue(entity.getId() == null);
+        studentDAO.update(entity);
+        return studentDAO.readById(entity.getId());
     }
 
     public Student findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.notNull(id);
+        return studentDAO.readById(id);
     }
 
     public List<Student> findByNameSurname(String name, String surname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.notEmpty(name);
+        Validate.notEmpty(surname);
+        return studentDAO.findByNameAndSurname(name, surname);
     }
 
     public Student findByIdNameAndSurname(Long id, String name, String surname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Validate.notNull(id);
+        Validate.notEmpty(name);
+        Validate.notEmpty(surname);
+        return (Student) studentDAO.findByIdNameAndSurname(id, name, surname);
     }
     
 }

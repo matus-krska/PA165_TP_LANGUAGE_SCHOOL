@@ -16,7 +16,7 @@ public class LectureDTO
     private String topic;
     private String description;
     private String lectureTime;
-    //TODO private CourseDTO course;
+    private CourseDTO course;
     private List<StudentDTO> students = new ArrayList<>();
 
     public Long getId()
@@ -69,6 +69,16 @@ public class LectureDTO
         this.lectureTime = lectureTime;
     }
 
+    public CourseDTO getCourse()
+    {
+        return course;
+    }
+
+    public void setCourse(CourseDTO course)
+    {
+        this.course = course;
+    }
+
     public List<StudentDTO> getStudents()
     {
         return students;
@@ -91,7 +101,10 @@ public class LectureDTO
         if (getTopic() != null ? !getTopic().equals(that.getTopic()) : that.getTopic() != null) return false;
         if (getDescription() != null ? !getDescription().equals(that.getDescription()) : that.getDescription() != null)
             return false;
-        return getLectureTime() != null ? getLectureTime().equals(that.getLectureTime()) : that.getLectureTime() == null;
+        if (getLectureTime() != null ? !getLectureTime().equals(that.getLectureTime()) : that.getLectureTime() != null)
+            return false;
+        if (getCourse() != null ? !getCourse().equals(that.getCourse()) : that.getCourse() != null) return false;
+        return getStudents() != null ? getStudents().equals(that.getStudents()) : that.getStudents() == null;
 
     }
 
@@ -102,6 +115,8 @@ public class LectureDTO
         result = 31 * result + (getTopic() != null ? getTopic().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (getLectureTime() != null ? getLectureTime().hashCode() : 0);
+        result = 31 * result + (getCourse() != null ? getCourse().hashCode() : 0);
+        result = 31 * result + (getStudents() != null ? getStudents().hashCode() : 0);
         return result;
     }
 }

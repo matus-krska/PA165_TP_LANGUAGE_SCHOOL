@@ -1,6 +1,7 @@
 package Facade;
 
 import DTO.LectureDTO;
+import Exceptions.CodeUsedException;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public interface LectureFacadeInterface
      * @param lecture lecture which should be updated
      * @param newCode desired new code
      */
-    public void changeLectureCode(LectureDTO lecture, String newCode);
+    public void changeLectureCode(LectureDTO lecture, String newCode) throws CodeUsedException;
 
     //TODO public List<LecturerDTO> getAvailableLecturersForLecture(LectureDTO lecture);
 }

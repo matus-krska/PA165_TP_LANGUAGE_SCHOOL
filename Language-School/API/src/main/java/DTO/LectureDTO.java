@@ -1,0 +1,107 @@
+package DTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * DTO represantation of entity Lecture
+ * @author Matus Krska, 410073
+ * @since 1.0
+ */
+public class LectureDTO
+{
+    private Long id;
+    //TODO private LecturerDTO taughtBy;
+    private String code;
+    private String topic;
+    private String description;
+    private String lectureTime;
+    //TODO private CourseDTO course;
+    private List<StudentDTO> students = new ArrayList<>();
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public String getCode()
+    {
+        return code;
+    }
+
+    public void setCode(String code)
+    {
+        this.code = code;
+    }
+
+    public String getTopic()
+    {
+        return topic;
+    }
+
+    public void setTopic(String topic)
+    {
+        this.topic = topic;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public String getLectureTime()
+    {
+        return lectureTime;
+    }
+
+    public void setLectureTime(String lectureTime)
+    {
+        this.lectureTime = lectureTime;
+    }
+
+    public List<StudentDTO> getStudents()
+    {
+        return students;
+    }
+
+    public void setStudents(List<StudentDTO> students)
+    {
+        this.students = students;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LectureDTO that = (LectureDTO) o;
+
+        if (!getCode().equals(that.getCode())) return false;
+        if (getTopic() != null ? !getTopic().equals(that.getTopic()) : that.getTopic() != null) return false;
+        if (getDescription() != null ? !getDescription().equals(that.getDescription()) : that.getDescription() != null)
+            return false;
+        return getLectureTime() != null ? getLectureTime().equals(that.getLectureTime()) : that.getLectureTime() == null;
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = getCode().hashCode();
+        result = 31 * result + (getTopic() != null ? getTopic().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getLectureTime() != null ? getLectureTime().hashCode() : 0);
+        return result;
+    }
+}

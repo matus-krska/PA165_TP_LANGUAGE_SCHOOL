@@ -1,1 +1,5 @@
 /target/
+/Language-School/API/target/
+/Language-School/ServiceFacade/target/
+/Language-School/DAO/target/
+/Language-School/ServiceFacade/nbproject/

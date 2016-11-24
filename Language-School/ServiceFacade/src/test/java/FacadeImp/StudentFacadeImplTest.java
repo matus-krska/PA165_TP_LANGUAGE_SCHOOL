@@ -7,7 +7,6 @@ package FacadeImp;
 
 import org.muni.fi.pa165.lang_school.entities.Student;
 import DTO.StudentDTO;
-import com.fi.ls.config.BeanMappingConfiguration;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 

@@ -11,7 +11,7 @@ import java.util.List;
 public class LectureDTO
 {
     private Long id;
-    //TODO private LecturerDTO taughtBy;
+    private LecturerDTO taughtBy;
     private String code;
     private String topic;
     private String description;
@@ -22,6 +22,16 @@ public class LectureDTO
     public Long getId()
     {
         return id;
+    }
+
+    public LecturerDTO getTaughtBy()
+    {
+        return taughtBy;
+    }
+
+    public void setTaughtBy(LecturerDTO taughtBy)
+    {
+        this.taughtBy = taughtBy;
     }
 
     public void setId(Long id)
@@ -97,6 +107,8 @@ public class LectureDTO
 
         LectureDTO that = (LectureDTO) o;
 
+        if (getTaughtBy() != null ? !getTaughtBy().equals(that.getTaughtBy()) : that.getTaughtBy() != null)
+            return false;
         if (!getCode().equals(that.getCode())) return false;
         if (getTopic() != null ? !getTopic().equals(that.getTopic()) : that.getTopic() != null) return false;
         if (getDescription() != null ? !getDescription().equals(that.getDescription()) : that.getDescription() != null)
@@ -111,7 +123,8 @@ public class LectureDTO
     @Override
     public int hashCode()
     {
-        int result = getCode().hashCode();
+        int result = getTaughtBy() != null ? getTaughtBy().hashCode() : 0;
+        result = 31 * result + getCode().hashCode();
         result = 31 * result + (getTopic() != null ? getTopic().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (getLectureTime() != null ? getLectureTime().hashCode() : 0);

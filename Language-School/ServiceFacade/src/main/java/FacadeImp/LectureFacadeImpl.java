@@ -1,6 +1,7 @@
 package FacadeImp;
 
 import DTO.LectureDTO;
+import DTO.LecturerDTO;
 import Exceptions.DAOdataAccessException;
 import Facade.LectureFacadeInterface;
 import ServiceImp.LectureServiceImpl;
@@ -9,27 +10,38 @@ import org.dozer.Mapper;
 import org.muni.fi.pa165.lang_school.entities.Lecture;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
+
 import org.dozer.DozerBeanMapper;
+import org.muni.fi.pa165.lang_school.entities.Lecturer;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation of facade layer for entity Lecture
  * @author Matus Krska, 410073
  * @since 1.0
  */
+@Service
+@Transactional
 public class LectureFacadeImpl implements LectureFacadeInterface
 {
-    @Inject
     private LectureServiceImpl lectureService;
 
     @Inject
     private DozerBeanMapper mapper = new DozerBeanMapper();
 
+    @Inject
+    public LectureFacadeImpl(LectureServiceImpl lectureService)
+    {
+        this.lectureService = lectureService;
+    }
 
     @Override
     public LectureDTO createNewLecture(LectureDTO lectureDTO)
     {
-        Validate.isTrue(lectureDTO.getId() == null);
-
         Lecture entity = lectureDtoToEntity(lectureDTO);
         Lecture saved = lectureService.createLecture(entity);
 
@@ -39,7 +51,6 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     @Override
     public LectureDTO updateLecture(LectureDTO lectureDTO)
     {
-        Validate.notNull(lectureDTO.getId());
         Lecture entity = this.lectureDtoToEntity(lectureDTO);
         Lecture updated = lectureService.updateLecture(entity);
         return lectureToLectureDto(updated);
@@ -48,7 +59,6 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     @Override
     public void removeLecture(LectureDTO lectureDTO)
     {
-        Validate.notNull(lectureDTO.getId());
         Lecture entity = this.lectureDtoToEntity(lectureDTO);
         lectureService.removeLecture(entity);
     }
@@ -56,35 +66,27 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     @Override
     public LectureDTO findLectureByCode(String code)
     {
-        Validate.notEmpty(code);
         Lecture entity = lectureService.findLectureByCode(code);
         return lectureToLectureDto(entity);
     }
 
-    //TODO public List<LectureDTO> findLecturesByLecturer(LecturerDTO lecturer);
+    @Override
+    public List<LectureDTO> findLecturesByLecturer(LecturerDTO lecturer)
+    {
+        List<LectureDTO> dtoLectures = new ArrayList<>();
+        List<Lecture> lectures = lectureService.findLecturesByLecturer(lecturerDtoToEntity(lecturer));
+        for(Lecture lecture : lectures)
+        {
+            dtoLectures.add(lectureToLectureDto(lecture));
+        }
+        return dtoLectures;
+    }
 
     @Override
     public void changeLectureCode(LectureDTO lectureDTO, String newCode) throws DAOdataAccessException
     {
-        Validate.notEmpty(newCode);
-        Validate.notNull(lectureDTO.getId());
-        if(lectureDTO.getCode().equals(newCode))
-        {
-            return;
-        }
-        LectureDTO lecture = findLectureByCode(newCode);
-        if(lecture != null)
-        {
-            throw new DAOdataAccessException("Code is alrady used.");
-        }
-        else
-        {
-            lectureDTO.setCode(newCode);
-            updateLecture(lectureDTO);
-        }
+        LectureDTO lecture = lectureToLectureDto(lectureService.changeLectureCode(lectureDtoToEntity(lectureDTO),newCode));
     }
-
-    //TODO public List<LecturerDTO> getAvailableLecturersForLecture(LectureDTO lecture);
 
     private Lecture lectureDtoToEntity(LectureDTO dto)
     {
@@ -92,5 +94,14 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     }
     private LectureDTO lectureToLectureDto(Lecture entity){
         return mapper.map(entity,LectureDTO.class);
+    }
+
+    private Lecturer lecturerDtoToEntity(LecturerDTO dto)
+    {
+        return mapper.map(dto, Lecturer.class);
+    }
+
+    private LecturerDTO lecturerToLecturerDto(Lecturer entity){
+        return mapper.map(entity, LecturerDTO.class);
     }
 }

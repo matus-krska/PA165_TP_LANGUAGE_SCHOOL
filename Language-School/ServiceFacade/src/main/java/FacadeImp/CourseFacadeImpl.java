@@ -12,6 +12,7 @@ import org.muni.fi.pa165.lang_school.entities.Lecture;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import org.dozer.DozerBeanMapper;
 
 /**
  * Implementation of facade layer for entity Course
@@ -24,7 +25,7 @@ public class CourseFacadeImpl implements CourseFacadeInterface
     private CourseServiceImpl courseService;
 
     @Inject
-    private Mapper mapper;
+    private DozerBeanMapper mapper = new DozerBeanMapper();
 
     public CourseDTO createNewCourse(CourseDTO courseDTO)
     {

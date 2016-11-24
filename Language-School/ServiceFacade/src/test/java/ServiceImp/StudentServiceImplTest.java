@@ -44,14 +44,7 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testAddStudent() {
-        System.out.println("addStudent");
-        Student entity = null;
-        StudentServiceImpl instance = new StudentServiceImpl();
-        Student expResult = null;
-        Student result = instance.addStudent(entity);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -59,14 +52,7 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testUpdateUser() {
-        System.out.println("updateUser");
-        Student entity = null;
-        StudentServiceImpl instance = new StudentServiceImpl();
-        Student expResult = null;
-        Student result = instance.updateUser(entity);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -74,14 +60,7 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testFindById() {
-        System.out.println("findById");
-        Long id = null;
-        StudentServiceImpl instance = new StudentServiceImpl();
-        Student expResult = null;
-        Student result = instance.findById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -89,15 +68,7 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testFindByNameSurname() {
-        System.out.println("findByNameSurname");
-        String name = "";
-        String surname = "";
-        StudentServiceImpl instance = new StudentServiceImpl();
-        List<Student> expResult = null;
-        List<Student> result = instance.findByNameSurname(name, surname);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -105,16 +76,7 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testFindByIdNameAndSurname() {
-        System.out.println("findByIdNameAndSurname");
-        Long id = null;
-        String name = "";
-        String surname = "";
-        StudentServiceImpl instance = new StudentServiceImpl();
-        Student expResult = null;
-        Student result = instance.findByIdNameAndSurname(id, name, surname);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
     
 }

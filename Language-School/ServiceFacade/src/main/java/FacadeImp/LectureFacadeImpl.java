@@ -1,7 +1,7 @@
 package FacadeImp;
 
 import DTO.LectureDTO;
-import Exceptions.CodeUsedException;
+import Exceptions.DAOdataAccessException;
 import Facade.LectureFacadeInterface;
 import ServiceImp.LectureServiceImpl;
 import org.apache.commons.lang3.Validate;
@@ -9,6 +9,7 @@ import org.dozer.Mapper;
 import org.muni.fi.pa165.lang_school.entities.Lecture;
 
 import javax.inject.Inject;
+import org.dozer.DozerBeanMapper;
 
 /**
  * Implementation of facade layer for entity Lecture
@@ -21,7 +22,7 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     private LectureServiceImpl lectureService;
 
     @Inject
-    private Mapper mapper;
+    private DozerBeanMapper mapper = new DozerBeanMapper();
 
 
     @Override
@@ -63,7 +64,7 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     //TODO public List<LectureDTO> findLecturesByLecturer(LecturerDTO lecturer);
 
     @Override
-    public void changeLectureCode(LectureDTO lectureDTO, String newCode) throws CodeUsedException
+    public void changeLectureCode(LectureDTO lectureDTO, String newCode) throws DAOdataAccessException
     {
         Validate.notEmpty(newCode);
         Validate.notNull(lectureDTO.getId());
@@ -74,7 +75,7 @@ public class LectureFacadeImpl implements LectureFacadeInterface
         LectureDTO lecture = findLectureByCode(newCode);
         if(lecture != null)
         {
-            throw new CodeUsedException("Code is alrady used.");
+            throw new DAOdataAccessException("Code is alrady used.");
         }
         else
         {

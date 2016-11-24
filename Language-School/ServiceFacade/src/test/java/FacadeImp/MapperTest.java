@@ -4,6 +4,7 @@ import org.muni.fi.pa165.lang_school.entities.Student;
 import DTO.StudentDTO;
 import com.fi.ls.config.BeanMappingConfiguration;
 import javax.transaction.Transactional;
+import org.dozer.DozerBeanMapper;
 
 import org.dozer.Mapper;
 import org.dozer.classmap.DozerClass;
@@ -26,7 +27,7 @@ import org.testng.annotations.Test;
 public class MapperTest {
 
     @Autowired
-    private Mapper mapper;
+    private DozerBeanMapper mapper;
     
     @Mock
     Student studentA;
@@ -35,6 +36,7 @@ public class MapperTest {
 
     @BeforeClass
     public void init() {
+        mapper = new DozerBeanMapper();
     }
 
     @Test

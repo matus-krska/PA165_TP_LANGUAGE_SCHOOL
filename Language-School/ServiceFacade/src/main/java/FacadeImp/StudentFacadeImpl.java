@@ -5,12 +5,11 @@ import Facade.StudentFacadeInterface;
 import ServiceImp.StudentServiceImpl;
 import java.util.ArrayList;
 import org.muni.fi.pa165.lang_school.entities.Student;
-
-import org.apache.commons.lang3.Validate;
-import org.dozer.Mapper;
-
 import javax.inject.Inject;
 import java.util.List;
+import javax.transaction.Transactional;
+import org.dozer.DozerBeanMapper;
+import org.springframework.stereotype.Service;
 
 
 
@@ -18,17 +17,21 @@ import java.util.List;
  * @author Richard Zan, 396380
  * @since 1.0
  */
+@Service
+@Transactional
 public class StudentFacadeImpl implements StudentFacadeInterface{
-    @Inject
+    
     private StudentServiceImpl studentService;
-
+    private DozerBeanMapper mapper = new DozerBeanMapper();
+    
     @Inject
-    private Mapper mapper;
+    public StudentFacadeImpl(StudentServiceImpl courseService) {
+        this.studentService = courseService;
+    }
     
     @Override
     public StudentDTO registerStudent(StudentDTO studentDTO) {
-        Validate.isTrue(studentDTO.getId() == null);
-
+        
         Student entity = studentDtoToEntity(studentDTO);
         Student saved = studentService.addStudent(entity);
 
@@ -37,9 +40,10 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
 
     @Override
     public StudentDTO updateStudent(StudentDTO studentDTO) {
-        Validate.notNull(studentDTO.getId());
+        
         Student entity = this.studentDtoToEntity(studentDTO);
         Student updated = studentService.updateUser(entity);
+        
         return this.studentToStudentDto(updated);
     }
 

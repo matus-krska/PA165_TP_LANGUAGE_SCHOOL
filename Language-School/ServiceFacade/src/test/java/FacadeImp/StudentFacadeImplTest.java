@@ -5,14 +5,25 @@
  */
 package FacadeImp;
 
+import org.muni.fi.pa165.lang_school.entities.Student;
 import DTO.StudentDTO;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import com.fi.ls.config.BeanMappingConfiguration;
+import javax.transaction.Transactional;
+import org.dozer.DozerBeanMapper;
+
+import org.dozer.Mapper;
+import org.dozer.classmap.DozerClass;
+import org.dozer.inject.Inject;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import static org.testng.Assert.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  *
@@ -27,31 +38,14 @@ public class StudentFacadeImplTest {
     public static void setUpClass() {
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of registerStudent method, of class StudentFacadeImpl.
      */
     @Test
     public void testRegisterStudent() {
-        System.out.println("registerStudent");
-        StudentDTO studentDTO = null;
-        StudentFacadeImpl instance = new StudentFacadeImpl();
-        StudentDTO expResult = null;
-        StudentDTO result = instance.registerStudent(studentDTO);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -59,14 +53,7 @@ public class StudentFacadeImplTest {
      */
     @Test
     public void testUpdateStudent() {
-        System.out.println("updateStudent");
-        StudentDTO studentDTO = null;
-        StudentFacadeImpl instance = new StudentFacadeImpl();
-        StudentDTO expResult = null;
-        StudentDTO result = instance.updateStudent(studentDTO);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -74,14 +61,7 @@ public class StudentFacadeImplTest {
      */
     @Test
     public void testFindById() {
-        System.out.println("findById");
-        Long id = null;
-        StudentFacadeImpl instance = new StudentFacadeImpl();
-        StudentDTO expResult = null;
-        StudentDTO result = instance.findById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -89,15 +69,7 @@ public class StudentFacadeImplTest {
      */
     @Test
     public void testFilterByNameSurname() {
-        System.out.println("filterByNameSurname");
-        String name = "";
-        String surname = "";
-        StudentFacadeImpl instance = new StudentFacadeImpl();
-        List<StudentDTO> expResult = null;
-        List<StudentDTO> result = instance.filterByNameSurname(name, surname);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -105,16 +77,7 @@ public class StudentFacadeImplTest {
      */
     @Test
     public void testFindByIdNameAndSurname() {
-        System.out.println("findByIdNameAndSurname");
-        Long id = null;
-        String name = "";
-        String surname = "";
-        StudentFacadeImpl instance = new StudentFacadeImpl();
-        StudentDTO expResult = null;
-        StudentDTO result = instance.findByIdNameAndSurname(id, name, surname);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
     
 }

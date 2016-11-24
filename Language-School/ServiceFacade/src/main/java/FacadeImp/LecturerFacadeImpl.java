@@ -1,7 +1,7 @@
 package FacadeImp;
 
 import DTO.LecturerDTO;
-import Exceptions.CodeUsedException;
+import Exceptions.DAOdataAccessException;
 import Facade.LecturerFacadeInterface;
 import ServiceImp.LecturerServiceImpl;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import org.dozer.Mapper;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
 
 import javax.inject.Inject;
+import org.dozer.DozerBeanMapper;
 
 /**
  * Implementation of facade layer for entity Lecturer
@@ -23,7 +24,7 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface
     private LecturerServiceImpl lecturerService;
 
     @Inject
-    private Mapper mapper;
+    private DozerBeanMapper mapper = new DozerBeanMapper();
 
     @Override
     public LecturerDTO findById(Long id) 

@@ -1,6 +1,7 @@
 package Facade;
 
 import DTO.LectureDTO;
+import DTO.LecturerDTO;
 
 import java.util.List;
 
@@ -38,7 +39,12 @@ public interface LectureFacadeInterface
      */
     public LectureDTO findLectureByCode(String code);
 
-    //TODO public List<LectureDTO> findLecturesByLecturer(LecturerDTO lecturer);
+    /**
+     * Finds list of lectures which are taught by the lecturer
+     * @param lecturer to search for
+     * @return list of lectures taught by the lecturer
+     */
+    public List<LectureDTO> findLecturesByLecturer(LecturerDTO lecturer);
 
     /**
      * Changes code of lecture, the code must be unique and unused
@@ -46,6 +52,4 @@ public interface LectureFacadeInterface
      * @param newCode desired new code
      */
     public void changeLectureCode(LectureDTO lecture, String newCode);
-
-    //TODO public List<LecturerDTO> getAvailableLecturersForLecture(LectureDTO lecture);
 }

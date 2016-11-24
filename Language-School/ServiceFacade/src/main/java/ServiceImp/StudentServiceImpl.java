@@ -27,6 +27,9 @@ public class StudentServiceImpl {
     
     public Student addStudent(Student entity) {
         Student student;
+        if (entity == null){
+            throw new IllegalArgumentException("Error creating student"); 
+        }
         try {
             student = studentDAO.create(entity);
         } catch (Exception e) {
@@ -35,52 +38,56 @@ public class StudentServiceImpl {
         return student;
     }
 
-    public Student updateUser(Student entity) {
+    public Student updateStudent(Student entity) {
         Student student;
+        if (entity == null){
+            throw new IllegalArgumentException("Error updating student"); 
+        }
+        
         try {
             studentDAO.update(entity);
             student = studentDAO.readById(entity.getId());
         } catch (Exception e) {
-            throw new DAOdataAccessException("Error creating student"); 
+            throw new DAOdataAccessException("Error updating student"); 
         }
         return student;
     }
 
     public Student findById(Long id) {
         Student student;
-        if (id != null){
-            throw new DAOdataAccessException("Error creating student"); 
+        if (id == null){
+            throw new IllegalArgumentException("Error by findById"); 
         }
         try {
             student = studentDAO.readById(id);
         } catch (Exception e) {
-            throw new DAOdataAccessException("Error creating student"); 
+            throw new DAOdataAccessException("Error by findById"); 
         }
         return student;
     }
 
     public List<Student> findByNameSurname(String name, String surname) {
         List<Student>  students;
-        if (name!= null && surname != null){
-            throw new DAOdataAccessException("Error creating student"); 
+        if (name == null || surname == null){
+            throw new IllegalArgumentException("Error by findByNameSurname"); 
         }
         try {
             students = studentDAO.findByNameAndSurname(name, surname);
         } catch (Exception e) {
-            throw new DAOdataAccessException("Error creating student"); 
+            throw new DAOdataAccessException("Error by findByNameSurname"); 
         }
         return students;
     }
 
     public Student findByIdNameAndSurname(Long id, String name, String surname) {
         Student student;
-        if (name!= null && surname != null && id != null){
-            throw new DAOdataAccessException("Error creating student"); 
+        if (name == null || surname == null || id == null){
+            throw new DAOdataAccessException("Error by findByIdNameAndSurname"); 
         }
         try {
             student = (Student) studentDAO.findByIdNameAndSurname(id, name, surname);
         } catch (Exception e) {
-            throw new DAOdataAccessException("Error creating student"); 
+            throw new DAOdataAccessException("Error by findByIdNameAndSurname"); 
         }
         return student;
     }

@@ -8,9 +8,7 @@ package ServiceImp;
 import org.muni.fi.pa165.lang_school.entities.Student;
 import org.muni.fi.pa165.lang_school.DAO.StudentDAO;
 
-
 import org.mockito.Mock;
-
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.DataAccessException;
 import org.testng.Assert;
@@ -18,19 +16,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.fail;
-import static org.testng.Assert.assertEquals;
-
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.PersistenceException;
-
 
 /**
  *
@@ -71,16 +58,30 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testAddStudent() {
-        Student temp = studentServiceImpl.addStudent(studentA);
-        assertEquals(temp.getName(), studentA.getName());
+        studentServiceImpl.addStudent(studentA);
+        verify(studentDao, times(1)).create(studentA);
     }
 
+    @Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testCreateNull(){
+        studentServiceImpl.addStudent(null);
+        fail("Null has been created.");
+    }
+    
     /**
-     * Test of updateUser method, of class StudentServiceImpl.
+     * Test of updateStudent method, of class StudentServiceImpl.
      */
     @Test
     public void testUpdateUser() {
-        
+        studentA.setName("123");
+        studentServiceImpl.updateStudent(studentA);
+        verify(studentDao, times(1)).update(studentA);
+    }
+    
+    @Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testNullUpdate(){
+        studentServiceImpl.updateStudent(null);
+        fail("Null has been updated.");
     }
 
     /**
@@ -88,7 +89,8 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testFindById() {
-        
+        studentServiceImpl.findById(1l);
+        verify(studentDao, times(1)).readById(1l);
     }
 
     /**
@@ -96,7 +98,9 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testFindByNameSurname() {
-        
+        studentServiceImpl.addStudent(studentA);
+        studentServiceImpl.findByNameSurname("Simon", "Hyben");
+        verify(studentDao, times(1)).findByNameAndSurname("Simon", "Hyben");
     }
 
     /**
@@ -104,7 +108,8 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testFindByIdNameAndSurname() {
-       
+       studentServiceImpl.addStudent(studentA);
+       studentServiceImpl.findByIdNameAndSurname(1l, "Simon", "Hyben");
+       verify(studentDao, times(1)).findByIdNameAndSurname(1l, "Simon", "Hyben");
     }
-    
 }

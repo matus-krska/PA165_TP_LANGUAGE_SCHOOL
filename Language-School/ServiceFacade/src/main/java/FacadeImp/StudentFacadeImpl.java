@@ -42,7 +42,7 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
     public StudentDTO updateStudent(StudentDTO studentDTO) {
         
         Student entity = this.studentDtoToEntity(studentDTO);
-        Student updated = studentService.updateUser(entity);
+        Student updated = studentService.updateStudent(entity);
         
         return this.studentToStudentDto(updated);
     }

@@ -4,7 +4,7 @@ import DTO.CourseDTO;
 import DTO.LectureDTO;
 import Facade.CourseFacadeInterface;
 import ServiceImp.CourseServiceImpl;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.dozer.Mapper;
 import org.muni.fi.pa165.lang_school.entities.Course;
 import org.muni.fi.pa165.lang_school.entities.Lecture;

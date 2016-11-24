@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
+ * Implementation of service layer for Course
  * @author Matus Krska, 410073
  * @since 1.0
  */
@@ -26,6 +27,10 @@ public class CourseServiceImpl
 
     public Course createCourse(Course course)
     {
+        if(course == null)
+        {
+            throw new IllegalArgumentException("Cannot create null course");
+        }
         try
         {
             course = courseDAO.create(course);
@@ -40,6 +45,10 @@ public class CourseServiceImpl
 
     public Course updateCourse(Course course)
     {
+        if(course == null)
+        {
+            throw new IllegalArgumentException("Cannot update null course");
+        }
         try
         {
             courseDAO.update(course);
@@ -53,6 +62,10 @@ public class CourseServiceImpl
 
     public void removeCourse(Course course)
     {
+        if(course == null)
+        {
+            throw new IllegalArgumentException("Cannot remove null course");
+        }
         try
         {
             courseDAO.delete(course);
@@ -68,7 +81,7 @@ public class CourseServiceImpl
         List<Course> courses;
         if(language == null || language.isEmpty())
         {
-            throw new DAOdataAccessException("Error finding course by language: parameter language cannot be empty");
+            throw new IllegalArgumentException("Error finding course by language: parameter language cannot be empty");
         }
         try
         {

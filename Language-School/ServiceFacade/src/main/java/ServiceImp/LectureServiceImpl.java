@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
+ * Implemantation of service layer for Lecture
  * @author Matus Krska, 410073
  * @since 1.0
  */
@@ -26,6 +27,10 @@ public class LectureServiceImpl
 
     public Lecture createLecture(Lecture lecture)
     {
+        if(lecture == null)
+        {
+            throw new IllegalArgumentException("Error creating lecture null");
+        }
         try
         {
             lecture = lectureDAO.create(lecture);
@@ -40,6 +45,10 @@ public class LectureServiceImpl
 
     public Lecture updateLecture(Lecture lecture)
     {
+        if(lecture == null)
+        {
+            throw new IllegalArgumentException("Error updating lecture null");
+        }
         try
         {
             lectureDAO.update(lecture);
@@ -53,6 +62,10 @@ public class LectureServiceImpl
 
     public void removeLecture(Lecture lecture)
     {
+        if(lecture == null)
+        {
+            throw new IllegalArgumentException("Error removing lecture null");
+        }
         try
         {
             lectureDAO.delete(lecture);
@@ -67,16 +80,23 @@ public class LectureServiceImpl
     {
         if(code == null)
         {
-            throw new DAOdataAccessException("Error finding lecture by code");
+            throw new IllegalArgumentException("Error finding lecture by code");
         }
         List<Lecture> lectures = lectureDAO.readByColumn("CODE",code);
-        if(lectures.size() > 1 || lectures.size() == 0)
+        if(lectures.size() > 1)
         {
             throw new DAOdataAccessException("Error finding lecture by code: Found count that is not 1");
         }
         else
         {
-            return lectures.get(0);
+            if(lectures.size() != 0)
+            {
+                return lectures.get(0);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -84,7 +104,7 @@ public class LectureServiceImpl
     {
         if(lecturer == null || lecturer.getId() == null)
         {
-            throw new DAOdataAccessException("Error finding lecture by lecturer which is null");
+            throw new IllegalArgumentException("Error finding lecture by lecturer which is null");
         }
 
         List<Lecture> lectures = lectureDAO.readByColumn("TAUGHT_BY",lecturer.getId());
@@ -95,7 +115,7 @@ public class LectureServiceImpl
     {
         if(code == null || code.isEmpty())
         {
-            throw new DAOdataAccessException("Error changing lecture code: code cannot be empty");
+            throw new IllegalArgumentException("Error changing lecture code: code cannot be empty");
         }
         if(code.equals(lecture.getCode()))
         {

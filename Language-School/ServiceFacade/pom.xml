@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.muni.fi.pa165</groupId>
         <artifactId>lang-school</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1</version>
     </parent>
     <artifactId>ServiceFacade</artifactId>
     <packaging>jar</packaging>
@@ -16,12 +16,12 @@
     <dependency>
         <groupId>org.muni.fi.pa165</groupId>
         <artifactId>API</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1</version>
     </dependency>
     <dependency>
         <groupId>org.muni.fi.pa165</groupId>
         <artifactId>DAO</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1</version>
     </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
@@ -30,16 +30,16 @@
             <type>jar</type>
         </dependency>
         <dependency>
-        <groupId>net.sf.dozer</groupId>
-        <artifactId>dozer</artifactId>
-        <version>5.3.1</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-    <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.5</version>
-    </dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>5.3.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -51,6 +51,43 @@
             <artifactId>hamcrest-core</artifactId>
             <version>1.3</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <exclusions>
+                <!-- needed to replace commons-logging with slf4j -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- just the logging API should be included in a project that's used as a library in other projects, not an implementation -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope><!-- logging implementation should not be part of a library, but is needed for tests -->
+        </dependency>
+
+
+        <!-- For embedded usage -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
         </dependency>
     </dependencies>
 </project>

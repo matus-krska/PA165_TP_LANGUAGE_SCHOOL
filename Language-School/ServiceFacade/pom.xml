@@ -60,5 +60,12 @@
                 <version>4.12</version>
                 <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.fi.languageschool</groupId>
+            <artifactId>ls-service</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

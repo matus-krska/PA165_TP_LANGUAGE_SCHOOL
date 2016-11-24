@@ -21,7 +21,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
  *
  * @author Richard Zan, 396380
  */
-@ContextConfiguration(classes = org.muni.fi.pa165.lang_school.ApplicationContext.class)
+@ContextConfiguration(classes = Mapper.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class MapperTest extends AbstractTestNGSpringContextTests {

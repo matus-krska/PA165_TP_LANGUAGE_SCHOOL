@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentServiceImpl {
     
+    @Inject
     private StudentDAO studentDAO;
 
     @Inject

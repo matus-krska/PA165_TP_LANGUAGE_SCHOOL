@@ -2,20 +2,11 @@ package FacadeImp;
 
 import org.muni.fi.pa165.lang_school.entities.Student;
 import DTO.StudentDTO;
-import com.fi.ls.config.BeanMappingConfiguration;
-import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 
-import org.dozer.Mapper;
-import org.dozer.classmap.DozerClass;
-import org.dozer.inject.Inject;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -37,15 +28,20 @@ public class MapperTest {
     @BeforeClass
     public void init() {
         mapper = new DozerBeanMapper();
-    }
-
-    @Test
-    public void testMapStudentToStudentDTO() {
-
+        
         studentA = new Student();
         
         studentA.setName("Simon");
         studentA.setSurname("Hyben");
+        
+        studentADTO = new StudentDTO();
+        
+        studentADTO.setName("Simon");
+        studentADTO.setSurname("Hyben");
+    }
+
+    @Test
+    public void testMapStudentToStudentDTO() {
 
         StudentDTO dto = mapper.map(studentA, StudentDTO.class);
 
@@ -55,10 +51,6 @@ public class MapperTest {
 
     @Test
     public void testMapStudentDTOToStudent() {
-        studentADTO = new StudentDTO();
-        
-        studentADTO.setName("Simon");
-        studentADTO.setSurname("Hyben");
 
         Student entity = mapper.map(studentADTO, Student.class);
 

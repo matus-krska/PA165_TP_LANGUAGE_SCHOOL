@@ -5,14 +5,32 @@
  */
 package ServiceImp;
 
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.muni.fi.pa165.lang_school.entities.Student;
+import org.muni.fi.pa165.lang_school.DAO.StudentDAO;
+
+
+import org.mockito.Mock;
+
+import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataAccessException;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
+import static org.testng.Assert.fail;
+import static org.testng.Assert.assertEquals;
+
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.PersistenceException;
+
 
 /**
  *
@@ -20,23 +38,32 @@ import org.muni.fi.pa165.lang_school.entities.Student;
  */
 public class StudentServiceImplTest {
     
+    @Mock
+    private StudentDAO studentDao;
+
+    private Student studentA;
+    private Student studentB;
+    
+    private StudentServiceImpl studentServiceImpl;
+    
     public StudentServiceImplTest() {
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public void beforeClass() {
+        MockitoAnnotations.initMocks(this);
+        studentServiceImpl = new StudentServiceImpl(studentDao);
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+    @BeforeMethod
+    public void init() {            
+        studentA = new Student();
+        studentA.setName("Simon");
+        studentA.setSurname("Hyben");
+        
+        studentB = new Student();
+        studentB.setName("Albert");
+        studentB.setSurname("Wonter");
     }
 
     /**
@@ -44,7 +71,8 @@ public class StudentServiceImplTest {
      */
     @Test
     public void testAddStudent() {
-        
+        Student temp = studentServiceImpl.addStudent(studentA);
+        assertEquals(temp.getName(), studentA.getName());
     }
 
     /**

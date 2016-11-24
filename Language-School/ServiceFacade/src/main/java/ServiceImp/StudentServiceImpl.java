@@ -1,6 +1,7 @@
 package ServiceImp;
 
 import java.util.List;
+import javax.inject.Inject;
 import org.apache.commons.lang3.Validate;
 import org.muni.fi.pa165.lang_school.DAO.StudentDAO;
 import org.muni.fi.pa165.lang_school.entities.Student;
@@ -11,6 +12,7 @@ import org.muni.fi.pa165.lang_school.entities.Student;
  */
 public class StudentServiceImpl {
     
+    @Inject
     private StudentDAO studentDAO;
 
     public Student addStudent(Student entity) {

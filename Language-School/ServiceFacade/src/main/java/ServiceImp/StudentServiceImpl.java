@@ -9,6 +9,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 /**
+ * Service implementation for Student facade
+ * 
  * @author Richard Zan, 396380
  * @since 1.0
  */
@@ -25,6 +27,11 @@ public class StudentServiceImpl {
     }
     
     
+    /**
+     * Add student entity
+     * @param entity student entity
+     * @return student entity
+     */
     public Student addStudent(Student entity) {
         Student student;
         if (entity == null){
@@ -38,6 +45,11 @@ public class StudentServiceImpl {
         return student;
     }
 
+    /**
+     * Update student entity
+     * @param entity student entity
+     * @return student entity
+     */
     public Student updateStudent(Student entity) {
         Student student;
         if (entity == null){
@@ -53,6 +65,11 @@ public class StudentServiceImpl {
         return student;
     }
 
+    /**
+     * Find student entity
+     * @param id id of student
+     * @return student entity
+     */
     public Student findById(Long id) {
         Student student;
         if (id == null){
@@ -66,6 +83,12 @@ public class StudentServiceImpl {
         return student;
     }
 
+    /**
+     * Find student entity
+     * @param name name of student
+     * @param surname surname of student
+     * @return list of found students
+     */
     public List<Student> findByNameSurname(String name, String surname) {
         List<Student>  students;
         if (name == null || surname == null){
@@ -79,6 +102,13 @@ public class StudentServiceImpl {
         return students;
     }
 
+    /**
+     * Find student entity
+     * @param id id of student
+     * @param name name of student
+     * @param surname surname of student
+     * @return student entity
+     */
     public Student findByIdNameAndSurname(Long id, String name, String surname) {
         Student student;
         if (name == null || surname == null || id == null){

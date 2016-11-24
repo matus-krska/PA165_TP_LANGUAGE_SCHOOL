@@ -20,8 +20,10 @@ import static org.mockito.Mockito.*;
 import static org.testng.Assert.fail;
 
 /**
- *
- * @author zanri
+ * Testing student service
+ * 
+ * @author Zan Richard, 396380
+ * @since 1.0
  */
 public class StudentServiceImplTest {
     
@@ -62,6 +64,9 @@ public class StudentServiceImplTest {
         verify(studentDao, times(1)).create(studentA);
     }
 
+    /**
+     * Test to create exception
+     */
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testCreateNull(){
         studentServiceImpl.addStudent(null);
@@ -78,6 +83,9 @@ public class StudentServiceImplTest {
         verify(studentDao, times(1)).update(studentA);
     }
     
+    /**
+     * Test to create exception
+     */
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testNullUpdate(){
         studentServiceImpl.updateStudent(null);

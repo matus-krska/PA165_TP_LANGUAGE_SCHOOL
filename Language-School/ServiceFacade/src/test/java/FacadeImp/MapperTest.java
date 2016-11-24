@@ -12,8 +12,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
- *
+ * Tests mapping between student entity and student DTO
+ * 
  * @author Richard Zan, 396380
+ * @since 1.0
  */
 public class MapperTest {
 

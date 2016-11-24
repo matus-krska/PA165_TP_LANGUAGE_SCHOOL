@@ -6,8 +6,8 @@
 
     <groupId>org.muni.fi.pa165</groupId>
     <artifactId>DAO</artifactId>
-    <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1</version>
+    <name>DAO</name>
 
     <parent>
         <groupId>org.muni.fi.pa165</groupId>
@@ -97,5 +97,5 @@
         </dependency>
 
     </dependencies>
-    <name>DAO</name>
+    
 </project>

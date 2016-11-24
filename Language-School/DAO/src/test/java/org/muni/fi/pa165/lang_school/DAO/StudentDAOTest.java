@@ -42,17 +42,17 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
     public void init() 
     {            
         studentA = new Student();
-        studentA.setId(1l);
+        //studentA.setId(1l);
         studentA.setName("Simon");
         studentA.setSurname("Hyben");
         
         studentB = new Student();
-        studentB.setId(1l);
+        //studentB.setId(1l);
         studentB.setName("Albert");
         studentB.setSurname("Wonter");
         
         studentC = new Student();
-        studentC.setId(3l);
+        //studentC.setId(3l);
         studentC.setName("Simon");
         studentC.setSurname("Lehotsky");            
     }
@@ -72,30 +72,30 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
     {        
         studentDAO.create(studentA);
         Assert.assertNotNull(studentDAO.readById(studentA.getId())); 
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getId(), (Long)1l);
+        //Assert.assertEquals(studentDAO.readById(studentA.getId()).getId(), (Long)1l);
         Assert.assertEquals(studentDAO.readById(studentA.getId()).getName(), "Simon");
         Assert.assertEquals(studentDAO.readById(studentA.getId()).getSurname(), "Hyben");
         studentDAO.delete(studentA);
     } 
     
     @Test
-    public void testDuplicateId() 
+    public void testCreateId() 
     {        
 	studentDAO.create(studentA);
 	Assert.assertNotNull(studentDAO.readById(studentA.getId()));
-        try {
+        /*try {
             studentDAO.create(studentB);
             Assert.fail();
         } catch (javax.persistence.EntityExistsException e) {   
             studentDAO.delete(studentA);
-        }          
+        }*/          
     } 
     
     @Test
     public void testReadById() 
     {        
         studentDAO.create(studentA);
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getId(), (Long)1l); 
+        //Assert.assertEquals(studentDAO.readById(studentA.getId()).getId(), (Long)1l); 
         Assert.assertEquals(studentDAO.readById(studentA.getId()).getName(), "Simon");
         Assert.assertEquals(studentDAO.readById(studentA.getId()).getSurname(), "Hyben");
         studentDAO.delete(studentA);
@@ -118,7 +118,7 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
 	studentA.setSurname("Mover");
 	studentDAO.update(studentA);
         Assert.assertNotNull(studentDAO.readById(studentA.getId())); 
-        Assert.assertEquals(studentDAO.readById(studentA.getId()).getId(), (Long)1l);
+        //Assert.assertEquals(studentDAO.readById(studentA.getId()).getId(), (Long)1l);
         Assert.assertEquals(studentDAO.readById(studentA.getId()).getName(), "Simon");
         Assert.assertEquals(studentDAO.readById(studentA.getId()).getSurname(), "Mover");
         studentDAO.delete(studentA);
@@ -193,10 +193,11 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
     public void testFindByIdNameAndSurname() 
     {        
         studentDAO.create(studentA);
-        Object tmpObject = studentDAO.findByIdNameAndSurname(1l, "Simon", "Hyben");
+        List<Student> tmpRes = studentDAO.findByNameAndSurname("Simon", "Hyben");
+        Object tmpObject = studentDAO.findByIdNameAndSurname(tmpRes.get(0).getId(), "Simon", "Hyben");
         Student tmpStudent = (Student)tmpObject;
         
-        Assert.assertEquals(tmpStudent.getId(), (Long)1l); 
+        Assert.assertEquals(tmpStudent.getId(), tmpRes.get(0).getId()); 
         Assert.assertEquals(tmpStudent.getName(), "Simon");
         Assert.assertEquals(tmpStudent.getSurname(), "Hyben");
         studentDAO.delete(studentA);

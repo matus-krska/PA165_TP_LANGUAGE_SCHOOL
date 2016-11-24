@@ -46,13 +46,13 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
     @BeforeMethod
     public void createTestingSubject() {
         dataA = new Lecture();
-        dataA.setId(1l);
+        //dataA.setId(1l);
         dataA.setCode("EA1F16");
         dataA.setDescription("English A1 food");
         dataA.setTopic("Food");
 
         dataB = new Lecture();
-        dataB.setId(2l);
+        //dataB.setId(2l);
         dataB.setCode("EA1T16");
         dataB.setDescription("English A1 travel");
         dataB.setTopic("Travel");

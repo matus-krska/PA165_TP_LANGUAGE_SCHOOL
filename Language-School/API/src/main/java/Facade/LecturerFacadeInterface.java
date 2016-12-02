@@ -13,21 +13,21 @@ public interface LecturerFacadeInterface
     /**
      * Finds Lecturer by id
      * @param id of searched lecturer 
-     * @return lecturer if exists
+     * @return LecturerDTO if exists
      */
     public LecturerDTO findById(Long id);
     
     /**
-     * Creates new lecturer
-     * @param lecturer new lecturer  to create
-     * @return created lecturer
+     * Registers new lecturer
+     * @param lecturer new lecturer  to register
+     * @return LecturerDTO
      */
-    public LecturerDTO createNewLecturer(LecturerDTO lecturer);
+    public LecturerDTO registerLecturer(LecturerDTO lecturer);
 
     /**
-     * Updates lecturer
+     * Updates existing lecturer
      * @param lecturer lecturer to update
-     * @return updated lecturer
+     * @return LecturerDTO
      */
     public LecturerDTO updateLecturer(LecturerDTO lecturer);
 
@@ -35,14 +35,14 @@ public interface LecturerFacadeInterface
      * Removes a lecturer
      * @param lecturer to be removed
      */
-    public void removeLecturer(LecturerDTO lecturer);
+    //public void removeLecturer(LecturerDTO lecturer);
 
-    /** !!!!!
+    /** 
      * Finds lecturer by his full name
      * @param name
      * @param surname
      * @return Lecturer with matching name
      */
-    public List<LecturerDTO> findLecturerByName(String name, String surname);
+    public List<LecturerDTO> filterByName(String name, String surname);
 }
 

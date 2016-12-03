@@ -1,98 +1,111 @@
 package ServiceImp;
 
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
+import org.muni.fi.pa165.lang_school.DAO.LecturerDAO;
+
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.dao.DataAccessException;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.mockito.Mockito.*;
+import static org.testng.Assert.fail;
 
 /**
- * Tests for lecturer's service layer
+ * Tests for lecturer service layer
  * @author Simon Hyben, 421112
+ * @since 1.0
  */
 public class LecturerServiceImplTest {
+    
+    @Mock
+    private LecturerDAO lecturerDao;
+
+    private Lecturer lecturerA;
+    private Lecturer lecturerB;
+    
+    private LecturerServiceImpl lecturerServiceImpl;
     
     public LecturerServiceImplTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    @org.testng.annotations.BeforeClass
+    public void beforeClass() {
+        MockitoAnnotations.initMocks(this);
+        lecturerServiceImpl = new LecturerServiceImpl(lecturerDao);
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+    /**
+     * Initialize 2 instances of Lecturer for test purposes
+     */
+    @BeforeMethod
+    public void init() {            
+        lecturerA = new Lecturer();
+        lecturerA.setName("Simon");
+        lecturerA.setSurname("Hyben");
+        
+        lecturerB = new Lecturer();
+        lecturerB.setName("Michal");
+        lecturerB.setSurname("Novak");
     }
 
     /**
-     * Test of createLecturer method, of class LecturerServiceImpl.
+     * Test of addLecturer method, of class LecturerServiceImpl.
      */
-    @Test
-    public void testCreateLecturer() {
-        System.out.println("createLecturer");
-        Lecturer entity = null;
-        LecturerServiceImpl instance = new LecturerServiceImpl();
-        Lecturer expResult = null;
-        Lecturer result = instance.createLecturer(entity);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @org.testng.annotations.Test
+    public void testAddLecturer() {
+        lecturerServiceImpl.addLecturer(lecturerA);
+        verify(lecturerDao, times(1)).create(lecturerA);
     }
 
+    /**
+     * Test to create exception
+     */
+    @org.testng.annotations.Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testCreateNull(){
+        lecturerServiceImpl.addLecturer(null);
+        fail("Null has been created.");
+    }
+    
     /**
      * Test of updateLecturer method, of class LecturerServiceImpl.
      */
-    @Test
-    public void testUpdateLecturer() {
-        System.out.println("updateLecturer");
-        Lecturer entity = null;
-        LecturerServiceImpl instance = new LecturerServiceImpl();
-        Lecturer expResult = null;
-        Lecturer result = instance.updateLecturer(entity);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @org.testng.annotations.Test
+    public void testUpdateUser() {
+        lecturerA.setName("123");
+        lecturerServiceImpl.updateLecturer(lecturerA);
+        verify(lecturerDao, times(1)).update(lecturerA);
+    }
+    
+    /**
+     * Test to create exception
+     */
+    @org.testng.annotations.Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testNullUpdate(){
+        lecturerServiceImpl.updateLecturer(null);
+        fail("Null has been updated.");
     }
 
     /**
      * Test of findById method, of class LecturerServiceImpl.
      */
-    @Test
+    @org.testng.annotations.Test
     public void testFindById() {
-        System.out.println("findById");
-        Long id = null;
-        LecturerServiceImpl instance = new LecturerServiceImpl();
-        Lecturer expResult = null;
-        Lecturer result = instance.findById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        lecturerServiceImpl.findById(1l);
+        verify(lecturerDao, times(1)).readById(1l);
     }
 
     /**
-     * Test of findLecturerByName method, of class LecturerServiceImpl.
+     * Test of findByName method, of class LecturerServiceImpl.
      */
-    @Test
-    public void testFindLecturerByName() {
-        System.out.println("findByName");
-        String name = "";
-        String surname = "";
-        LecturerServiceImpl instance = new LecturerServiceImpl();
-        List<Lecturer> expResult = null;
-        List<Lecturer> result = instance.findLecturerByName(name, surname);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }    
+    @org.testng.annotations.Test
+    public void testFindByName() {
+        lecturerServiceImpl.addLecturer(lecturerA);
+        lecturerServiceImpl.findByName("Simon", "Hyben");
+        verify(lecturerDao, times(1)).findByName("Simon", "Hyben");
+    }  
 }
 

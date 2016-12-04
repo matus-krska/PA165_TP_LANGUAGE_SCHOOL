@@ -71,6 +71,25 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     }
 
     @Override
+    public List<LectureDTO> findAllLectures()
+    {
+        List<LectureDTO> dtoLectures = new ArrayList<>();
+        List<Lecture> lectures = lectureService.findAllLectures();
+        for(Lecture lecture : lectures)
+        {
+            dtoLectures.add(lectureToLectureDto(lecture));
+        }
+        return dtoLectures;
+    }
+
+    @Override
+    public LectureDTO findLectureByCodeAndTopic(String code, String topic)
+    {
+        Lecture lecture = lectureService.findLectureByCodeAndTopic(code, topic);
+        return lectureToLectureDto(lecture);
+    }
+
+    @Override
     public List<LectureDTO> findLecturesByLecturer(LecturerDTO lecturer)
     {
         List<LectureDTO> dtoLectures = new ArrayList<>();

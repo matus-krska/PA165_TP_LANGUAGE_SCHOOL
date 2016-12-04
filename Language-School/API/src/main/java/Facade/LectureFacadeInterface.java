@@ -52,4 +52,17 @@ public interface LectureFacadeInterface
      * @param newCode desired new code
      */
     public void changeLectureCode(LectureDTO lecture, String newCode);
+
+    /**
+     * Finds all created lectures
+     */
+    public List<LectureDTO> findAllLectures();
+
+    /**
+     * Finds a lecture with desired code and topic
+     * @param code desired code
+     * @param topic desired topic
+     * @return lecture with desired parameters
+     */
+    public LectureDTO findLectureByCodeAndTopic(String code, String topic);
 }

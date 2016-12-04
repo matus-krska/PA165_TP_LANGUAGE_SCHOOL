@@ -30,5 +30,12 @@ public class LectureDAO extends GenericDAOImplementation<Lecture, Long>
         q.setParameter("TOPIC", topic);
         return q.getResultList();
     }
+
+    public List<Lecture> findAllLectures()
+    {
+        String query = " FROM " + entityClass.getName();
+        Query q = em.createQuery(query);
+        return q.getResultList();
+    }
 }
 

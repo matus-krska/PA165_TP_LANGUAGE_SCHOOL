@@ -214,6 +214,20 @@ public class LectureDAOTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    public void testFindAllLectures()
+    {
+        lectureDao.create(dataA);
+        try {
+            List<Lecture> tmpList = lectureDao.findAllLectures();
+            Assert.assertEquals(tmpList.size(), 1);
+            Assert.assertEquals(tmpList.get(0).getCode(), dataA.getCode());
+            Assert.assertEquals(tmpList.get(0).getTopic(), dataA.getTopic());
+        } finally {
+            lectureDao.delete(dataA);
+        }
+    }
+
+    @Test
     public void testFindByCodeAndTopicMatchMultiple()
     {
         lectureDao.create(dataA);

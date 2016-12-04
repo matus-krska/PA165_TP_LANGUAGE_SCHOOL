@@ -100,6 +100,30 @@ public class LectureServiceImpl
         }
     }
 
+    public List<Lecture> findAllLectures()
+    {
+        List<Lecture> lectures = lectureDAO.findAllLectures();
+        return lectures;
+    }
+
+    public Lecture findLectureByCodeAndTopic(String code, String topic)
+    {
+        if(code == null || code.isEmpty() || topic == null || topic.isEmpty())
+        {
+            throw new IllegalArgumentException("Error finding lecture by code or topic which is null or empty");
+        }
+
+        List<Lecture> lectures = lectureDAO.findByCodeAndTopic(code, topic);
+        if(lectures.size() == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return lectures.get(0);
+        }
+    }
+
     public List<Lecture> findLecturesByLecturer(Lecturer lecturer)
     {
         if(lecturer == null || lecturer.getId() == null)

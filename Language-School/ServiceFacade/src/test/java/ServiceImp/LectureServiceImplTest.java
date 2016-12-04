@@ -122,6 +122,20 @@ public class LectureServiceImplTest
         verify(lectureDAO, times(1)).readByColumn("CODE","L1");
     }
 
+    @Test
+    public void testFindLectureByCodeAndTopic()
+    {
+        lectureServiceImpl.findLectureByCodeAndTopic("L1", "Introduction");
+        verify(lectureDAO,times(1)).findByCodeAndTopic("L1", "Introduction");
+    }
+
+    @Test
+    public void testFindAllLectures()
+    {
+        lectureServiceImpl.findAllLectures();
+        verify(lectureDAO,times(1)).findAllLectures();
+    }
+
     /**
      * Test to create exception
      */

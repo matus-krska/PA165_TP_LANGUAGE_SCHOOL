@@ -30,5 +30,16 @@ public class LecturerDAO extends GenericDAOImplementation<Lecturer, Long>{
         q.setParameter("SURNAME",surname);
         return q.getResultList();
     }
-
+    
+    /**
+     * Finds and returns list of all existing lecturers
+     * @return list of all lecturers
+     */
+    public List<Lecturer> findAllLecturers()
+    {
+        String query = " FROM " + entityClass.getName();
+        Query q = em.createQuery(query);
+        return q.getResultList();
+    }
 }
+

@@ -64,6 +64,21 @@ public class LecturerServiceImpl {
         }
         return lecturer;
     }
+    
+        public void removeLecturer(Lecturer lecturer)
+    {
+        if(lecturer == null)        
+            throw new IllegalArgumentException("Error removing null lecturer");
+        
+        try
+        {
+            lecturerDAO.delete(lecturer);
+        }
+        catch (Exception e)
+        {
+            throw new DAOdataAccessException("Error deleting lecturer");
+        }
+    }
 
     /**
      * Find lecturer entity
@@ -101,5 +116,18 @@ public class LecturerServiceImpl {
         }
         return lecturers;
     }
-
+    
+    /**
+     * Find all existing lecturers
+     * @return list of all existing lecturers
+     */
+    public List<Lecturer> findAllLecturers() {
+        List<Lecturer>  lecturers;
+        try {
+            lecturers = lecturerDAO.findAllLecturers();
+        } catch (Exception e) {
+            throw new DAOdataAccessException("Error findAllLecturers"); 
+        }
+        return lecturers;
+    }
 }

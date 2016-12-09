@@ -38,6 +38,8 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
      */
     @Override
     public LecturerDTO registerLecturer(LecturerDTO lecturerDTO) {
+        if (lecturerDTO == null)
+                throw new IllegalArgumentException("LecturerDTO parameter is null");
         
         Lecturer entity = lecturerDtoToEntity(lecturerDTO);
         Lecturer saved = lecturerService.addLecturer(entity);
@@ -52,6 +54,8 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
      */
     @Override
     public LecturerDTO updateLecturer(LecturerDTO lecturerDTO) {
+        if (lecturerDTO == null)
+                throw new IllegalArgumentException("LecturerDTO parameter is null");
         
         Lecturer entity = this.lecturerDtoToEntity(lecturerDTO);
         Lecturer updated = lecturerService.updateLecturer(entity);
@@ -60,15 +64,45 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
     }
 
     /**
-     * finds lecturer by id
+     * Finds lecturer by id
      * @param id unique id
      * @return LecturerDTO 
      */
     @Override
     public LecturerDTO findById(Long id) {
+        if (id == null)
+                throw new IllegalArgumentException("Id parameter is null");
+        
         return lecturerToLecturerDto(lecturerService.findById(id));
     }
 
+    /**
+     * Removes lecturer
+     * @param lecturerDTO 
+     */
+    @Override
+    public void removeLecturer(LecturerDTO lecturerDTO) {
+        if (lecturerDTO == null)
+                throw new IllegalArgumentException("LecturerDTO parameter is null");
+        Lecturer entity = this.lecturerDtoToEntity(lecturerDTO);
+        lecturerService.removeLecturer(entity);
+    }
+    
+    /**
+     * Finds and returns all existing lecturers
+     * @return list of all lecturers
+     */
+    @Override
+    public List<LecturerDTO> getAllLecturers() {
+        List<Lecturer> lecturers = lecturerService.findAllLecturers();
+        List<LecturerDTO> lecturersDTO = new ArrayList<>();
+        for(Lecturer lecturer : lecturers){
+            LecturerDTO lecturerDTO = lecturerToLecturerDto(lecturer);
+            lecturersDTO.add(lecturerDTO);
+        }
+        return lecturersDTO;
+    }
+        
     /**
      * Returns filtered users
      * @param name specifies room criteria
@@ -77,6 +111,9 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
      */
     @Override
     public List<LecturerDTO> filterByName(String name, String surname) {
+        if (name == null || surname == null)
+            throw new IllegalArgumentException("Name or surname is null!");
+        
         List<Lecturer> lecturers = lecturerService.findByName(name, surname);
         List<LecturerDTO> lecturersDTO = new ArrayList<>();
         for(Lecturer lecturer : lecturers){

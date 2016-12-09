@@ -35,14 +35,21 @@ public interface LecturerFacadeInterface
      * Removes a lecturer
      * @param lecturer to be removed
      */
-    //public void removeLecturer(LecturerDTO lecturer);
+    public void removeLecturer(LecturerDTO lecturer);
 
     /** 
      * Finds lecturer by his full name
      * @param name
      * @param surname
-     * @return Lecturer with matching name
+     * @return list of lecturers with matching name
      */
     public List<LecturerDTO> filterByName(String name, String surname);
+    
+    /**
+     * Finds and returns all existing lecturers
+     * @return list of all lecturers
+     */
+    public List<LecturerDTO> getAllLecturers();
+
 }
 

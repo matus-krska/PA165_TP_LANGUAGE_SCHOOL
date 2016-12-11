@@ -1,6 +1,7 @@
 package FacadeImp;
 
 import DTO.LectureDTO;
+import org.muni.fi.pa165.lang_school.entities.Lecture;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
 import DTO.LecturerDTO;
 import ServiceImp.LecturerServiceImpl;
@@ -34,60 +35,58 @@ import org.testng.annotations.Test;
  * Tests for lecturer facade layer
  * @author Simon Hyben, 421112
  */
-//@ContextConfiguration(classes = BeanMappingConfiguration.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class LecturerFacadeImplTest {
-    
+
+    @Autowired
+    private DozerBeanMapper mapper;
+
     @Mock
-    LecturerServiceImpl lecturerService;
-    
-    //@Mock
-    //BeanMapping beanMapping;
-    
-    LecturerFacadeImpl lecturerFacade;
-    
-    Lecturer lecturer;
-    
-    LecturerDTO lecturerDto;
-    //LecturerCreateDTO lecturerCreate;
-    LectureDTO lectureDto;
-    
-    public LecturerFacadeImplTest() {
-    }
-    
-    @BeforeClass
-    public void setUpClass() {
+    private LecturerServiceImpl lecturerService;
+
+    private LecturerFacadeImpl lecturerFacade;
+
+    private Lecturer lecturer;
+    private Lecture lecture;
+
+    @org.testng.annotations.BeforeClass
+    public void beforeClass()
+    {
         MockitoAnnotations.initMocks(this);
         lecturerFacade = new LecturerFacadeImpl(lecturerService);
-        //lecturerFacade = new LecturerFacadeImpl(lecturerService, beanMapping);
     }
-    
+
+    /**
+     * Initialize instance of Lecturer and Lecture for test purposes
+     */
     @BeforeMethod
-    public void init() {
-        lectureDto = new LectureDTO();
-        lectureDto.setId(2l);
-        lectureDto.setCode("PA165");
-        lectureDto.setDescription("3rd lecture of java programming");
-        //lectureDto.setLectureTime(lectureTime);
-        lectureDto.setTaughtBy(lecturerDto);
-        lectureDto.setTopic("java");
-        
-        List<LectureDTO> lessons = new ArrayList<>();
-        lessons.add(lectureDto);
-        
-        lecturerDto = new LecturerDTO();
-        lecturerDto.setId(1l);        
-        lecturerDto.setLessons(lessons);
-        lecturerDto.setName("Simon");
-        lecturerDto.setSurname("Hyben");
-        
-        //lecturerDto.setTaughtLanguages(taughtLanguages);        
+    public void init()
+    {
+        mapper = new DozerBeanMapper();
+
+        lecture = new Lecture();
+        lecture.setId(2l);
+        lecture.setCode("PA165");
+        lecture.setDescription("3rd lecture of java programming");
+        lecture.setTaughtBy(lecturer);
+        lecture.setTopic("java");
+
+        List<Lecture> lessons = new ArrayList<>();
+        lessons.add(lecture);
+
+        lecturer = new Lecturer();
+        lecturer.setId(1l);
+        lecturer.setLessons(lessons);
+        lecturer.setName("Simon");
+        lecturer.setSurname("Hyben");
     }
-    
-    @AfterMethod
-    public void afterMethod() {
-        reset(lecturerService);
+
+    @BeforeMethod
+    public void initServiceBehaviour()
+    {
+        when(lecturerService.addLecturer(lecturer)).thenReturn(lecturer);
+        when(lecturerService.updateLecturer(lecturer)).thenReturn(lecturer);
     }
     
     /**
@@ -95,16 +94,14 @@ public class LecturerFacadeImplTest {
      */
     @Test
     public void testRegisterLecturer() {
+        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
         lecturerFacade.registerLecturer(lecturerDto);
-        
-        verify(lecturerService, times(1)).addLecturer(any(Lecturer.class));
+        verify(lecturerService, times(1)).addLecturer(lecturer);
     }    
     
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testCreateLecturerNull() {
-        
         lecturerFacade.registerLecturer(null);
-        
         fail("Expected IllegalArgumentException");
     }
 
@@ -112,16 +109,15 @@ public class LecturerFacadeImplTest {
      * Tests for updateLecturer method, of class LecturerFacadeImpl.
      */
     @Test
-    public void testUpdateLecturer() {        
+    public void testUpdateLecturer() {
+        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
         lecturerFacade.updateLecturer(lecturerDto);        
-        verify(lecturerService, times(1)).updateLecturer(any(Lecturer.class));
+        verify(lecturerService, times(1)).updateLecturer(lecturer);
     }
     
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testUpdateLecturerNull() {
-        
         lecturerFacade.updateLecturer(null);
-        
         fail("Expected IllegalArgumentException");
     }
 
@@ -130,17 +126,13 @@ public class LecturerFacadeImplTest {
      */
     @Test
     public void testFindById() {
-        
         lecturerFacade.findById(1l);
-        
         verify(lecturerService, times(1)).findById(1l);
     }    
     
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testGetLecturerByIdNull() {
-        
         lecturerFacade.findById(null);
-        
         fail("Expected IllegalArgumentException");
     }
     
@@ -149,17 +141,14 @@ public class LecturerFacadeImplTest {
      */
     @Test
     public void testDeleteLecturer() {
-        
+        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
         lecturerFacade.removeLecturer(lecturerDto);
-        
-        verify(lecturerService, times(1)).removeLecturer(any(Lecturer.class));
+        verify(lecturerService, times(1)).removeLecturer(lecturer);
     }    
     
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testDeleteLecturerNull() {
-        
         lecturerFacade.removeLecturer(null);
-        
         fail("Expected IllegalArgumentException");
     }
     
@@ -168,26 +157,34 @@ public class LecturerFacadeImplTest {
      */
     @Test
     public void testFilterByName() {
+        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
         lecturerFacade.registerLecturer(lecturerDto);
         lecturerFacade.filterByName("Simon", "Hyben");
         verify(lecturerService, times(1)).findByName("Simon", "Hyben");
     }
+
+    @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testFilterByNullName() {
+        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
         lecturerFacade.registerLecturer(lecturerDto);
         lecturerFacade.filterByName(null, "Hyben");
         fail("Expected IllegalArgumentException");
     }
+
+    @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testFilterByNullSurname() {
+        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
         lecturerFacade.registerLecturer(lecturerDto);
         lecturerFacade.filterByName("Simon", null);
         fail("Expected IllegalArgumentException");
     }
+
+    @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testFilterByNameNullBoth() {
+        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
         lecturerFacade.registerLecturer(lecturerDto);
         lecturerFacade.filterByName(null, null);
         fail("Expected IllegalArgumentException");
     }
-    
-    
 }
 

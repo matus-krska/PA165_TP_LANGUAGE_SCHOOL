@@ -12,7 +12,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-//import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,11 +23,11 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class LecturerFacadeImpl implements LecturerFacadeInterface {
 
-    private final Logger logger = LoggerFactory.getLogger(LecturerFacadeImpl.class);
+    //private final Logger logger = LoggerFactory.getLogger(LecturerFacadeImpl.class);
 
     private LecturerServiceImpl lecturerService;
 
-    private BeanMapper mapper;// = new BeanMapper();
+    private BeanMapper mapper;
     
 
     @Inject

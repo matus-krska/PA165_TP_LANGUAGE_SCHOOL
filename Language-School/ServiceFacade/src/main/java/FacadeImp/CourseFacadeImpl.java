@@ -1,5 +1,6 @@
 package FacadeImp;
 
+import ConfigMapper.BeanMapper;
 import DTO.CourseDTO;
 import DTO.LectureDTO;
 import Facade.CourseFacadeInterface;
@@ -14,7 +15,8 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import org.dozer.DozerBeanMapper;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,47 +30,68 @@ public class CourseFacadeImpl implements CourseFacadeInterface
 {
     private CourseServiceImpl courseService;
 
-    @Inject
-    private DozerBeanMapper mapper = new DozerBeanMapper();
+    private BeanMapper mapper;
 
     @Inject
-    public CourseFacadeImpl(CourseServiceImpl courseService)
+    public CourseFacadeImpl(CourseServiceImpl courseService, BeanMapper mapper)
     {
         this.courseService = courseService;
+        this.mapper = mapper;
     }
 
+    @Override
     public CourseDTO createNewCourse(CourseDTO courseDTO)
     {
-        Course entity = courseDtoToEntity(courseDTO);
-        Course saved = courseService.createCourse(entity);
+        if (courseDTO == null)
+            throw new IllegalArgumentException("CourseDTO parameter is null");
 
-        return courseToCourseDto(saved);
+        Optional<Course> entity = mapper.mapTo(courseDTO, Course.class);
+        Course saved = courseService.createCourse(entity.get());
+
+        return mapper.mapTo(saved, CourseDTO.class).get();
     }
 
+    @Override
     public CourseDTO updateCourse(CourseDTO courseDTO)
     {
-        Course entity = courseDtoToEntity(courseDTO);
-        Course updated = courseService.updateCourse(entity);
-        return courseToCourseDto(updated);
+        if (courseDTO == null)
+            throw new IllegalArgumentException("CourseDTO parameter is null");
+
+        Optional<Course> entity = mapper.mapTo(courseDTO, Course.class);
+        Course updated = courseService.updateCourse(entity.get());
+        return mapper.mapTo(updated, CourseDTO.class).get();
     }
 
+    @Override
+    public CourseDTO findById(Long id) {
+        if (id == null)
+            throw new IllegalArgumentException("Id parameter is null");
+
+        return mapper.mapTo(courseService.findById(id), CourseDTO.class).get();
+
+    }
+
+    @Override
     public void removeCourse(CourseDTO courseDTO)
     {
-        Course entity = this.courseDtoToEntity(courseDTO);
-        courseService.removeCourse(entity);
+        if (courseDTO == null)
+            throw new IllegalArgumentException("CourseDTO parameter is null");
+
+        Optional<Course> entity = mapper.mapTo(courseDTO, Course.class);
+        courseService.removeCourse(entity.get());
     }
 
+    @Override
     public List<CourseDTO> findCourseByLanguage(String language)
     {
-        List<Course> entities = courseService.findCourseByLanguage(language);
-        List<CourseDTO> courses = new ArrayList<>();
-        for(Course entity : entities)
-        {
-            courses.add(courseToCourseDto(entity));
-        }
-        return courses;
+        if (language == null)
+            throw new IllegalArgumentException("Language is null!");
+
+        List<Course> courses = courseService.findCourseByLanguage(language);
+        return mapper.mapTo(courses, CourseDTO.class);
     }
 
+    /*
     private Course courseDtoToEntity(CourseDTO dto)
     {
         return mapper.map(dto,Course.class);
@@ -76,4 +99,5 @@ public class CourseFacadeImpl implements CourseFacadeInterface
     private CourseDTO courseToCourseDto(Course entity){
         return mapper.map(entity,CourseDTO.class);
     }
+    */
 }

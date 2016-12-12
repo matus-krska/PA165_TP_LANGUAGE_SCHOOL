@@ -76,6 +76,19 @@ public class CourseServiceImpl
         }
     }
 
+    public Course findById(Long id) {
+        Course course;
+        if (id == null){
+            throw new IllegalArgumentException("Error findById");
+        }
+        try {
+            course = courseDAO.readById(id);
+        } catch (Exception e) {
+            throw new DAOdataAccessException("Error findById");
+        }
+        return course;
+    }
+
     public List<Course> findCourseByLanguage(String language)
     {
         List<Course> courses;

@@ -17,5 +17,7 @@ public interface CourseFacadeInterface
 
     public void removeCourse(CourseDTO course);
 
+    public CourseDTO findById(Long id);
+
     public List<CourseDTO> findCourseByLanguage(String language);
 }

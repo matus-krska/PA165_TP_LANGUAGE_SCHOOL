@@ -1,5 +1,6 @@
 package FacadeImp;
 
+import ConfigMapper.BeanMapper;
 import DTO.LectureDTO;
 import DTO.LecturerDTO;
 import Exceptions.DAOdataAccessException;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Implementation of facade layer for entity Lecture
@@ -30,63 +32,84 @@ public class LectureFacadeImpl implements LectureFacadeInterface
 {
     private LectureServiceImpl lectureService;
 
-    @Inject
-    private DozerBeanMapper mapper = new DozerBeanMapper();
+    private BeanMapper mapper;
 
     @Inject
-    public LectureFacadeImpl(LectureServiceImpl lectureService)
+    public LectureFacadeImpl(LectureServiceImpl lectureService, BeanMapper mapper)
     {
         this.lectureService = lectureService;
+        this.mapper = mapper;
     }
 
     @Override
     public LectureDTO createNewLecture(LectureDTO lectureDTO)
     {
-        Lecture entity = lectureDtoToEntity(lectureDTO);
-        Lecture saved = lectureService.createLecture(entity);
+        if (lectureDTO == null)
+            throw new IllegalArgumentException("LectureDTO parameter is null");
 
-        return lectureToLectureDto(saved);
+        Optional<Lecture> entity = mapper.mapTo(lectureDTO, Lecture.class);
+        Lecture saved = lectureService.createLecture(entity.get());
+
+        return mapper.mapTo(saved, LectureDTO.class).get();
     }
 
     @Override
     public LectureDTO updateLecture(LectureDTO lectureDTO)
     {
-        Lecture entity = this.lectureDtoToEntity(lectureDTO);
-        Lecture updated = lectureService.updateLecture(entity);
-        return lectureToLectureDto(updated);
+        if (lectureDTO == null)
+            throw new IllegalArgumentException("LectureDTO parameter is null");
+
+        Optional<Lecture> entity = mapper.mapTo(lectureDTO, Lecture.class);
+        Lecture updated = lectureService.updateLecture(entity.get());
+
+        return mapper.mapTo(updated, LectureDTO.class).get();
+    }
+
+    @Override
+    public LectureDTO findById(Long id) {
+        if (id == null)
+            throw new IllegalArgumentException("Id parameter is null");
+
+        return mapper.mapTo(lectureService.findById(id), LectureDTO.class).get();
+
     }
 
     @Override
     public void removeLecture(LectureDTO lectureDTO)
     {
-        Lecture entity = this.lectureDtoToEntity(lectureDTO);
-        lectureService.removeLecture(entity);
+        if (lectureDTO == null)
+            throw new IllegalArgumentException("LectureDTO parameter is null");
+
+        Optional<Lecture> entity = mapper.mapTo(lectureDTO, Lecture.class);
+        lectureService.removeLecture(entity.get());
     }
 
     @Override
     public LectureDTO findLectureByCode(String code)
     {
+        if (code == null)
+            throw new IllegalArgumentException("Code parameter is null");
+
         Lecture entity = lectureService.findLectureByCode(code);
-        return lectureToLectureDto(entity);
+        return mapper.mapTo(entity, LectureDTO.class).get();
     }
 
     @Override
     public List<LectureDTO> findAllLectures()
     {
-        List<LectureDTO> dtoLectures = new ArrayList<>();
         List<Lecture> lectures = lectureService.findAllLectures();
-        for(Lecture lecture : lectures)
-        {
-            dtoLectures.add(lectureToLectureDto(lecture));
-        }
-        return dtoLectures;
+        return mapper.mapTo(lectures, LectureDTO.class);
     }
 
     @Override
     public LectureDTO findLectureByCodeAndTopic(String code, String topic)
     {
+        if (code == null || topic == null)
+            throw new IllegalArgumentException("Code or topic is null!");
+
         Lecture lecture = lectureService.findLectureByCodeAndTopic(code, topic);
-        return lectureToLectureDto(lecture);
+        return mapper.mapTo(lecture, LectureDTO.class);
+
     }
 
     @Override
@@ -104,9 +127,18 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     @Override
     public void changeLectureCode(LectureDTO lectureDTO, String newCode) throws DAOdataAccessException
     {
-        LectureDTO lecture = lectureToLectureDto(lectureService.changeLectureCode(lectureDtoToEntity(lectureDTO),newCode));
+        if (lectureDTO == null || newCode == null)
+            throw new IllegalArgumentException("LectureDTO  or newCode parameter is null");
+
+        Optional<LectureDTO> entity = mapper.mapTo(lectureService.changeLectureCode(mapper.mapTo(lectureDTO, Lecture.class),newCode), LectureDTO.class);
+        //LectureDTO lecture = lectureService.updateLecture(entity.get());
+
+        //return mapper.mapTo(lecture, LectureDTO.class).get();
+
+        //LectureDTO lecture = lectureToLectureDto(lectureService.changeLectureCode(lectureDtoToEntity(lectureDTO),newCode));
     }
 
+    /*
     private Lecture lectureDtoToEntity(LectureDTO dto)
     {
         return mapper.map(dto,Lecture.class);
@@ -123,4 +155,5 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     private LecturerDTO lecturerToLecturerDto(Lecturer entity){
         return mapper.map(entity, LecturerDTO.class);
     }
+    */
 }

@@ -1,5 +1,6 @@
 package FacadeImp;
 
+import ConfigMapper.BeanMapper;
 import DTO.CourseDTO;
 import ServiceImp.CourseServiceImpl;
 import ServiceImp.LecturerServiceImpl;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.when;
 public class CourseFacadeImplTest
 {
     @Autowired
-    private DozerBeanMapper mapper;
+    private BeanMapper mapper;
 
     @Mock
     private CourseServiceImpl courseService;
@@ -43,7 +44,7 @@ public class CourseFacadeImplTest
     public void beforeClass()
     {
         MockitoAnnotations.initMocks(this);
-        courseFacade = new CourseFacadeImpl(courseService);
+        courseFacade = new CourseFacadeImpl(courseService, mapper);
     }
 
     /**
@@ -52,7 +53,7 @@ public class CourseFacadeImplTest
     @BeforeMethod
     public void init()
     {
-        mapper = new DozerBeanMapper();
+        //mapper = new DozerBeanMapper();
 
         courseA = new Course();
         courseA.setName("Course1");

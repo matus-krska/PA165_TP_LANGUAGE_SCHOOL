@@ -76,6 +76,19 @@ public class LectureServiceImpl
         }
     }
 
+    public Lecture findById(Long id) {
+        Lecture lecture;
+        if (id == null){
+            throw new IllegalArgumentException("Error findById");
+        }
+        try {
+            lecture = lectureDAO.readById(id);
+        } catch (Exception e) {
+            throw new DAOdataAccessException("Error findById");
+        }
+        return lecture;
+    }
+
     public Lecture findLectureByCode(String code)
     {
         if(code == null)

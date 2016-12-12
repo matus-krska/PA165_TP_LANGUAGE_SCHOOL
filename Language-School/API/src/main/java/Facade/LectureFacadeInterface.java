@@ -27,6 +27,13 @@ public interface LectureFacadeInterface
     public LectureDTO updateLecture(LectureDTO lecture);
 
     /**
+     * Return lecture with corresponding id
+     * @param id of desired lecture
+     * @return
+     */
+    public LectureDTO findById(Long id);
+
+    /**
      * Removes a lecture
      * @param lecture to be removed
      */

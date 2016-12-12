@@ -1,5 +1,6 @@
 package FacadeImp;
 
+import ConfigMapper.BeanMapper;
 import DTO.LecturerDTO;
 import Facade.LecturerFacadeInterface;
 import ServiceImp.LecturerServiceImpl;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
@@ -23,12 +25,13 @@ import org.springframework.stereotype.Service;
 public class LecturerFacadeImpl implements LecturerFacadeInterface {
     
     private LecturerServiceImpl lecturerService;
-    private DozerBeanMapper mapper = new DozerBeanMapper();
+    private BeanMapper mapper;
     
      
     @Inject
-    public LecturerFacadeImpl(LecturerServiceImpl lecturerService) {
+    public LecturerFacadeImpl(LecturerServiceImpl lecturerService, BeanMapper mapper) {
         this.lecturerService = lecturerService;
+        this.mapper = mapper;
     }
     
     /**
@@ -41,10 +44,10 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
         if (lecturerDTO == null)
                 throw new IllegalArgumentException("LecturerDTO parameter is null");
         
-        Lecturer entity = lecturerDtoToEntity(lecturerDTO);
-        Lecturer saved = lecturerService.addLecturer(entity);
+         Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
+        Lecturer saved = lecturerService.addLecturer(entity.get());
 
-        return lecturerToLecturerDto(saved);
+        return mapper.mapTo(saved, LecturerDTO.class).get();
     }
 
     /**
@@ -57,10 +60,10 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
         if (lecturerDTO == null)
                 throw new IllegalArgumentException("LecturerDTO parameter is null");
         
-        Lecturer entity = this.lecturerDtoToEntity(lecturerDTO);
-        Lecturer updated = lecturerService.updateLecturer(entity);
+        Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
+        Lecturer updated = lecturerService.updateLecturer(entity.get());
         
-        return this.lecturerToLecturerDto(updated);
+        return mapper.mapTo(updated, LecturerDTO.class).get();
     }
 
     /**
@@ -73,7 +76,8 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
         if (id == null)
                 throw new IllegalArgumentException("Id parameter is null");
         
-        return lecturerToLecturerDto(lecturerService.findById(id));
+        return mapper.mapTo(lecturerService.findById(id), LecturerDTO.class).get();
+        
     }
 
     /**
@@ -84,8 +88,9 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
     public void removeLecturer(LecturerDTO lecturerDTO) {
         if (lecturerDTO == null)
                 throw new IllegalArgumentException("LecturerDTO parameter is null");
-        Lecturer entity = this.lecturerDtoToEntity(lecturerDTO);
-        lecturerService.removeLecturer(entity);
+
+        Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
+        lecturerService.removeLecturer(entity.get());
     }
     
     /**
@@ -97,8 +102,8 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
         List<Lecturer> lecturers = lecturerService.findAllLecturers();
         List<LecturerDTO> lecturersDTO = new ArrayList<>();
         for(Lecturer lecturer : lecturers){
-            LecturerDTO lecturerDTO = lecturerToLecturerDto(lecturer);
-            lecturersDTO.add(lecturerDTO);
+            Optional<LecturerDTO> lecturerDTO = mapper.mapTo(lecturer, LecturerDTO.class);
+            lecturersDTO.add(lecturerDTO.get());
         }
         return lecturersDTO;
     }
@@ -117,28 +122,29 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
         List<Lecturer> lecturers = lecturerService.findByName(name, surname);
         List<LecturerDTO> lecturersDTO = new ArrayList<>();
         for(Lecturer lecturer : lecturers){
-            LecturerDTO lecturerDTO = lecturerToLecturerDto(lecturer);
-            lecturersDTO.add(lecturerDTO);
+            //LecturerDTO lecturerDTO = lecturerToLecturerDto(lecturer);
+            Optional<LecturerDTO> lecturerDTO = mapper.mapTo(lecturer, LecturerDTO.class);
+            lecturersDTO.add(lecturerDTO.get());
         }
         return lecturersDTO;
     }
 
-    /**
-     * Bean mapping method
-     * @param dto DTO lecturer
-     * @return lecturer entity
-     */
-    private Lecturer lecturerDtoToEntity(LecturerDTO dto){
-        return mapper.map(dto, Lecturer.class);
-    }
-    
-    /**
-     * Bean mapping method
-     * @param entity lecturer entity
-     * @return lecturerDTO
-     */
-    private LecturerDTO lecturerToLecturerDto(Lecturer entity){
-        return mapper.map(entity, LecturerDTO.class);
-    }
+//    /**
+//     * Bean mapping method
+//     * @param dto DTO lecturer
+//     * @return lecturer entity
+//     */
+//    private Lecturer lecturerDtoToEntity(LecturerDTO dto){
+//        return mapper.map(dto, Lecturer.class);
+//    }
+//    
+//    /**
+//     * Bean mapping method
+//     * @param entity lecturer entity
+//     * @return lecturerDTO
+//     */
+//    private LecturerDTO lecturerToLecturerDto(Lecturer entity){
+//        return mapper.map(entity, LecturerDTO.class);
+//    }
     
 }

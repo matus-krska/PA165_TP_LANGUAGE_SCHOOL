@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/API/API.iml" filepath="$PROJECT_DIR$/API/API.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DAO/DAO.iml" filepath="$PROJECT_DIR$/DAO/DAO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServiceFacade/ServiceFacade.iml" filepath="$PROJECT_DIR$/ServiceFacade/ServiceFacade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lang-school.iml" filepath="$PROJECT_DIR$/lang-school.iml" />
+    </modules>
+  </component>
+</project>

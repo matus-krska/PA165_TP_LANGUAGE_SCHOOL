@@ -1,5 +1,7 @@
 package FacadeImp;
 
+import ConfigMapper.BeanMapper;
+import ConfigMapper.BeanMappingConfiguration;
 import DTO.LectureDTO;
 import org.muni.fi.pa165.lang_school.entities.Lecture;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
@@ -35,12 +37,13 @@ import org.testng.annotations.Test;
  * Tests for lecturer facade layer
  * @author Simon Hyben, 421112
  */
-//@TestExecutionListeners(TransactionalTestExecutionListener.class)
-//@Transactional
+@ContextConfiguration(classes = BeanMappingConfiguration.class)
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
 public class LecturerFacadeImplTest {
 
-    @Autowired
-    private DozerBeanMapper mapper;
+    @Mock
+    private BeanMapper mapper;
 
     @Mock
     private LecturerServiceImpl lecturerService;
@@ -53,8 +56,18 @@ public class LecturerFacadeImplTest {
     @BeforeClass
     public void beforeClass()
     {
+//        when(lecturerService.addLecturer(lecturer)).thenReturn(lecturer);
+//        when(lecturerService.updateLecturer(lecturerB)).thenReturn(lecturerB);
+        
+
+        
         MockitoAnnotations.initMocks(this);
-        lecturerFacade = new LecturerFacadeImpl(lecturerService);
+        doReturn(Optional.of(new Lecturer())).when(mapper).mapTo(any(LecturerDTO.class), eq(Lecturer.class));
+        doReturn(Optional.of(new LecturerDTO())).when(mapper).mapTo(any(Lecturer.class), eq(LecturerDTO.class));
+        doReturn(Optional.of(new Lecture())).when(mapper).mapTo(any(LectureDTO.class), eq(Lecture.class));
+        
+        
+        lecturerFacade = new LecturerFacadeImpl(lecturerService, mapper);
     }
 
     /**
@@ -63,8 +76,6 @@ public class LecturerFacadeImplTest {
     @BeforeMethod
     public void init()
     {
-        mapper = new DozerBeanMapper();
-
         lecturer = new Lecturer();
         lecturer.setId(1l);
         lecturer.setName("Simon");
@@ -76,20 +87,15 @@ public class LecturerFacadeImplTest {
         lecturerB.setSurname("Mover"); 
     }
 
-    @BeforeMethod
-    public void initServiceBehaviour()
-    {
-        when(lecturerService.addLecturer(lecturer)).thenReturn(lecturer);
-        when(lecturerService.updateLecturer(lecturerB)).thenReturn(lecturerB);
-    }
+   
     
     /**
      * Tests for registerLecturer method, of class LecturerFacadeImpl.
      */
     @Test
     public void testRegisterLecturer() {
-        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
-        lecturerFacade.registerLecturer(lecturerDto);
+        Optional<LecturerDTO> lecturerDto = mapper.mapTo(lecturer, LecturerDTO.class);
+        lecturerFacade.registerLecturer(lecturerDto.get());
         verify(lecturerService, times(1)).addLecturer(lecturer);
     }    
     
@@ -104,8 +110,8 @@ public class LecturerFacadeImplTest {
      */
     @Test
     public void testUpdateLecturer() {
-        LecturerDTO lecturerBDto = mapper.map(lecturerB, LecturerDTO.class);
-        lecturerFacade.updateLecturer(lecturerBDto);        
+        Optional<LecturerDTO> lecturerBDto = mapper.mapTo(lecturerB, LecturerDTO.class);
+        lecturerFacade.updateLecturer(lecturerBDto.get());        
         verify(lecturerService, times(1)).updateLecturer(lecturerB);
     }
     
@@ -135,8 +141,8 @@ public class LecturerFacadeImplTest {
      */
     @Test
     public void testDeleteLecturer() {
-        LecturerDTO lecturerDto = mapper.map(lecturerB, LecturerDTO.class);
-        lecturerFacade.removeLecturer(lecturerDto);
+        Optional<LecturerDTO> lecturerDto = mapper.mapTo(lecturerB, LecturerDTO.class);
+        lecturerFacade.removeLecturer(lecturerDto.get());
         verify(lecturerService, times(1)).removeLecturer(lecturerB);
     }    
     
@@ -151,32 +157,32 @@ public class LecturerFacadeImplTest {
      */
     @Test
     public void testFilterByName() {
-        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
-        lecturerFacade.registerLecturer(lecturerDto);
+        Optional<LecturerDTO> lecturerDto = mapper.mapTo(lecturer, LecturerDTO.class);
+        lecturerFacade.registerLecturer(lecturerDto.get());
         List<LecturerDTO> newList = lecturerFacade.filterByName("Simon", "Hyben");
         verify(lecturerService, times(1)).findByName("Simon", "Hyben");
     }
 
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testFilterByNullName() {
-        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
-        lecturerFacade.registerLecturer(lecturerDto);
+        Optional<LecturerDTO> lecturerDto = mapper.mapTo(lecturer, LecturerDTO.class);
+        lecturerFacade.registerLecturer(lecturerDto.get());
         List<LecturerDTO> newList = lecturerFacade.filterByName(null, "Hyben");
         fail("Expected IllegalArgumentException");
     }
 
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testFilterByNullSurname() {
-        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
-        lecturerFacade.registerLecturer(lecturerDto);
+        Optional<LecturerDTO> lecturerDto = mapper.mapTo(lecturer, LecturerDTO.class);
+        lecturerFacade.registerLecturer(lecturerDto.get());
         List<LecturerDTO> newList = lecturerFacade.filterByName("Simon", null);
         fail("Expected IllegalArgumentException");
     }
 
     @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testFilterByNameNullBoth() {
-        LecturerDTO lecturerDto = mapper.map(lecturer, LecturerDTO.class);
-        lecturerFacade.registerLecturer(lecturerDto);
+        Optional<LecturerDTO> lecturerDto = mapper.mapTo(lecturer, LecturerDTO.class);
+        lecturerFacade.registerLecturer(lecturerDto.get());
         List<LecturerDTO> newList = lecturerFacade.filterByName(null, null);
         fail("Expected IllegalArgumentException");
     }

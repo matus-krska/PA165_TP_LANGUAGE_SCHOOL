@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class LecturerServiceImpl {
     
-    @Inject
     private LecturerDAO lecturerDAO;
 
     @Inject
@@ -58,14 +57,14 @@ public class LecturerServiceImpl {
         
         try {
             lecturerDAO.update(entity);
-            lecturer = lecturerDAO.readById(entity.getId());
+            //lecturer = lecturerDAO.readById(entity.getId());
         } catch (Exception e) {
             throw new DAOdataAccessException("Error updating lecturer"); 
         }
-        return lecturer;
+        return entity;
     }
     
-        public void removeLecturer(Lecturer lecturer)
+    public void removeLecturer(Lecturer lecturer)
     {
         if(lecturer == null)        
             throw new IllegalArgumentException("Error removing null lecturer");
@@ -76,7 +75,7 @@ public class LecturerServiceImpl {
         }
         catch (Exception e)
         {
-            throw new DAOdataAccessException("Error deleting lecturer");
+            throw new DAOdataAccessException("Error removing lecturer");
         }
     }
 

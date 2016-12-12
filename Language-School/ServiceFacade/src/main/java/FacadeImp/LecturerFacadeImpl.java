@@ -10,10 +10,10 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
-import org.dozer.DozerBeanMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+//import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
-
-
 
 /**
  * Facade interface for access to the lecturers
@@ -23,11 +23,14 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class LecturerFacadeImpl implements LecturerFacadeInterface {
-    
+
+    private final Logger logger = LoggerFactory.getLogger(LecturerFacadeImpl.class);
+
     private LecturerServiceImpl lecturerService;
-    private BeanMapper mapper;
+
+    private BeanMapper mapper;// = new BeanMapper();
     
-     
+
     @Inject
     public LecturerFacadeImpl(LecturerServiceImpl lecturerService, BeanMapper mapper) {
         this.lecturerService = lecturerService;
@@ -44,7 +47,7 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
         if (lecturerDTO == null)
                 throw new IllegalArgumentException("LecturerDTO parameter is null");
         
-         Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
+        Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
         Lecturer saved = lecturerService.addLecturer(entity.get());
 
         return mapper.mapTo(saved, LecturerDTO.class).get();
@@ -75,7 +78,7 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
     public LecturerDTO findById(Long id) {
         if (id == null)
                 throw new IllegalArgumentException("Id parameter is null");
-        
+
         return mapper.mapTo(lecturerService.findById(id), LecturerDTO.class).get();
         
     }
@@ -100,12 +103,7 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
     @Override
     public List<LecturerDTO> getAllLecturers() {
         List<Lecturer> lecturers = lecturerService.findAllLecturers();
-        List<LecturerDTO> lecturersDTO = new ArrayList<>();
-        for(Lecturer lecturer : lecturers){
-            Optional<LecturerDTO> lecturerDTO = mapper.mapTo(lecturer, LecturerDTO.class);
-            lecturersDTO.add(lecturerDTO.get());
-        }
-        return lecturersDTO;
+        return mapper.mapTo(lecturers, LecturerDTO.class);
     }
         
     /**
@@ -120,31 +118,8 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
             throw new IllegalArgumentException("Name or surname is null!");
         
         List<Lecturer> lecturers = lecturerService.findByName(name, surname);
-        List<LecturerDTO> lecturersDTO = new ArrayList<>();
-        for(Lecturer lecturer : lecturers){
-            //LecturerDTO lecturerDTO = lecturerToLecturerDto(lecturer);
-            Optional<LecturerDTO> lecturerDTO = mapper.mapTo(lecturer, LecturerDTO.class);
-            lecturersDTO.add(lecturerDTO.get());
-        }
-        return lecturersDTO;
+        return mapper.mapTo(lecturers, LecturerDTO.class);
     }
 
-//    /**
-//     * Bean mapping method
-//     * @param dto DTO lecturer
-//     * @return lecturer entity
-//     */
-//    private Lecturer lecturerDtoToEntity(LecturerDTO dto){
-//        return mapper.map(dto, Lecturer.class);
-//    }
-//    
-//    /**
-//     * Bean mapping method
-//     * @param entity lecturer entity
-//     * @return lecturerDTO
-//     */
-//    private LecturerDTO lecturerToLecturerDto(Lecturer entity){
-//        return mapper.map(entity, LecturerDTO.class);
-//    }
     
 }

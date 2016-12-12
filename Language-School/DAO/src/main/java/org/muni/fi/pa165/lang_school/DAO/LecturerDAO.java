@@ -25,10 +25,10 @@ public class LecturerDAO extends GenericDAOImplementation<Lecturer, Long>{
     public List<Lecturer> findByName(String name, String surname)
     {
         String query = " FROM " + entityClass.getName() + " WHERE NAME = :NAME AND SURNAME = :SURNAME";
-        Query q = em.createQuery(query);
-        q.setParameter("NAME",name);
-        q.setParameter("SURNAME",surname);
-        return q.getResultList();
+        Query nQ = em.createQuery(query);
+        nQ.setParameter("NAME",name);
+        nQ.setParameter("SURNAME",surname);
+        return nQ.getResultList();
     }
     
     /**

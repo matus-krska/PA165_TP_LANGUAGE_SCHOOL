@@ -51,7 +51,6 @@ public class LecturerFacadeImplTest {
     private LecturerFacadeImpl lecturerFacade;
 
     private LecturerDTO lecturer;
-    private LecturerDTO lecturerB;
 
     @BeforeClass
     public void beforeClass()
@@ -59,7 +58,7 @@ public class LecturerFacadeImplTest {
         MockitoAnnotations.initMocks(this);
         doReturn(Optional.of(new Lecturer())).when(mapper).mapTo(any(LecturerDTO.class), eq(Lecturer.class));
         doReturn(Optional.of(new LecturerDTO())).when(mapper).mapTo(any(Lecturer.class), eq(LecturerDTO.class));
-        doReturn(Optional.of(new Lecture())).when(mapper).mapTo(any(LectureDTO.class), eq(Lecture.class));
+        //doReturn(Optional.of(new Lecture())).when(mapper).mapTo(any(LectureDTO.class), eq(Lecture.class));
         
         lecturerFacade = new LecturerFacadeImpl(lecturerService, mapper);
     }
@@ -70,7 +69,7 @@ public class LecturerFacadeImplTest {
     @BeforeMethod
     public void init() {
         lecturer = new LecturerDTO();
-        lecturerB = new LecturerDTO();
+        //lecturerB = new LecturerDTO();
     }
 
     @AfterMethod

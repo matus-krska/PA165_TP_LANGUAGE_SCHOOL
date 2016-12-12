@@ -11,15 +11,19 @@ import org.mockito.MockitoAnnotations;
 import org.muni.fi.pa165.lang_school.entities.Course;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.testng.Assert.fail;
 
 /**
  * Test of Course facade implementation
@@ -28,7 +32,7 @@ import static org.mockito.Mockito.when;
  */
 public class CourseFacadeImplTest
 {
-    @Autowired
+    @Mock
     private BeanMapper mapper;
 
     @Mock
@@ -36,14 +40,18 @@ public class CourseFacadeImplTest
 
     private CourseFacadeImpl courseFacade;
 
-    private Course courseA;
-    private Course courseB;
+    private CourseDTO course;
+    //private Course courseB;
     private List<Course> engCourses;
 
     @org.testng.annotations.BeforeClass
     public void beforeClass()
     {
         MockitoAnnotations.initMocks(this);
+        doReturn(Optional.of(new Course())).when(mapper).mapTo(any(CourseDTO.class), eq(Course.class));
+        doReturn(Optional.of(new CourseDTO())).when(mapper).mapTo(any(Course.class), eq(CourseDTO.class));
+        //doReturn(Optional.of(new Course())).when(mapper).mapTo(any(LectureDTO.class), eq(Lecture.class));
+
         courseFacade = new CourseFacadeImpl(courseService, mapper);
     }
 
@@ -53,25 +61,16 @@ public class CourseFacadeImplTest
     @BeforeMethod
     public void init()
     {
-        //mapper = new DozerBeanMapper();
+        course = new CourseDTO();
 
-        courseA = new Course();
-        courseA.setName("Course1");
-        courseA.setId(1L);
-        courseA.setLanguage("ENG");
-        courseA.setLanguage_level("B1");
-
-        courseB = new Course();
-        courseB.setName("Course2");
-        courseB.setId(2L);
-        courseB.setLanguage("ENG");
-        courseB.setLanguage_level("A1");
-
-        engCourses = new ArrayList<>();
-        engCourses.add(courseA);
-        engCourses.add(courseB);
     }
 
+    @AfterMethod
+    public void afterMethod() {
+        reset(courseService);
+    }
+
+    /*
     @BeforeMethod
     public void initServiceBehaviour()
     {
@@ -79,42 +78,72 @@ public class CourseFacadeImplTest
         when(courseService.createCourse(courseA)).thenReturn(courseA);
         when(courseService.updateCourse(courseB)).thenReturn(courseB);
     }
+    */
 
     @Test
     public void testCreateNewCourse()
     {
-        CourseDTO courseADTO = mapper.map(courseA,CourseDTO.class);
+        courseFacade.createNewCourse(course);
+        verify(courseService, times(1)).createCourse(any(Course.class));
+    }
 
-        courseFacade.createNewCourse(courseADTO);
-        verify(courseService,times(1)).createCourse(courseA);
+    @Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testCreateNewCourseNull() {
+        courseFacade.createNewCourse(null);
+        fail("Expected IllegalArgumentException");
     }
 
     @Test
     public void testUpdateCourse()
     {
-        CourseDTO courseBDTO = mapper.map(courseB,CourseDTO.class);
+        courseFacade.updateCourse(course);
+        verify(courseService, times(1)).updateCourse(any(Course.class));
+    }
 
-        courseFacade.updateCourse(courseBDTO);
-        verify(courseService,times(1)).updateCourse(courseB);
+    @Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testUpdateCourseNull() {
+        courseFacade.updateCourse(null);
+        fail("Expected IllegalArgumentException");
+    }
+
+    @Test
+    public void testFindById() {
+        courseFacade.findById(Long.MAX_VALUE);
+        verify(courseService, times(1)).findById(any(Long.class));
+    }
+
+    @Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testFindByNullId() {
+        courseFacade.findById(null);
+        fail("Expected IllegalArgumentException");
     }
 
     @Test
     public void testRemoveCourse()
     {
-        CourseDTO courseBDTO = mapper.map(courseB,CourseDTO.class);
+        courseFacade.removeCourse(course);
+        verify(courseService, times(1)).removeCourse(any(Course.class));
+    }
 
-        courseFacade.removeCourse(courseBDTO);
-        verify(courseService,times(1)).removeCourse(courseB);
+    @Test(expectedExceptions = {IllegalArgumentException.class})
+    public void testRemoveCourseNull() {
+        courseFacade.removeCourse(null);
+        fail("Expected IllegalArgumentException");
     }
 
     @Test
     public void testFindCourseByLanguage()
     {
+        /*
         List<CourseDTO> enCourse = courseFacade.findCourseByLanguage("ENG");
         verify(courseService,times(1)).findCourseByLanguage("ENG");
         assert(enCourse.size() == 2);
         assert(enCourse.get(0).getName().equals(courseA.getName()));
         assert(enCourse.get(1).getName().equals(courseB.getName()));
+        */
+
+        courseFacade.findCourseByLanguage("ENG");
+        verify(courseService, times(1)).findCourseByLanguage(any(String.class));
     }
 
 

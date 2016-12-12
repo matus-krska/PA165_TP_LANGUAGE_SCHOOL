@@ -10,6 +10,7 @@
         <module>DAO</module>
         <module>ServiceFacade</module>
         <module>API</module>
+        <module>web</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

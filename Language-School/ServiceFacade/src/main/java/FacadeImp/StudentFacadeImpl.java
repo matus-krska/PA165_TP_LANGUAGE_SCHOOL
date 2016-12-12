@@ -1,5 +1,6 @@
 package FacadeImp;
 
+import ConfigMapper.BeanMapper;
 import DTO.StudentDTO;
 import Facade.StudentFacadeInterface;
 import ServiceImp.StudentServiceImpl;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import org.muni.fi.pa165.lang_school.entities.Student;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
@@ -23,12 +25,13 @@ import org.springframework.stereotype.Service;
 public class StudentFacadeImpl implements StudentFacadeInterface{
     
     private StudentServiceImpl studentService;
-    private DozerBeanMapper mapper = new DozerBeanMapper();
+    private BeanMapper mapper;
     
      
     @Inject
-    public StudentFacadeImpl(StudentServiceImpl courseService) {
+    public StudentFacadeImpl(StudentServiceImpl courseService, BeanMapper mapper) {
         this.studentService = courseService;
+        this.mapper = mapper;
     }
     
     /**
@@ -39,10 +42,10 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
     @Override
     public StudentDTO registerStudent(StudentDTO studentDTO) {
         
-        Student entity = studentDtoToEntity(studentDTO);
-        Student saved = studentService.addStudent(entity);
+        Optional<Student> entity =  mapper.mapTo(studentDTO, Student.class);
+        Student saved = studentService.addStudent(entity.get());
 
-        return studentToStudentDto(saved);
+        return mapper.mapTo(saved, StudentDTO.class).get();
     }
 
     /**
@@ -53,10 +56,10 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
     @Override
     public StudentDTO updateStudent(StudentDTO studentDTO) {
         
-        Student entity = this.studentDtoToEntity(studentDTO);
-        Student updated = studentService.updateStudent(entity);
+        Optional<Student> entity =  mapper.mapTo(studentDTO, Student.class);
+        Student updated = studentService.updateStudent(entity.get());
         
-        return this.studentToStudentDto(updated);
+        return  mapper.mapTo(updated, StudentDTO.class).get();
     }
 
     /**
@@ -66,7 +69,7 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
      */
     @Override
     public StudentDTO findById(Long id) {
-        return studentToStudentDto(studentService.findById(id));
+        return mapper.mapTo(studentService.findById(id), StudentDTO.class).get();
     }
 
     /**
@@ -80,8 +83,8 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
         List<Student> students = studentService.findByNameSurname(name, surname);
         List<StudentDTO> studentsDTO = new ArrayList<>();
         for(Student student : students){
-            StudentDTO studentDTO = studentToStudentDto(student);
-            studentsDTO.add(studentDTO);
+            Optional<StudentDTO> studentDTO =  mapper.mapTo(student, StudentDTO.class);
+            studentsDTO.add(studentDTO.get());
         }
         return studentsDTO;
     }
@@ -95,25 +98,6 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
       */
     @Override
     public StudentDTO findByIdNameAndSurname(Long id, String name, String surname) {
-        return studentToStudentDto(studentService.findByIdNameAndSurname(id, name, surname));
+        return mapper.mapTo(studentService.findByIdNameAndSurname(id, name, surname), StudentDTO.class).get();
     }
-
-    /**
-     * Bean mapping method
-     * @param dto DTO student
-     * @return student entity
-     */
-    private Student studentDtoToEntity(StudentDTO dto){
-        return mapper.map(dto,Student.class);
-    }
-    
-    /**
-     * Bean mapping method
-     * @param entity student entity
-     * @return studentDTO
-     */
-    private StudentDTO studentToStudentDto(Student entity){
-        return mapper.map(entity,StudentDTO.class);
-    }
-    
 }

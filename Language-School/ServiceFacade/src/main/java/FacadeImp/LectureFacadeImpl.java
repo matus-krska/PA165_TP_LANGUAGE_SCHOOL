@@ -6,17 +6,12 @@ import DTO.LecturerDTO;
 import Exceptions.DAOdataAccessException;
 import Facade.LectureFacadeInterface;
 import ServiceImp.LectureServiceImpl;
-import org.apache.commons.lang3.Validate;
-import org.dozer.Mapper;
 import org.muni.fi.pa165.lang_school.entities.Lecture;
-
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
-import org.dozer.DozerBeanMapper;
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -108,18 +103,23 @@ public class LectureFacadeImpl implements LectureFacadeInterface
             throw new IllegalArgumentException("Code or topic is null!");
 
         Lecture lecture = lectureService.findLectureByCodeAndTopic(code, topic);
-        return mapper.mapTo(lecture, LectureDTO.class);
+        return mapper.mapTo(lecture, LectureDTO.class).get();
 
     }
 
     @Override
     public List<LectureDTO> findLecturesByLecturer(LecturerDTO lecturer)
     {
+        if(lecturer == null || lecturer.getId() == null)
+        {
+            throw new IllegalArgumentException("Error finding lecture by lecturer which is null");
+        }
+
         List<LectureDTO> dtoLectures = new ArrayList<>();
-        List<Lecture> lectures = lectureService.findLecturesByLecturer(lecturerDtoToEntity(lecturer));
+        List<Lecture> lectures = lectureService.findLecturesByLecturer(mapper.mapTo(lecturer,Lecturer.class).get());
         for(Lecture lecture : lectures)
         {
-            dtoLectures.add(lectureToLectureDto(lecture));
+            dtoLectures.add(mapper.mapTo(lecture,LectureDTO.class).get());
         }
         return dtoLectures;
     }
@@ -130,12 +130,8 @@ public class LectureFacadeImpl implements LectureFacadeInterface
         if (lectureDTO == null || newCode == null)
             throw new IllegalArgumentException("LectureDTO  or newCode parameter is null");
 
-        Optional<LectureDTO> entity = mapper.mapTo(lectureService.changeLectureCode(mapper.mapTo(lectureDTO, Lecture.class),newCode), LectureDTO.class);
-        //LectureDTO lecture = lectureService.updateLecture(entity.get());
 
-        //return mapper.mapTo(lecture, LectureDTO.class).get();
-
-        //LectureDTO lecture = lectureToLectureDto(lectureService.changeLectureCode(lectureDtoToEntity(lectureDTO),newCode));
+        lectureService.changeLectureCode(mapper.mapTo(lectureDTO, Lecture.class).get(),newCode);
     }
 
     /*

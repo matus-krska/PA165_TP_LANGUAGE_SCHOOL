@@ -10,4 +10,5 @@ public abstract class ApiUris {
     public static final String ROOT_URI_LECTURES      = "/lectures";
     public static final String ROOT_URI_COURSES     = "/courses";
     public static final String ROOT_URI_STUDENTS = "/students";
+    public static final String ROOT_URI_USERS     = "/users";
 }

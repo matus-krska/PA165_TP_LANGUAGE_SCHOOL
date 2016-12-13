@@ -32,7 +32,7 @@ public class LecturerServiceImplTest {
     public LecturerServiceImplTest() {
     }
     
-    @org.testng.annotations.BeforeClass
+    @BeforeClass
     public void beforeClass() {
         MockitoAnnotations.initMocks(this);
         lecturerServiceImpl = new LecturerServiceImpl(lecturerDao);
@@ -55,7 +55,7 @@ public class LecturerServiceImplTest {
     /**
      * Test of addLecturer method, of class LecturerServiceImpl.
      */
-    @org.testng.annotations.Test
+    @Test
     public void testAddLecturer() {
         lecturerServiceImpl.addLecturer(lecturerA);
         verify(lecturerDao, times(1)).create(lecturerA);
@@ -64,7 +64,7 @@ public class LecturerServiceImplTest {
     /**
      * Test to create exception
      */
-    @org.testng.annotations.Test(expectedExceptions = {IllegalArgumentException.class})
+    @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testCreateNull(){
         lecturerServiceImpl.addLecturer(null);
         fail("Null has been created.");
@@ -73,7 +73,7 @@ public class LecturerServiceImplTest {
     /**
      * Test of updateLecturer method, of class LecturerServiceImpl.
      */
-    @org.testng.annotations.Test
+    @Test
     public void testUpdateUser() {
         lecturerA.setName("123");
         lecturerServiceImpl.updateLecturer(lecturerA);
@@ -83,7 +83,7 @@ public class LecturerServiceImplTest {
     /**
      * Test to create exception
      */
-    @org.testng.annotations.Test(expectedExceptions = {IllegalArgumentException.class})
+    @Test(expectedExceptions = {IllegalArgumentException.class})
     public void testNullUpdate(){
         lecturerServiceImpl.updateLecturer(null);
         fail("Null has been updated.");
@@ -92,7 +92,7 @@ public class LecturerServiceImplTest {
     /**
      * Test of findById method, of class LecturerServiceImpl.
      */
-    @org.testng.annotations.Test
+    @Test
     public void testFindById() {
         lecturerServiceImpl.findById(1l);
         verify(lecturerDao, times(1)).readById(1l);
@@ -101,7 +101,7 @@ public class LecturerServiceImplTest {
     /**
      * Test of findByName method, of class LecturerServiceImpl.
      */
-    @org.testng.annotations.Test
+    @Test
     public void testFindByName() {
         lecturerServiceImpl.addLecturer(lecturerA);
         lecturerServiceImpl.findByName("Simon", "Hyben");

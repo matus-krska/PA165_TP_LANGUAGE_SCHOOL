@@ -22,7 +22,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses = {StudentDAO.class})
+@ComponentScan(basePackages = { "org.muni.fi.pa165.lang_school.DAO" })
 public class ApplicationContext {
     /**
      * Enables automatic translation of exceptions to DataAccessExceptions.

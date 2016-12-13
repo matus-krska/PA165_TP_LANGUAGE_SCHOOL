@@ -4,6 +4,7 @@ import ConfigMapper.BeanMapper;
 import DTO.LecturerDTO;
 
 //import cz.fi.muni.pa165.dto.UserDTO;
+import Facade.LecturerFacadeInterface;
 import FacadeImp.LecturerFacadeImpl;
 import REST.Exceptions.ResourceNotFoundException;
 import REST.Assemblers.LecturerResourceAssembler;
@@ -44,13 +45,9 @@ public class LecturersControllerHateoas {
 
     final static Logger logger = LoggerFactory.getLogger(LecturersControllerHateoas.class);
 
-    @Inject
-    BeanMapper mapper;
 
     @Inject
-    LecturerServiceImpl lecturerService;
-
-    private LecturerFacadeImpl lecturerFacade = new LecturerFacadeImpl(lecturerService, mapper);
+    private LecturerFacadeInterface lecturerFacade;
 
     @Inject
     private LecturerResourceAssembler lecturerResourceAssembler;

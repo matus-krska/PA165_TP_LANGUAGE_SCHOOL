@@ -15,11 +15,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author zanri
  */
+@Named
 public class BeanMapper {
 private ModelMapper modelMapper;
 

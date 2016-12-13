@@ -6,6 +6,9 @@
 package ConfigMapper;
 
 
+import FacadeImp.LecturerFacadeImpl;
+import ServiceImp.LecturerServiceImpl;
+import org.muni.fi.pa165.lang_school.DAO.LecturerDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +22,9 @@ import org.modelmapper.ModelMapper;
  */
 @Configuration
 @Import(ApplicationContext.class)
-@ComponentScan(basePackages = { "Exception", "FacadeImp", "ServiceImp"})
+@ComponentScan(basePackages = { "ConfigMapper","Exception", "FacadeImp", "ServiceImp","Security"})
 public class BeanMappingConfiguration {
+
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();

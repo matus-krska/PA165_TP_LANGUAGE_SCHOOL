@@ -1,5 +1,6 @@
 package REST.Controllers;
 
+import Facade.UserFacadeInterface;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,7 @@ public class UsersController {
     final static Logger logger = LoggerFactory.getLogger(UsersController.class);
 
     @Inject
-    private UserFacadeImpl userFacade;
+    private UserFacadeInterface userFacade;
 
     /**
      * get all the users

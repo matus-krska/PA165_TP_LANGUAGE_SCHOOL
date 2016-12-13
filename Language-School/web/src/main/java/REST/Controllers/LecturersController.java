@@ -1,5 +1,6 @@
 package REST.Controllers;
 
+import Facade.LecturerFacadeInterface;
 import REST.Uri.ApiUris;
 import ConfigMapper.BeanMapper;
 
@@ -32,11 +33,9 @@ public class LecturersController {
 
     final static Logger logger = LoggerFactory.getLogger(LecturersController.class);
 
-    @Inject BeanMapper mapper;
 
-    @Inject LecturerServiceImpl lecturerService;
-
-    private LecturerFacadeImpl lecturerFacade = new LecturerFacadeImpl(lecturerService, mapper);
+    @Inject
+    private LecturerFacadeInterface lecturerFacade;
 
     /**
      * Get all the lecturers

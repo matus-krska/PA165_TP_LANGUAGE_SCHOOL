@@ -1,6 +1,7 @@
 package REST.Controllers;
 
 import REST.Uri.ApiUris;
+import ConfigMapper.BeanMapper;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import DTO.LecturerDTO;
 import FacadeImp.LecturerFacadeImpl;
+import ServiceImp.LecturerServiceImpl;
 import REST.Exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +32,11 @@ public class LecturersController {
 
     final static Logger logger = LoggerFactory.getLogger(LecturersController.class);
 
-    @Inject
-    private LecturerFacadeImpl lecturerFacade;
+    @Inject BeanMapper mapper;
+
+    @Inject LecturerServiceImpl lecturerService;
+
+    private LecturerFacadeImpl lecturerFacade = new LecturerFacadeImpl(lecturerService, mapper);
 
     /**
      * Get all the lecturers

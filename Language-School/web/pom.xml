@@ -6,8 +6,10 @@
         <artifactId>lang-school</artifactId>
         <version>1</version>
     </parent>
+
     <artifactId>web</artifactId>
     <packaging>jar</packaging>
+
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

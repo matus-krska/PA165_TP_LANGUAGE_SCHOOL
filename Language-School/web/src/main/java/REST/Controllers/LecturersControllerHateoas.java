@@ -1,5 +1,6 @@
 package REST.Controllers;
 
+import ConfigMapper.BeanMapper;
 import DTO.LecturerDTO;
 
 //import cz.fi.muni.pa165.dto.UserDTO;
@@ -10,6 +11,8 @@ import REST.Exceptions.ResourceNotModifiedException;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.inject.Inject;
+
+import ServiceImp.LecturerServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -42,7 +45,12 @@ public class LecturersControllerHateoas {
     final static Logger logger = LoggerFactory.getLogger(LecturersControllerHateoas.class);
 
     @Inject
-    private LecturerFacadeImpl lecturerFacade;
+    BeanMapper mapper;
+
+    @Inject
+    LecturerServiceImpl lecturerService;
+
+    private LecturerFacadeImpl lecturerFacade = new LecturerFacadeImpl(lecturerService, mapper);
 
     @Inject
     private LecturerResourceAssembler lecturerResourceAssembler;

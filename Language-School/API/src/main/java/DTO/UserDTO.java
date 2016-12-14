@@ -11,6 +11,7 @@ public class UserDTO {
     protected Long id;
     private String email;
     private String passwordHash;
+    private String userRole;
 
     public UserDTO() {
     }
@@ -29,6 +30,14 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public void setId(Long id) {

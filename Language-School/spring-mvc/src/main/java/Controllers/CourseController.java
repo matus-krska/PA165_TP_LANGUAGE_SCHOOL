@@ -29,23 +29,6 @@ public class CourseController
     @Inject
     private CourseFacadeInterface courseFacade;
 
-    @PostConstruct
-    public void initCourses() {
-        CourseDTO course1 = new CourseDTO();
-        course1.setName("Intermediate English");
-        course1.setLanguage("English");
-        course1.setLanguage_level("B1");
-        course1.setDescription("English for intermediate students");
-        courseFacade.createNewCourse(course1);
-
-        CourseDTO course2 = new CourseDTO();
-        course2.setName("Beginner Spanish");
-        course2.setLanguage("Spanish");
-        course2.setLanguage_level("A1");
-        course2.setDescription("Spanish for beginner students");
-        courseFacade.createNewCourse(course2);
-    }
-
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         CourseDTO course = courseFacade.findById(id);

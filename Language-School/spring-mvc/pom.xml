@@ -38,6 +38,7 @@
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>ServiceFacade</artifactId>
             <version>${project.parent.version}</version>
+            <scope>provided</scope>
         </dependency>
         <!-- servlet, JSP, JSTL -->
         <!-- must be this instead of javaee-web for the springmvc-tests to succeed -->
@@ -47,6 +48,7 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-api</artifactId>
             <scope>provided</scope>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -57,10 +59,12 @@
         <dependency>
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-spec</artifactId>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-impl</artifactId>
+            <version>LATEST</version>
         </dependency>
         <!-- Spring MVC -->
         <dependency>

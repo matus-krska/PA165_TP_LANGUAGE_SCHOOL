@@ -35,9 +35,9 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
         return new Filter[] { encodingFilter, shallowEtagHeaderFilter };
     }
 
-    @Override
-    public void onStartup(javax.servlet.ServletContext servletContext) throws javax.servlet.ServletException {
-        super.onStartup(servletContext);
-        servletContext.addListener(RequestContextListener.class);
-    }
+//    @Override
+//    public void onStartup(javax.servlet.ServletContext servletContext) throws javax.servlet.ServletException {
+//        super.onStartup(servletContext);
+//        servletContext.addListener(RequestContextListener.class);
+//    }
 }

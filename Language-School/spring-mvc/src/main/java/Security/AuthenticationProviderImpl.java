@@ -29,8 +29,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		String email = auth.getName();
 
-		UserDTO user = userFacade.getUserByEmail(email)
-				.orElseThrow(() -> new UsernameNotFoundException("Provide valid email: " + email));
+		UserDTO user = null;//userFacade.getUserByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Provide valid email: " + email));
 
 		String pwd = (String) auth.getCredentials();
 

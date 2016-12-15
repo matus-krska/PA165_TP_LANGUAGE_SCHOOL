@@ -29,21 +29,15 @@ public class StudentDAO extends GenericDAOImplementation<Student, Long>
         q.setParameter("SURNAME",surname);
         return q.getResultList();
     }
-    
+
     /**
-     * Method for finding Student by id, name and surname
-     * @param id id/uco of student
-     * @param name name of student
-     * @param surname surname of student
-     * @return Student that match the query, can be empty
+     * Finds and returns list of all existing students
+     * @return list of all students
      */
-    public Object findByIdNameAndSurname(Long id, String name, String surname)
+    public List<Student> findAllStudents()
     {
-        String query = " FROM " + entityClass.getName() + " WHERE ID = :ID AND NAME = :NAME AND SURNAME = :SURNAME";
+        String query = " FROM " + entityClass.getName();
         Query q = em.createQuery(query);
-        q.setParameter("ID",id);
-        q.setParameter("NAME",name);
-        q.setParameter("SURNAME",surname);
-        return q.getSingleResult();
+        return q.getResultList();
     }
 }

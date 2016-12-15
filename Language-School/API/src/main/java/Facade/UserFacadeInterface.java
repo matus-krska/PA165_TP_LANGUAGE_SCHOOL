@@ -15,61 +15,52 @@ import DTO.UserCreateDTO;
 public interface UserFacadeInterface {
 
     /**
-     * finds specific user by id
-     *
-     * @param id
-     *            of a user that would be returned
-     * @return specific user by id
+     * Finds user by id
+     * @param id of a user
+     * @return user
      */
-    public Optional<UserDTO> getUserById(Long id);
+    Optional<UserDTO> getUserById(Long id);
 
     /**
-     * updates given user
-     *
-     * @param userId
-     *            user that has to be updated
+     * Updates existing user
+     * @param userId user id
      * @return updated user
      */
-    public Optional<UserDTO> update(Long userId);
+    Optional<UserDTO> update(Long userId);
 
     /**
-     * removes given user
-     *
-     * @param userId
-     *            user that has to be removed
+     * Removes existing user
+     * @param userId user id
      * @return true, if successfully removed
      */
-    public Boolean deleteUser(Long userId);
+    Boolean deleteUser(Long userId);
 
     /**
-     * Returns all courses in language school
-     *
-     * @return List of courses which are in language school
+     * Returns all existing users
+     * @return list of users
      */
-    public List<UserDTO> getAllUsers();
+    List<UserDTO> getAllUsers();
 
     /**
-     * Find specific user by his email
-     *
-     * @param email
-     *            email to search in String format
-     * @return return specific user by his email
+     * Find user by email
+     * @param email user email
+     * @return user
      */
-    public Optional<UserDTO> getUserByEmail(String email);
+    Optional<UserDTO> getUserByEmail(String email);
 
     /**
-     * Register the given user with the given unencrypted password.
-     * @param u
-     * @param unencryptedPassword
-     * @return true, if successful removed
+     * Registers new user
+     * @param u user to register
+     * @param unencryptedPassword password
+     * @return true if success
      */
     public Boolean registerUser(UserCreateDTO u, String unencryptedPassword);
 
     /**
      * Try to authenticate a user. Return true only if the hashed password
      * matches the records.
-     * @param u
-     * @return true, if successful
+     * @param u user to authenticate
+     * @return true if success
      */
     public Boolean authenticate(UserDTO u);
 

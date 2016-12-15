@@ -66,6 +66,25 @@ public class StudentServiceImpl {
     }
 
     /**
+     * Remove existing student
+     * @param student
+     */
+    public void removeStudent(Student student)
+    {
+        if(student == null)
+            throw new IllegalArgumentException("Error removing null student");
+
+        try
+        {
+            studentDAO.delete(student);
+        }
+        catch (Exception e)
+        {
+            throw new DAOdataAccessException("Error removing student");
+        }
+    }
+
+    /**
      * Find student entity
      * @param id id of student
      * @return student entity
@@ -103,23 +122,18 @@ public class StudentServiceImpl {
     }
 
     /**
-     * Find student entity
-     * @param id id of student
-     * @param name name of student
-     * @param surname surname of student
-     * @return student entity
+     * Find all students
+     * @return list of students
      */
-    public Student findByIdNameAndSurname(Long id, String name, String surname) {
-        Student student;
-        if (name == null || surname == null || id == null){
-            throw new DAOdataAccessException("Error by findByIdNameAndSurname"); 
-        }
+    public List<Student> findAllStudents() {
+        List<Student>  students;
         try {
-            student = (Student) studentDAO.findByIdNameAndSurname(id, name, surname);
+            students = studentDAO.findAllStudents();
         } catch (Exception e) {
-            throw new DAOdataAccessException("Error by findByIdNameAndSurname"); 
+            throw new DAOdataAccessException("Error findAllStudents");
         }
-        return student;
+        return students;
     }
-    
+
+
 }

@@ -13,9 +13,7 @@ import org.muni.fi.pa165.lang_school.entities.Lecture;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.stereotype.Service;
 
@@ -40,45 +38,53 @@ public class CourseFacadeImpl implements CourseFacadeInterface
     }
 
     @Override
-    public CourseDTO createNewCourse(CourseDTO courseDTO)
+    public Optional<CourseDTO> createNewCourse(CourseDTO courseDTO)
     {
         if (courseDTO == null)
             throw new IllegalArgumentException("CourseDTO parameter is null");
-
-        Optional<Course> entity = mapper.mapTo(courseDTO, Course.class);
-        Course saved = courseService.createCourse(entity.get());
-
-        return mapper.mapTo(saved, CourseDTO.class).get();
+        try {
+            Optional<Course> course = Optional.ofNullable(courseService.createCourse(mapper.mapTo(courseDTO, Course.class).get()));
+            return course.isPresent() ? mapper.mapTo(course.get(), CourseDTO.class) : Optional.empty();
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     @Override
-    public CourseDTO updateCourse(CourseDTO courseDTO)
+    public Optional<CourseDTO> updateCourse(CourseDTO courseDTO)
     {
         if (courseDTO == null)
             throw new IllegalArgumentException("CourseDTO parameter is null");
-
-        Optional<Course> entity = mapper.mapTo(courseDTO, Course.class);
-        Course updated = courseService.updateCourse(entity.get());
-        return mapper.mapTo(updated, CourseDTO.class).get();
+        try {
+            Optional<Course> course = Optional.ofNullable(courseService.updateCourse(courseService.findById(courseDTO.getId())));
+            return course.isPresent() ? mapper.mapTo(course.get(), CourseDTO.class) : Optional.empty();
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     @Override
-    public CourseDTO findById(Long id) {
+    public Optional<CourseDTO> findById(Long id) {
         if (id == null)
             throw new IllegalArgumentException("Id parameter is null");
-
-        return mapper.mapTo(courseService.findById(id), CourseDTO.class).get();
-
+        try {
+            Optional<Course> course = Optional.ofNullable(courseService.findById(id));
+            return course.isPresent() ? mapper.mapTo(course.get(), CourseDTO.class) : Optional.empty();
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     @Override
     public void removeCourse(CourseDTO courseDTO)
     {
         if (courseDTO == null)
-            throw new IllegalArgumentException("CourseDTO parameter is null");
-
-        Optional<Course> entity = mapper.mapTo(courseDTO, Course.class);
-        courseService.removeCourse(entity.get());
+            throw new IllegalArgumentException("courseId parameter is null in deleteCourse method");
+        try {
+            courseService.removeCourse(courseService.findById(courseDTO.getId()));
+        } catch (NoSuchElementException ex) {
+            return;
+        }
     }
 
     @Override
@@ -91,13 +97,12 @@ public class CourseFacadeImpl implements CourseFacadeInterface
         return mapper.mapTo(courses, CourseDTO.class);
     }
 
-    /*
-    private Course courseDtoToEntity(CourseDTO dto)
-    {
-        return mapper.map(dto,Course.class);
+    @Override
+    public List<CourseDTO> findAllCourses() {
+        try {
+            return mapper.mapTo(courseService.findAllCourses(), CourseDTO.class);
+        } catch (NoSuchElementException ex) {
+            return Collections.emptyList();
+        }
     }
-    private CourseDTO courseToCourseDto(Course entity){
-        return mapper.map(entity,CourseDTO.class);
-    }
-    */
 }

@@ -4,11 +4,11 @@ import ConfigMapper.BeanMapper;
 import DTO.LecturerDTO;
 import Facade.LecturerFacadeInterface;
 import ServiceImp.LecturerServiceImpl;
-import java.util.ArrayList;
+
+import java.util.*;
+
 import org.muni.fi.pa165.lang_school.entities.Lecturer;
 import javax.inject.Inject;
-import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +22,6 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class LecturerFacadeImpl implements LecturerFacadeInterface {
-
-    //private final Logger logger = LoggerFactory.getLogger(LecturerFacadeImpl.class);
 
     private LecturerServiceImpl lecturerService;
 
@@ -42,14 +40,17 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
      * @return LecturerDTO 
      */
     @Override
-    public LecturerDTO registerLecturer(LecturerDTO lecturerDTO) {
+    public Optional<LecturerDTO> registerLecturer(LecturerDTO lecturerDTO) {
         if (lecturerDTO == null)
-                throw new IllegalArgumentException("LecturerDTO parameter is null");
-        
-        Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
-        Lecturer saved = lecturerService.addLecturer(entity.get());
+            throw new IllegalArgumentException("LecturerDTO is null");
 
-        return mapper.mapTo(saved, LecturerDTO.class).get();
+        Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
+        try {
+            Lecturer created = lecturerService.addLecturer(entity.get());
+            return mapper.mapTo(created, LecturerDTO.class);
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -58,14 +59,17 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
      * @return LecturerDTO 
      */
     @Override
-    public LecturerDTO updateLecturer(LecturerDTO lecturerDTO) {
+    public Optional<LecturerDTO> updateLecturer(LecturerDTO lecturerDTO) {
         if (lecturerDTO == null)
-                throw new IllegalArgumentException("LecturerDTO parameter is null");
-        
+            throw new IllegalArgumentException("LecturerDTO is null");
+
         Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
-        Lecturer updated = lecturerService.updateLecturer(entity.get());
-        
-        return mapper.mapTo(updated, LecturerDTO.class).get();
+        try {
+            Lecturer updated = lecturerService.updateLecturer(entity.get());
+            return mapper.mapTo(updated, LecturerDTO.class);
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -74,12 +78,17 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
      * @return LecturerDTO 
      */
     @Override
-    public LecturerDTO findById(Long id) {
+    public Optional<LecturerDTO> findById(Long id) {
         if (id == null)
-                throw new IllegalArgumentException("Id parameter is null");
+            throw new IllegalArgumentException("Id is null");
 
-        return mapper.mapTo(lecturerService.findById(id), LecturerDTO.class).get();
-        
+        try {
+            Lecturer entity = lecturerService.findById(id);
+            Optional<LecturerDTO> lecturerDTO = mapper.mapTo(entity, LecturerDTO.class);
+            return lecturerDTO;
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -89,10 +98,15 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
     @Override
     public void removeLecturer(LecturerDTO lecturerDTO) {
         if (lecturerDTO == null)
-                throw new IllegalArgumentException("LecturerDTO parameter is null");
+                throw new IllegalArgumentException("LecturerDTO is null");
 
         Optional<Lecturer> entity = mapper.mapTo(lecturerDTO, Lecturer.class);
-        lecturerService.removeLecturer(entity.get());
+        try {
+            lecturerService.removeLecturer(entity.get());
+            return;
+        } catch (NoSuchElementException ex) {
+            return;
+        }
     }
     
     /**
@@ -101,8 +115,12 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
      */
     @Override
     public List<LecturerDTO> getAllLecturers() {
-        List<Lecturer> lecturers = lecturerService.findAllLecturers();
-        return mapper.mapTo(lecturers, LecturerDTO.class);
+        try {
+            List<Lecturer> entities = lecturerService.findAllLecturers();
+            return mapper.mapTo(entities, LecturerDTO.class);
+        } catch (NoSuchElementException ex) {
+            return Collections.emptyList();
+        }
     }
         
     /**
@@ -115,9 +133,12 @@ public class LecturerFacadeImpl implements LecturerFacadeInterface {
     public List<LecturerDTO> filterByName(String name, String surname) {
         if (name == null || surname == null)
             throw new IllegalArgumentException("Name or surname is null!");
-        
-        List<Lecturer> lecturers = lecturerService.findByName(name, surname);
-        return mapper.mapTo(lecturers, LecturerDTO.class);
+        try {
+            List<Lecturer> lecturers = lecturerService.findAllLecturers();
+            return mapper.mapTo(lecturers, LecturerDTO.class);
+        } catch (NoSuchElementException ex) {
+            return Collections.emptyList();
+        }
     }
 
     

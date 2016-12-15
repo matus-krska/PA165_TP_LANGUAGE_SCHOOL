@@ -30,4 +30,15 @@ public class CourseDAO extends GenericDAOImplementation<Course, Long>
         q.setParameter("LANGUAGE_LEVEL", languageLevel);
         return q.getResultList();
     }
+
+    /**
+     * Finds and returns list of all existing courses
+     * @return list of all courses
+     */
+    public List<Course> findAllCourses()
+    {
+        String query = " FROM " + entityClass.getName();
+        Query q = em.createQuery(query);
+        return q.getResultList();
+    }
 }

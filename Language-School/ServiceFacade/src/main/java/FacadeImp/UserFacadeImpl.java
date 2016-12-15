@@ -44,7 +44,7 @@ public class UserFacadeImpl implements UserFacadeInterface {
     public List<UserDTO> getAllUsers() {
         try {
             return beanMapper.mapTo(userService.findAllUsers(), UserDTO.class);
-        } catch (/*ServiceLayerException |*/ NoSuchElementException ex) {
+        } catch (NoSuchElementException ex) {
             logger.warn("getAllUsers method invokes exception: " + ex);
             return Collections.emptyList();
         }
@@ -57,7 +57,7 @@ public class UserFacadeImpl implements UserFacadeInterface {
         try {
             Optional<User> user = Optional.ofNullable(userService.findById(id));
             return user.isPresent() ? beanMapper.mapTo(user.get(), UserDTO.class) : Optional.empty();
-        } catch (/*ServiceLayerException |*/ NoSuchElementException ex) {
+        } catch (NoSuchElementException ex) {
             logger.warn("getUserById method invokes exception: " + ex);
             return Optional.empty();
         }
@@ -70,7 +70,7 @@ public class UserFacadeImpl implements UserFacadeInterface {
         try {
             Optional<User> user = Optional.ofNullable(userService.findByEmail(email));
             return user.isPresent() ? beanMapper.mapTo(user.get(), UserDTO.class) : Optional.empty();
-        } catch (/*ServiceLayerException |*/ NoSuchElementException ex) {
+        } catch (NoSuchElementException ex) {
             logger.warn("getUserByEmail method invokes exception: " + ex);
             return Optional.empty();
         }
@@ -83,7 +83,7 @@ public class UserFacadeImpl implements UserFacadeInterface {
         try {
             Optional<User> user = Optional.ofNullable(userService.update(userService.findById(userId)));
             return user.isPresent() ? beanMapper.mapTo(user.get(), UserDTO.class) : Optional.empty();
-        } catch (/*ServiceLayerException |*/ NoSuchElementException ex) {
+        } catch (NoSuchElementException ex) {
             logger.warn("update method invokes exception: " + ex);
             return Optional.empty();
         }
@@ -96,7 +96,7 @@ public class UserFacadeImpl implements UserFacadeInterface {
         try {
             userService.remove(userService.findById(userId));
             return true;
-        } catch (/*ServiceLayerException |*/ NoSuchElementException ex) {
+        } catch (NoSuchElementException ex) {
             logger.warn("deleteUser method invokes exception: " + ex);
             return true;
         }
@@ -112,7 +112,7 @@ public class UserFacadeImpl implements UserFacadeInterface {
             userService.registerUser(userEntity, unencryptedPassword);
             u.setId(userEntity.getId());
             return true;
-        } catch (/*ServiceLayerException |*/ NoSuchElementException ex) {
+        } catch (NoSuchElementException ex) {
             logger.warn("registerUser method invokes exception: " + ex);
             return false;
         }
@@ -124,7 +124,7 @@ public class UserFacadeImpl implements UserFacadeInterface {
             throw new IllegalArgumentException("UserDTO u parametr is null in authenticate method");
         try {
             return userService.authenticate(userService.findById(u.getId()), u.getPasswordHash());
-        } catch (/*ServiceLayerException |*/ NoSuchElementException ex) {
+        } catch (NoSuchElementException ex) {
             logger.warn("authenticate method invokes exception: " + ex);
             return false;
         }

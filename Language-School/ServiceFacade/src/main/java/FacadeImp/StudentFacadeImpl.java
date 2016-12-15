@@ -4,11 +4,11 @@ import ConfigMapper.BeanMapper;
 import DTO.StudentDTO;
 import Facade.StudentFacadeInterface;
 import ServiceImp.StudentServiceImpl;
-import java.util.ArrayList;
+
+import java.util.*;
+
 import org.muni.fi.pa165.lang_school.entities.Student;
 import javax.inject.Inject;
-import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Service;
@@ -40,12 +40,15 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
      * @return StudentDTO 
      */
     @Override
-    public StudentDTO registerStudent(StudentDTO studentDTO) {
-        
-        Optional<Student> entity =  mapper.mapTo(studentDTO, Student.class);
-        Student saved = studentService.addStudent(entity.get());
-
-        return mapper.mapTo(saved, StudentDTO.class).get();
+    public Optional<StudentDTO> registerStudent(StudentDTO studentDTO) {
+        if (studentDTO == null)
+            throw new IllegalArgumentException("Student is null");
+        try {
+            Optional<Student> student = Optional.ofNullable(studentService.addStudent(mapper.mapTo(studentDTO, Student.class).get()));
+            return student.isPresent() ? mapper.mapTo(student.get(), StudentDTO.class) : Optional.empty();
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -54,22 +57,44 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
      * @return StudentDTO 
      */
     @Override
-    public StudentDTO updateStudent(StudentDTO studentDTO) {
-        
-        Optional<Student> entity =  mapper.mapTo(studentDTO, Student.class);
-        Student updated = studentService.updateStudent(entity.get());
-        
-        return  mapper.mapTo(updated, StudentDTO.class).get();
+    public Optional<StudentDTO> updateStudent(StudentDTO studentDTO) {
+        if (studentDTO == null)
+            throw new IllegalArgumentException("Student is null");
+        try {
+            Optional<Student> student = Optional.ofNullable(studentService.updateStudent(mapper.mapTo(studentDTO, Student.class).get()));
+            return student.isPresent() ? mapper.mapTo(student.get(), StudentDTO.class) : Optional.empty();
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
+    }
+
+
+    public void removeStudent(StudentDTO studentDTO) {
+        if (studentDTO == null)
+            throw new IllegalArgumentException("Student is null");
+        try {
+            this.studentService.removeStudent(studentService.findById(studentDTO.getId()));
+            return;
+        } catch (NoSuchElementException ex) {
+            return;
+        }
     }
 
     /**
-     * finds student by id
+     * Finds existing student by id
      * @param id unique id
      * @return StudentDTO 
      */
     @Override
-    public StudentDTO findById(Long id) {
-        return mapper.mapTo(studentService.findById(id), StudentDTO.class).get();
+    public Optional<StudentDTO> findById(Long id) {
+        if (id == null)
+            throw new IllegalArgumentException("Id is null");
+        try {
+            Optional<Student> student = Optional.ofNullable(studentService.findById(id));
+            return student.isPresent() ? mapper.mapTo(student.get(), StudentDTO.class) : Optional.empty();
+        } catch (NoSuchElementException ex) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -89,15 +114,12 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
         return studentsDTO;
     }
 
-    /**
-      * Return StudentDTO
-      * @param id unique id
-      * @param name name of student
-      * @param surname surname of student
-      * @return StudentDTO
-      */
     @Override
-    public StudentDTO findByIdNameAndSurname(Long id, String name, String surname) {
-        return mapper.mapTo(studentService.findByIdNameAndSurname(id, name, surname), StudentDTO.class).get();
+    public List<StudentDTO> getAllStudents() {
+        try {
+            return mapper.mapTo(studentService.findAllStudents(), StudentDTO.class);
+        } catch (NoSuchElementException ex) {
+            return Collections.emptyList();
+        }
     }
 }

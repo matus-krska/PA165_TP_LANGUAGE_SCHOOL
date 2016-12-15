@@ -3,6 +3,7 @@ package Facade;
 import DTO.CourseDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Facade interface for access to courses
@@ -11,13 +12,43 @@ import java.util.List;
  */
 public interface CourseFacadeInterface
 {
-    public CourseDTO createNewCourse(CourseDTO course);
+    /**
+     * Create new course
+     * @param course
+     * @return
+     */
+    Optional<CourseDTO> createNewCourse(CourseDTO course);
 
-    public CourseDTO updateCourse(CourseDTO course);
+    /**
+     * Update course
+     * @param course
+     * @return
+     */
+    Optional<CourseDTO> updateCourse(CourseDTO course);
 
-    public void removeCourse(CourseDTO course);
+    /**
+     * Remove course
+     * @param course
+     */
+    void removeCourse(CourseDTO course);
 
-    public CourseDTO findById(Long id);
+    /**
+     * Find course by id
+     * @param id
+     * @return
+     */
+    Optional<CourseDTO> findById(Long id);
 
-    public List<CourseDTO> findCourseByLanguage(String language);
+    /**
+     * Find course by taught language
+     * @param language
+     * @return
+     */
+    List<CourseDTO> findCourseByLanguage(String language);
+
+    /**
+     * Return list of all existing courses
+     * @return
+     */
+    List<CourseDTO> findAllCourses();
 }

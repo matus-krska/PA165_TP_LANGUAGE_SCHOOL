@@ -3,9 +3,11 @@ package ServiceImp;
 import Exceptions.DAOdataAccessException;
 import org.muni.fi.pa165.lang_school.DAO.CourseDAO;
 import org.muni.fi.pa165.lang_school.entities.Course;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 /**
@@ -105,5 +107,13 @@ public class CourseServiceImpl
             throw new DAOdataAccessException("Error removing course");
         }
         return courses;
+    }
+
+    public List<Course> findAllCourses() {
+        try {
+            return courseDAO.findAllCourses();
+        } catch (PersistenceException | DataAccessException ex) {
+            throw new DAOdataAccessException("Error finding all courses", ex);
+        }
     }
 }

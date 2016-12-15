@@ -17,21 +17,28 @@ public interface StudentFacadeInterface {
      * @param studentDTO new room
      * @return StudentDTO 
      */
-    public StudentDTO registerStudent(StudentDTO studentDTO);
+    Optional<StudentDTO> registerStudent(StudentDTO studentDTO);
 
     /**
      * Updates existing student
      * @param studentDTO updated room
      * @return StudentDTO 
      */
-    public StudentDTO updateStudent(StudentDTO studentDTO);
+    Optional<StudentDTO> updateStudent(StudentDTO studentDTO);
+
+    /**
+     * Removes existing student
+     * @param studentDTO - student to be removed
+     * @return true, if successfully removed
+     */
+    void removeStudent(StudentDTO studentDTO);
 
     /**
      * finds student by id
      * @param id unique id
      * @return StudentDTO 
      */
-    public StudentDTO findById(Long id);
+    Optional<StudentDTO> findById(Long id);
 
     /**
      * Returns filtered users
@@ -39,14 +46,12 @@ public interface StudentFacadeInterface {
      * @param surname page info
      * @return filtered list of studentsDTO
      */
-    public List<StudentDTO> filterByNameSurname(String name, String surname) ;
-    
-     /**
-      * Return StudentDTO
-      * @param id unique id
-      * @param name name of student
-      * @param surname surname of student
-      * @return StudentDTO
-      */
-    public StudentDTO findByIdNameAndSurname(Long id, String name, String surname);
+    List<StudentDTO> filterByNameSurname(String name, String surname) ;
+
+    /**
+     * Returns all existing students
+     * @return list of all existing students
+     */
+    List<StudentDTO> getAllStudents();
+
 }

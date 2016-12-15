@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ConfigMapper.BeanMappingConfiguration;
 import DTO.UserDTO;
-import REST.Mixin.UserDtoMixin;
+import REST.Mixin.*;
 import Data.*;
 /**
  * Web context
@@ -53,7 +53,10 @@ public class WebContext extends WebMvcConfigurerAdapter {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
 
-        objectMapper.addMixIn(UserDTO.class, UserDtoMixin.class);
+        objectMapper.addMixIn(UserDTO.class, REST.Mixin.CourseDTOMixin.class);
+        objectMapper.addMixIn(UserDTO.class, REST.Mixin.LectureDTOMixin.class);
+        objectMapper.addMixIn(UserDTO.class, REST.Mixin.LecturerDTOMixin.class);
+        objectMapper.addMixIn(UserDTO.class, REST.Mixin.StudentDTOMixin.class);
 
         objectMapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
 

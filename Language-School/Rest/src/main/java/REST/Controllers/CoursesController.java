@@ -33,16 +33,7 @@ public class CoursesController {
         @Inject
         private CourseResourceAssembler courseResourceAssembler;
         
-        @Inject
-        private LectureResourceAssembler lectureResourceAssembler;
-        
-	/**
-	 * get all the courses (with HTTP caching)
-         * curl -i -X GET http://localhost:8080/pa165/rest/courses
-	 * 
-         * @param webRequest
-	 * @return list of CourseDTOs
-	 */
+
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final HttpEntity<Resources<Resource<CourseDTO>>> getCourses(WebRequest webRequest) {
    
@@ -66,19 +57,11 @@ public class CoursesController {
 
             return ResponseEntity.ok().eTag(eTag.toString()).body(coursesResources);
 	}
-        
-        /**
-         * get course by id (with HTTP caching)
-         * curl -i -X GET http://localhost:8080/pa165/rest/courses/{id}
-         * 
-         * @param id
-         * @param webRequest
-         * @return 
-         */
+
         @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
         public final HttpEntity<Resource<CourseDTO>> getCourse(@PathVariable("id") long id, WebRequest webRequest) {
 
-            Optional<CourseDTO> courseDTO = courseFacade.getCourseById(id);
+            Optional<CourseDTO> courseDTO = courseFacade.findById(id);
             if(!courseDTO.isPresent())
                 throw new ResourceNotFoundException();
 
@@ -94,55 +77,13 @@ public class CoursesController {
 
             return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
         }
-        
-        /**
-         * get course lectures by course id (with HTTP caching)
-         * curl -i -X GET http://localhost:8080/pa165/rest/courses/{id}/lectures
-         * 
-         * @param id
-         * @param webRequest
-         * @return 
-         */
-        @RequestMapping(value = "/{id}/lectures", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-        public final HttpEntity<Resources<Resource<LectureDTO>>> geCourseLectures(@PathVariable("id") long id, WebRequest webRequest) {
-            Optional<CourseDTO> courseDTO = courseFacade.getCourseById(id);
-            if(!courseDTO.isPresent())
-                throw new ResourceNotFoundException();
 
-            Collection<Resource<LectureDTO>> lectureResourceCollection = new ArrayList<>();
-            for (LectureDTO lect : courseDTO.get().getListOfLectures()) {
-                lectureResourceCollection.add(lectureResourceAssembler.toResource(lect));
-            }
-            
-            Resources<Resource<LectureDTO>> lecturesResources = new Resources<>(lectureResourceCollection);
-            lecturesResources.add(linkTo(this.getClass()).slash(courseDTO.get().getId()).slash("lectures").withSelfRel());
-
-            final StringBuffer eTag = new StringBuffer("\"");
-            eTag.append(Integer.toString(lecturesResources.hashCode()));
-            eTag.append('\"');
-
-            if (webRequest.checkNotModified(eTag.toString())){
-                throw new ResourceNotModifiedException();
-            }
-
-            return ResponseEntity.ok().eTag(eTag.toString()).body(lecturesResources);
-        }
-        
-        /**
-         * delete course
-         * curl -i -X DELETE http://localhost:8080/pa165/rest/courses/{id}
-         * 
-         * @param id 
-         */
         @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
         public final void deleteCourse(@PathVariable("id") long id)  {
-            Optional<CourseDTO> course = courseFacade.getCourseById(id);
+            Optional<CourseDTO> course = courseFacade.findById(id);
             if(!course.isPresent())
                 throw new ResourceNotFoundException();
 
-            Boolean deleted = courseFacade.deleteCourse(course.get().getId());
-
-            if(!deleted)
-                throw new ResourceNotFoundException();
+            courseFacade.removeCourse(course.get());
         }
 }

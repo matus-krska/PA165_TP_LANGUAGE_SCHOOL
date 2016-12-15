@@ -30,11 +30,12 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 	@Inject
 	private UserFacadeImpl userFacade = new UserFacadeImpl(userService, beanMapper);
 
-	//@Override
+	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		String email = auth.getName();
 
-		UserDTO user = null;//userFacade.getUserByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Provide valid email: " + email));
+		UserDTO user = userFacade.getUserByEmail(email).orElseThrow(() ->
+				new UsernameNotFoundException("Provide valid email: " + email));
 
 		String pwd = (String) auth.getCredentials();
 
@@ -50,7 +51,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		return new UsernamePasswordAuthenticationToken(email, pwd, authorities);
 	}
 	
-	//@Override
+	@Override
 	public boolean supports(Class<?> auth) {
 		return true;
 	}

@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import javax.inject.Inject;
 
 /**
- * @author Pavel Šeda (441048)
+ * @author Simon Hyben
  *
  */
 @Configuration

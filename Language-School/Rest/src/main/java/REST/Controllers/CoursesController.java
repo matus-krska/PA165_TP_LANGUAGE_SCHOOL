@@ -1,61 +1,148 @@
 package REST.Controllers;
 
-import DTO.CourseDTO;
-import Facade.CourseFacadeInterface;
-import Facade.LecturerFacadeInterface;
+import javax.inject.Inject;
+
+import DTO.*;
+import Facade.*;
 import REST.Uri.ApiUris;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.ui.Model;
+import REST.Assemblers.*;
+import REST.Exceptions.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Optional;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
+import org.springframework.http.HttpEntity;
+
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
-/**
- * REST controller for Course
- * @author Matus Krska, 410073
- * @since 1.0
- */
 @RestController
 @RequestMapping(ApiUris.ROOT_URI_COURSES)
-public class CoursesController
-{
-    final static Logger logger = LoggerFactory.getLogger(CoursesController.class);
+public class CoursesController {
 
-    @PostConstruct
-    public void initCourses() {
-        CourseDTO course1 = new CourseDTO();
-        course1.setName("Intermediate English");
-        course1.setLanguage("English");
-        course1.setLanguage_level("B1");
-        course1.setDescription("English for intermediate students");
-        courseFacade.createNewCourse(course1);
+	@Inject
+	private CourseFacadeInterface courseFacade;
+        
+        @Inject
+        private CourseResourceAssembler courseResourceAssembler;
+        
+        @Inject
+        private LectureResourceAssembler lectureResourceAssembler;
+        
+	/**
+	 * get all the courses (with HTTP caching)
+         * curl -i -X GET http://localhost:8080/pa165/rest/courses
+	 * 
+         * @param webRequest
+	 * @return list of CourseDTOs
+	 */
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final HttpEntity<Resources<Resource<CourseDTO>>> getCourses(WebRequest webRequest) {
+   
+            Collection<CourseDTO> coursesDTO = courseFacade.getAllCourses();
+            Collection<Resource<CourseDTO>> courseResourceCollection = new ArrayList<>();
 
-        CourseDTO course2 = new CourseDTO();
-        course2.setName("Beginner Spanish");
-        course2.setLanguage("Spanish");
-        course2.setLanguage_level("A1");
-        course2.setDescription("Spanish for beginner students");
-        courseFacade.createNewCourse(course2);
-    }
+            for (CourseDTO c : coursesDTO) {
+                courseResourceCollection.add(courseResourceAssembler.toResource(c));
+            }
 
-    @Inject
-    private CourseFacadeInterface courseFacade;
+            Resources<Resource<CourseDTO>> coursesResources = new Resources<>(courseResourceCollection);
+            coursesResources.add(linkTo(this.getClass()).withSelfRel());
 
-    @RequestMapping(value = "/open/{id}", method = RequestMethod.GET)
-    public String openCourseById(@PathVariable Long id, Model model) {
-        model.addAttribute("course", courseFacade.findById(id));
-        return "courses/openCourse";
-    }
+            final StringBuffer eTag = new StringBuffer("\"");
+            eTag.append(Integer.toString(coursesResources.hashCode()));
+            eTag.append('\"');
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String createCourse(Model model) {
-        logger.debug("new");
-        model.addAttribute("course", new CourseDTO());
-        return "course/createCourse";
-    }
+            if (webRequest.checkNotModified(eTag.toString())){
+                throw new ResourceNotModifiedException();
+            }
+
+            return ResponseEntity.ok().eTag(eTag.toString()).body(coursesResources);
+	}
+        
+        /**
+         * get course by id (with HTTP caching)
+         * curl -i -X GET http://localhost:8080/pa165/rest/courses/{id}
+         * 
+         * @param id
+         * @param webRequest
+         * @return 
+         */
+        @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+        public final HttpEntity<Resource<CourseDTO>> getCourse(@PathVariable("id") long id, WebRequest webRequest) {
+
+            Optional<CourseDTO> courseDTO = courseFacade.getCourseById(id);
+            if(!courseDTO.isPresent())
+                throw new ResourceNotFoundException();
+
+            Resource<CourseDTO> resource = courseResourceAssembler.toResource(courseDTO.get());
+            
+            final StringBuffer eTag = new StringBuffer("\"");
+            eTag.append(Integer.toString(courseDTO.get().hashCode()));
+            eTag.append('\"');
+
+            if (webRequest.checkNotModified(eTag.toString())){
+                throw new ResourceNotModifiedException();
+            }
+
+            return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
+        }
+        
+        /**
+         * get course lectures by course id (with HTTP caching)
+         * curl -i -X GET http://localhost:8080/pa165/rest/courses/{id}/lectures
+         * 
+         * @param id
+         * @param webRequest
+         * @return 
+         */
+        @RequestMapping(value = "/{id}/lectures", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+        public final HttpEntity<Resources<Resource<LectureDTO>>> geCourseLectures(@PathVariable("id") long id, WebRequest webRequest) {
+            Optional<CourseDTO> courseDTO = courseFacade.getCourseById(id);
+            if(!courseDTO.isPresent())
+                throw new ResourceNotFoundException();
+
+            Collection<Resource<LectureDTO>> lectureResourceCollection = new ArrayList<>();
+            for (LectureDTO lect : courseDTO.get().getListOfLectures()) {
+                lectureResourceCollection.add(lectureResourceAssembler.toResource(lect));
+            }
+            
+            Resources<Resource<LectureDTO>> lecturesResources = new Resources<>(lectureResourceCollection);
+            lecturesResources.add(linkTo(this.getClass()).slash(courseDTO.get().getId()).slash("lectures").withSelfRel());
+
+            final StringBuffer eTag = new StringBuffer("\"");
+            eTag.append(Integer.toString(lecturesResources.hashCode()));
+            eTag.append('\"');
+
+            if (webRequest.checkNotModified(eTag.toString())){
+                throw new ResourceNotModifiedException();
+            }
+
+            return ResponseEntity.ok().eTag(eTag.toString()).body(lecturesResources);
+        }
+        
+        /**
+         * delete course
+         * curl -i -X DELETE http://localhost:8080/pa165/rest/courses/{id}
+         * 
+         * @param id 
+         */
+        @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+        public final void deleteCourse(@PathVariable("id") long id)  {
+            Optional<CourseDTO> course = courseFacade.getCourseById(id);
+            if(!course.isPresent())
+                throw new ResourceNotFoundException();
+
+            Boolean deleted = courseFacade.deleteCourse(course.get().getId());
+
+            if(!deleted)
+                throw new ResourceNotFoundException();
+        }
 }

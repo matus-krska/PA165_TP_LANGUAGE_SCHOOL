@@ -19,7 +19,7 @@ public class DataConfiguration {
     final static Logger log = LoggerFactory.getLogger(DataConfiguration.class);
 
     @Autowired
-    DataFacade sampleDataLoadingFacade;
+    DataFacadeInterface sampleDataLoadingFacade;
 
     @PostConstruct
     public void dataLoading() throws IOException {

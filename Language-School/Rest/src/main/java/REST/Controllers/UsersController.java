@@ -37,7 +37,6 @@ public class UsersController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final List<UserDTO> getUsers() {
 
-        logger.debug("rest getLSUsers()");
         return userFacade.getAllUsers();
     }
 

@@ -28,29 +28,20 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 @RequestMapping(ApiUris.ROOT_URI_LECTURES)
 public class LecturesController {
 
-	
-
 	@Inject
 	private LectureFacadeInterface lectureFacade;
                 
         @Inject
         private LectureResourceAssembler lectureResourceAssembler;
-        
-        @Inject
-        private CourseResourceAssembler courseResourceAssembler;
-        
+
         @Inject
         private LecturerResourceAssembler lecturerResourceAssembler;
-        
-        @Inject
-        private StudentResourceAssembler studentResourceAssembler;
-        
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final HttpEntity<Resources<Resource<LectureDTO>>> getLectures(WebRequest webRequest) {
 
                 
-            Collection<LectureDTO> lecturesDTO = lectureFacade.getAllLectures();
+            Collection<LectureDTO> lecturesDTO = lectureFacade.findAllLectures();
             Collection<Resource<LectureDTO>> lectureResourceCollection = new ArrayList<>();
 
             for (LectureDTO lect : lecturesDTO) {
@@ -74,7 +65,7 @@ public class LecturesController {
         @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
         public final HttpEntity<Resource<LectureDTO>> getLecture(@PathVariable("id") long id, WebRequest webRequest) {
 
-            Optional<LectureDTO> lectureDTO = lectureFacade.getLectureById(id);
+            Optional<LectureDTO> lectureDTO = lectureFacade.findById(id);
             if(!lectureDTO.isPresent())
                 throw new ResourceNotFoundException();
 
@@ -91,94 +82,13 @@ public class LecturesController {
             return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
         }
 
-        @RequestMapping(value = "/{id}/lecturers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-        public final HttpEntity<Resources<Resource<LecturerDTO>>> geLectureLecturers(@PathVariable("id") long id, WebRequest webRequest) {
-
-            Optional<LectureDTO> lectureDTO = lectureFacade.getLectureById(id);
-            if(!lectureDTO.isPresent())
-                throw new ResourceNotFoundException();
-
-            Collection<Resource<LecturerDTO>> lecturerResourceCollection = new ArrayList<>();
-            for (LecturerDTO l : lectureDTO.get().getListOfLecturers()) {
-                lecturerResourceCollection.add(lecturerResourceAssembler.toResource(l));
-            }
-            
-            Resources<Resource<LecturerDTO>> lecturersResources = new Resources<>(lecturerResourceCollection);
-            lecturersResources.add(linkTo(this.getClass()).slash(lectureDTO.get().getId()).slash("lecturers").withSelfRel());
-
-            final StringBuffer eTag = new StringBuffer("\"");
-            eTag.append(Integer.toString(lecturersResources.hashCode()));
-            eTag.append('\"');
-
-            if (webRequest.checkNotModified(eTag.toString())){
-                throw new ResourceNotModifiedException();
-            }
-
-            return ResponseEntity.ok().eTag(eTag.toString()).body(lecturersResources);
-        }
-
-        @RequestMapping(value = "/{id}/courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-        public final HttpEntity<Resources<Resource<CourseDTO>>> geLectureCourses(@PathVariable("id") long id, WebRequest webRequest) {
-
-            Optional<LectureDTO> lectureDTO = lectureFacade.getLectureById(id);
-            if(!lectureDTO.isPresent())
-                throw new ResourceNotFoundException();
-
-            Collection<Resource<CourseDTO>> courseResourceCollection = new ArrayList<>();
-            for (CourseDTO c : lectureDTO.get().getListOfCourses()) {
-                courseResourceCollection.add(courseResourceAssembler.toResource(c));
-            }
-            
-            Resources<Resource<CourseDTO>> coursesResources = new Resources<>(courseResourceCollection);
-            coursesResources.add(linkTo(this.getClass()).slash(lectureDTO.get().getId()).slash("courses").withSelfRel());
-
-            final StringBuffer eTag = new StringBuffer("\"");
-            eTag.append(Integer.toString(coursesResources.hashCode()));
-            eTag.append('\"');
-
-            if (webRequest.checkNotModified(eTag.toString())){
-                throw new ResourceNotModifiedException();
-            }
-
-            return ResponseEntity.ok().eTag(eTag.toString()).body(coursesResources);
-        }
-
-        @RequestMapping(value = "/{id}/students", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-        public final HttpEntity<Resources<Resource<StudentDTO>>> geLectureStudents(@PathVariable("id") long id, WebRequest webRequest) {
-
-            Optional<LectureDTO> lectureDTO = lectureFacade.getLectureById(id);
-            if(!lectureDTO.isPresent())
-                throw new ResourceNotFoundException();
-
-            Collection<Resource<StudentDTO>> studentResourceCollection = new ArrayList<>();
-            for (StudentDTO s : lectureDTO.get().getListOfStudents()) {
-                studentResourceCollection.add(studentResourceAssembler.toResource(s));
-            }
-            
-            Resources<Resource<StudentDTO>> studentsResources = new Resources<>(studentResourceCollection);
-            studentsResources.add(linkTo(this.getClass()).slash(lectureDTO.get().getId()).slash("students").withSelfRel());
-
-            final StringBuffer eTag = new StringBuffer("\"");
-            eTag.append(Integer.toString(studentsResources.hashCode()));
-            eTag.append('\"');
-
-            if (webRequest.checkNotModified(eTag.toString())){
-                throw new ResourceNotModifiedException();
-            }
-
-            return ResponseEntity.ok().eTag(eTag.toString()).body(studentsResources);
-        }
-
         @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
         public final void deleteLecture(@PathVariable("id") long id)  {
 
-            Optional<LectureDTO> lecture = lectureFacade.getLectureById(id);
+            Optional<LectureDTO> lecture = lectureFacade.findById(id);
             if(!lecture.isPresent())
                 throw new ResourceNotFoundException();
 
-            Boolean deleted = lectureFacade.deleteLecture(lecture.get().getId());
-
-            if(!deleted)
-                throw new ResourceNotFoundException();
+            lectureFacade.removeLecture(lecture.get());
         }
 }

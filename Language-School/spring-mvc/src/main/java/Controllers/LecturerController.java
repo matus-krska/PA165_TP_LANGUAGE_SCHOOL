@@ -23,25 +23,35 @@ import javax.inject.Inject;
 @RequestMapping("/lecturer")
 public class LecturerController
 {
-    final static Logger log = LoggerFactory.getLogger(LecturerController.class);
+    private final static Logger logger = LoggerFactory.getLogger(CourseController.class);
 
     @Inject
     private LecturerFacadeInterface lecturerFacade;
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
-        LecturerDTO lecturer = lecturerFacade.findById(id);
-        lecturerFacade.removeLecturer(lecturer);
-        log.debug("delete({})", id);
-        redirectAttributes.addFlashAttribute("alert_success", "Lecturer \"" + lecturer.getName() + "\" was deleted.");
-        return "redirect:" + uriBuilder.path("/lecturer").toUriString();
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("lecturers", lecturerFacade.getAllLecturers());
+        return "lecturer/lecturersList";
     }
 
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model) {
-        log.debug("view({})", id);
-        model.addAttribute("lecturer", lecturerFacade.findById(id));
-        return "lecturer/view";
+        model.addAttribute("lecturer", lecturerFacade.findById(id).get());
+        return "lecturer/lecturerView";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable long id, Model model) {
+        model.addAttribute("lecturer", lecturerFacade.findById(id).get());
+        logger.debug("edit");
+        return "lecturer/lecturerEdit";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder) {
+        logger.debug("delete");
+        lecturerFacade.removeLecturer(lecturerFacade.findById(id).get());
+        return "redirect:" + uriBuilder.path("/lecturer/list").buildAndExpand().encode().toUriString();
     }
 }
 

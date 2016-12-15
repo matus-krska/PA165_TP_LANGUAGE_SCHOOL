@@ -188,18 +188,4 @@ public class StudentDAOTest extends AbstractTestNGSpringContextTests {
         studentDAO.delete(studentA);
         studentDAO.delete(studentC);
     }
-    
-    @Test
-    public void testFindByIdNameAndSurname() 
-    {        
-        studentDAO.create(studentA);
-        List<Student> tmpRes = studentDAO.findByNameAndSurname("Simon", "Hyben");
-        Object tmpObject = studentDAO.findByIdNameAndSurname(tmpRes.get(0).getId(), "Simon", "Hyben");
-        Student tmpStudent = (Student)tmpObject;
-        
-        Assert.assertEquals(tmpStudent.getId(), tmpRes.get(0).getId()); 
-        Assert.assertEquals(tmpStudent.getName(), "Simon");
-        Assert.assertEquals(tmpStudent.getSurname(), "Hyben");
-        studentDAO.delete(studentA);
-    } 
 }

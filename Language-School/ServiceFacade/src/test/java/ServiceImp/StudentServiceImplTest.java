@@ -110,14 +110,4 @@ public class StudentServiceImplTest {
         studentServiceImpl.findByNameSurname("Simon", "Hyben");
         verify(studentDao, times(1)).findByNameAndSurname("Simon", "Hyben");
     }
-
-    /**
-     * Test of findByIdNameAndSurname method, of class StudentServiceImpl.
-     */
-    @Test
-    public void testFindByIdNameAndSurname() {
-       studentServiceImpl.addStudent(studentA);
-       studentServiceImpl.findByIdNameAndSurname(1l, "Simon", "Hyben");
-       verify(studentDao, times(1)).findByIdNameAndSurname(1l, "Simon", "Hyben");
-    }
 }

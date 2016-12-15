@@ -115,14 +115,4 @@ public class StudentFacadeImplTest {
         studentFacade.filterByNameSurname("Simon", "Hyben");
         verify(studentService, times(1)).findByNameSurname(any(String.class), any(String.class));
     }
-
-    /**
-     * Test of findByIdNameAndSurname method, of class StudentFacadeImpl.
-     */
-    @Test
-    public void testFindByIdNameAndSurname() {
-        studentFacade.findByIdNameAndSurname(1l, "Simon", "Hyben");
-        verify(studentService, times(1)).findByIdNameAndSurname(any(Long.class),any(String.class), any(String.class));
-    }
-    
 }

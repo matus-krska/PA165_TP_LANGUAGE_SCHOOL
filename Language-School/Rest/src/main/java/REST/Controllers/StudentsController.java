@@ -38,7 +38,7 @@ public class StudentsController {
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final HttpEntity<Resources<Resource<StudentDTO>>> getLecturers(WebRequest webRequest) {
                 
-            Collection<StudentDTO> studentsDTO = studentFacade.getAllStudents();
+            Collection<StudentDTO> studentsDTO = studentFacade.findAllStudents();
             Collection<Resource<StudentDTO>> studentResourceCollection = new ArrayList<>();
 
             for (StudentDTO s : studentsDTO) {

@@ -115,7 +115,7 @@ public class StudentFacadeImpl implements StudentFacadeInterface{
     }
 
     @Override
-    public List<StudentDTO> getAllStudents() {
+    public List<StudentDTO> findAllStudents() {
         try {
             return mapper.mapTo(studentService.findAllStudents(), StudentDTO.class);
         } catch (NoSuchElementException ex) {

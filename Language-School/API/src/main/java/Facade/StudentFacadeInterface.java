@@ -52,6 +52,6 @@ public interface StudentFacadeInterface {
      * Returns all existing students
      * @return list of all existing students
      */
-    List<StudentDTO> getAllStudents();
+    List<StudentDTO> findAllStudents();
 
 }

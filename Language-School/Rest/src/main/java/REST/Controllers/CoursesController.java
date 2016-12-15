@@ -37,7 +37,7 @@ public class CoursesController {
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final HttpEntity<Resources<Resource<CourseDTO>>> getCourses(WebRequest webRequest) {
    
-            Collection<CourseDTO> coursesDTO = courseFacade.getAllCourses();
+            Collection<CourseDTO> coursesDTO = courseFacade.findAllCourses();
             Collection<Resource<CourseDTO>> courseResourceCollection = new ArrayList<>();
 
             for (CourseDTO c : coursesDTO) {

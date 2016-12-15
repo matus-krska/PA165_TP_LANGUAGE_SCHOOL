@@ -18,6 +18,7 @@
     <build>
         <!-- what to do when only "mvn" is run -->
         <!-- <defaultGoal>tomcat7:run</defaultGoal> -->
+        <defaultGoal>tomcat7:run</defaultGoal>
         <plugins>
             <!-- Servlet 3.0 allows no web.xml deployment descriptor -->
             <plugin>
@@ -59,6 +60,7 @@
     </build>
 
     <dependencies>
+        <!--
         <dependency>
             <groupId>org.muni.fi.pa165</groupId>
             <artifactId>API</artifactId>
@@ -68,7 +70,7 @@
             <groupId>org.muni.fi.pa165</groupId>
             <artifactId>DAO</artifactId>
             <version>1</version>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>org.muni.fi.pa165</groupId>
             <artifactId>ServiceFacade</artifactId>

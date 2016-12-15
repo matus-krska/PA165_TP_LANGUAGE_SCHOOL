@@ -3,7 +3,7 @@ package Security;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
- * @author Pavel Šeda (441048)
+ * @author Simon Hyben, 421112
  *
  */
 public class SpringSecurityInitializer extends AbstractSecurityWebApplicationInitializer {

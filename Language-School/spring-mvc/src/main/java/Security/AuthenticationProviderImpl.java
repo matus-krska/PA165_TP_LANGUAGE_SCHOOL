@@ -1,7 +1,9 @@
 package Security;
 
+import ConfigMapper.BeanMapper;
 import DTO.UserDTO;
 import FacadeImp.UserFacadeImpl;
+import ServiceImp.UserServiceImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,10 +24,13 @@ import java.util.List;
 @Component
 public class AuthenticationProviderImpl implements AuthenticationProvider {
 
-	@Inject
-	private UserFacadeImpl userFacade;
+	private UserServiceImpl userService;
+	private BeanMapper beanMapper;
 
-	@Override
+	@Inject
+	private UserFacadeImpl userFacade = new UserFacadeImpl(userService, beanMapper);
+
+	//@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		String email = auth.getName();
 
@@ -45,7 +50,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		return new UsernamePasswordAuthenticationToken(email, pwd, authorities);
 	}
 	
-	@Override
+	//@Override
 	public boolean supports(Class<?> auth) {
 		return true;
 	}

@@ -8,69 +8,21 @@
     </parent>
 
     <artifactId>Rest</artifactId>
-    <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+    <packaging>war</packaging>
 
     <build>
-        <!-- what to do when only "mvn" is run -->
-        <!-- <defaultGoal>tomcat7:run</defaultGoal> -->
-        <defaultGoal>tomcat7:run</defaultGoal>
-        <plugins>
-            <!-- Servlet 3.0 allows no web.xml deployment descriptor -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <!--  embedded tomcat -->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <url>http://localhost:8080/pa165</url>
-                    <server>tomcat7-local</server>
-                    <path>/pa165</path>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>clean-undeploy</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>undeploy</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>package-deploy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+            <plugins>
+                    <plugin>
+                            <groupId>org.apache.tomcat.maven</groupId>
+                            <artifactId>tomcat7-maven-plugin</artifactId>
+                            <configuration>
+                                    <path>/pa165/rest</path>
+                            </configuration>
+                    </plugin>
+            </plugins>
     </build>
 
     <dependencies>
-        <!--
-        <dependency>
-            <groupId>org.muni.fi.pa165</groupId>
-            <artifactId>API</artifactId>
-            <version>1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.muni.fi.pa165</groupId>
-            <artifactId>DAO</artifactId>
-            <version>1</version>
-        </dependency> -->
         <dependency>
             <groupId>org.muni.fi.pa165</groupId>
             <artifactId>ServiceFacade</artifactId>
@@ -81,69 +33,73 @@
             <groupId>org.muni.fi.pa165</groupId>
             <artifactId>Data</artifactId>
             <version>1</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-api</artifactId>
-            <version>8.0.36</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.taglibs</groupId>
-            <artifactId>taglibs-standard-spec</artifactId>
-            <version>1.2.1</version>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-api</artifactId>
+                <scope>provided</scope>
+                <version>8.0.39</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.taglibs</groupId>
-            <artifactId>taglibs-standard-impl</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.hateoas</groupId>
-            <artifactId>spring-hateoas</artifactId>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <version>2.0.0</version>
+                <groupId>org.springframework.hateoas</groupId>
+                <artifactId>spring-hateoas</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
         </dependency>
-
+        <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+        </dependency>
+        <!-- librarries needed for unit tests -->
+        <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <scope>test</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <scope>test</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <scope>test</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.el</artifactId>
+                <scope>test</scope> <!-- conflicts with tomcat libraries, but needed for tests to run -->
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
     <name>Rest</name>
 </project>

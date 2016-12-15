@@ -1,6 +1,8 @@
 package REST;
 
+
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
@@ -35,9 +37,9 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
         return new Filter[] { encodingFilter, shallowEtagHeaderFilter };
     }
 
-//    @Override
-//    public void onStartup(javax.servlet.ServletContext servletContext) throws javax.servlet.ServletException {
-//            super.onStartup(servletContext);
-//            servletContext.addListener(RequestContextListener.class);
-//    }
+    @Override
+    public void onStartup(ServletContext servletContext) throws javax.servlet.ServletException {
+            super.onStartup(servletContext);
+            servletContext.addListener(RequestContextListener.class);
+    }
 }

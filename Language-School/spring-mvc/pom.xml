@@ -35,9 +35,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>${project.parent.groupId}</groupId>
+            <groupId>org.muni.fi.pa165</groupId>
             <artifactId>ServiceFacade</artifactId>
-            <version>${project.parent.version}</version>
+            <version>1</version>
             <scope>provided</scope>
         </dependency>
         <!-- servlet, JSP, JSTL -->

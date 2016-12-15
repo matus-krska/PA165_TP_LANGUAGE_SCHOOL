@@ -7,7 +7,7 @@
         <version>1</version>
     </parent>
 
-    <artifactId>web</artifactId>
+    <artifactId>Rest</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -76,6 +76,13 @@
             <artifactId>ServiceFacade</artifactId>
             <version>1</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.muni.fi.pa165</groupId>
+            <artifactId>Data</artifactId>
+            <version>1</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -138,5 +145,5 @@
         </dependency>
 
     </dependencies>
-    
+    <name>Rest</name>
 </project>

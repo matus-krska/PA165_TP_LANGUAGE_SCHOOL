@@ -10,8 +10,9 @@
         <module>DAO</module>
         <module>ServiceFacade</module>
         <module>API</module>
-        <module>web</module>
         <module>spring-mvc</module>
+        <module>Rest</module>
+        <module>Data</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

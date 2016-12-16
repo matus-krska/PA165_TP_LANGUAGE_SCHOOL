@@ -38,7 +38,7 @@ public class CourseController
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("courses", courseFacade.findAllCourses());
-        return "course/coursesList";
+        return "course/list";
     }
 
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
@@ -48,7 +48,7 @@ public class CourseController
         CourseDTO course = courseFacade.findById(id).get();
 
         model.addAttribute("course", course);
-        return "course/courseView";
+        return "course/view";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -84,7 +84,7 @@ public class CourseController
         return "redirect:" + uriBuilder.path("/course/list").buildAndExpand().encode().toUriString();
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String deleteCourse(@PathVariable Long id, Model model, UriComponentsBuilder uriBuilder) {
         logger.debug("delete");
         courseFacade.removeCourse(courseFacade.findById(id).get());

@@ -22,8 +22,8 @@ import javax.inject.Inject;
  */
 @EnableWebMvc
 @Configuration
-@Import({BeanMappingConfiguration.class})
-@ComponentScan(basePackages = {"Config", "Controllers", "Enums","Security"})
+@Import(BeanMappingConfiguration.class)
+@ComponentScan(basePackages = {"Config", "Controllers","Security"})
 public class SpringMVCConfig extends WebMvcConfigurerAdapter
 {
     @Inject

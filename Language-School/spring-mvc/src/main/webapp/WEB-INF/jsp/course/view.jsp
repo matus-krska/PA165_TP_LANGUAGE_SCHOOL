@@ -11,6 +11,7 @@
 <form method="post" action="${pageContext.request.contextPath}/course/delete/${course.id}">
     <button type="submit" class="btn btn-primary">Delete</button>
 </form>
+<a href="${pageContext.request.contextPath}/course/delete/${course.id}">Delete</a>
 
 
     <table class="table">
@@ -26,10 +27,10 @@
         <tbody>
         <tr>
             <td>${course.id}</td>
-            <td><c:out value="${course.name}"/></td>
-            <td><c:out value="${product.language}"/></td>
-            <td><c:out value="${product.language_level}"/></td>
-            <td><c:out value="${product.description}}"/></td>
+            <td>${course.name}</td>
+            <td>${course.language}</td>
+            <td>${course.language_level}</td>
+            <td>${course.description}</td>
         </tr>
         </tbody>
     </table>

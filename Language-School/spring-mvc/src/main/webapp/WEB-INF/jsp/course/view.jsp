@@ -2,15 +2,18 @@
   Created by IntelliJ IDEA.
   User: Matus Krska, 410073
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="false" session="false" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Course view</title>
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/course/delete/${course.id}">
-    <button type="submit" class="btn btn-primary">Delete</button>
-</form>
+
 <a href="${pageContext.request.contextPath}/course/delete/${course.id}">Delete</a>
 
 

@@ -11,6 +11,9 @@
 </head>
 <body>
 
+<a href="${pageContext.request.contextPath}/course/new" class="btn btn-primary">
+    New course
+</a>
 
 <table class="table">
     <thead>

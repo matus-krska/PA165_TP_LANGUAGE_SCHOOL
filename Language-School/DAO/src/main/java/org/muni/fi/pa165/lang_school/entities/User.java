@@ -19,8 +19,8 @@ import javax.validation.constraints.Pattern;
  */
 @Entity
 @Table(name = "T_USER")
-//@Inheritance(strategy = InheritanceType.JOINED)
-//@NamedQuery(name = "User.findAll", query = "SELECT u FROM USER u")
+@Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM USER u")
 public class User {
 
     @Id
@@ -34,7 +34,11 @@ public class User {
     private String email;
 
     @NotNull
+    @Column(name = "password")
     private String passwordHash;
+
+    @Column(name = "user_role")
+    private String userRole;
 
     public User() {
     }
@@ -57,6 +61,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     @Override
@@ -87,7 +99,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", email=" + email + ", passwordHash=" + passwordHash + "]";
+        return "User [id=" + id + ", email=" + email + ", passwordHash=" + passwordHash + ", role=" + userRole + "]";
     }
 
 }

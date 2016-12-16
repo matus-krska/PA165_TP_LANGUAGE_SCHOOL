@@ -19,6 +19,9 @@ public class UserCreateDTO {
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$") // Minimum 8 characters at least 1 Alphabet and 1 Number
     private String password;
 
+    @NotNull
+    private String userRole;
+
     public String getEmail() {
         return email;
     }
@@ -33,6 +36,14 @@ public class UserCreateDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     public Long getId() {

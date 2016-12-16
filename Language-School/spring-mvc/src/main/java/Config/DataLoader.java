@@ -46,7 +46,7 @@ public class DataLoader
         User user1 = new User();
         user1.setEmail("admin@mail.cz");
         user1.setPasswordHash("admin");
-        //user1.setUserRole(UserRoles.ROLE_ADMIN.name());
+        user1.setUserRole(UserRoles.ROLE_ADMIN.name());
         userService.registerUser(user1, user1.getPasswordHash());
 
         /////////////////////////////////////

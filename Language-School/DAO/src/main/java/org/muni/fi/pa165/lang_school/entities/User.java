@@ -64,7 +64,7 @@ public class User {
     }
 
     public String getUserRole() {
-        return userRole;
+        return this.userRole;
     }
 
     public void setUserRole(String userRole) {

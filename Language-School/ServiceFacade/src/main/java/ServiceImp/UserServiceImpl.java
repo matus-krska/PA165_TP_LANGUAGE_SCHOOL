@@ -2,6 +2,7 @@ package ServiceImp;
 
 import Exceptions.DAOdataAccessException;
 import Security.UserPasswordEncryption;
+import Enums.UserRoles;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import org.muni.fi.pa165.lang_school.DAO.UserRepository;
 import org.muni.fi.pa165.lang_school.entities.User;
-//import com.fi.ls.exceptions.ServiceLayerException;
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 import org.springframework.dao.DataAccessException;
@@ -119,4 +119,13 @@ public class UserServiceImpl {
         }
     }
 
+    public boolean isAdmin(User user) {
+        if (user == null)
+            throw new IllegalArgumentException("User parameter is null");
+        try {
+            return userDao.findByEmail(user.getEmail()).getUserRole().equals(UserRoles.ROLE_ADMIN.name());
+        } catch (DataAccessException | PersistenceException | ConstraintViolationException ex) {
+            throw new DAOdataAccessException("Error isAdmin", ex);
+        }
+    }
 }

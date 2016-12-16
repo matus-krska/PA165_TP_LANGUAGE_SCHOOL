@@ -1,17 +1,25 @@
 package Controllers;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import Facade.StudentFacadeInterface;
+import java.util.Optional;
+
+import DTO.StudentDTO;
+
 
 /**
  * Student controller
@@ -22,7 +30,7 @@ import Facade.StudentFacadeInterface;
 @RequestMapping(value = "/student")
 public class StudentController {
 
-    private final static Logger logger = LoggerFactory.getLogger(CourseController.class);
+    private final static Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     @Inject
     private StudentFacadeInterface studentFacade;
@@ -50,6 +58,31 @@ public class StudentController {
     public String delete(@PathVariable Long id, Model model, UriComponentsBuilder uriBuilder) {
         logger.debug("delete");
         studentFacade.removeStudent(studentFacade.findById(id).get());
+        return "redirect:" + uriBuilder.path("/student/list").buildAndExpand().encode().toUriString();
+    }
+
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public String newStudent(Model model) {
+        logger.debug("new");
+        model.addAttribute("student", new StudentDTO());
+        return "student/new";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createStudent(@Valid @ModelAttribute("studentCreate") StudentDTO formBean,
+                                 BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
+                                 UriComponentsBuilder uriBuilder) {
+        logger.debug("create");
+        Optional<StudentDTO> sdto = studentFacade.registerStudent(formBean);
+        return "redirect:" + uriBuilder.path("/student/list").buildAndExpand().encode().toUriString();
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateStudent(@PathVariable Long id, @Valid @ModelAttribute("student") StudentDTO formBean,
+                                 BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
+                                 UriComponentsBuilder uriBuilder) {
+        logger.debug("update");
+        Optional<StudentDTO> sdto = studentFacade.updateStudent(formBean);
         return "redirect:" + uriBuilder.path("/student/list").buildAndExpand().encode().toUriString();
     }
 

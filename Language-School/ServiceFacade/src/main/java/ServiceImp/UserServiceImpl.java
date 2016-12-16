@@ -51,7 +51,7 @@ public class UserServiceImpl {
 
     public boolean authenticate(User u, String password) {
         if (u == null)
-            throw new IllegalArgumentException("LSUser u parameter is null");
+            throw new IllegalArgumentException("User u parameter is null");
         if (password == null)
             throw new IllegalArgumentException("String password parameter is null");
 

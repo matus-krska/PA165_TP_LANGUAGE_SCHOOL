@@ -10,6 +10,7 @@ import org.muni.fi.pa165.lang_school.entities.Course;
 import org.muni.fi.pa165.lang_school.entities.Lecture;
 import org.muni.fi.pa165.lang_school.entities.User;
 import Enums.UserRoles;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,19 +26,19 @@ import javax.inject.Inject;
 public class DataLoader
 {
 
-    @Inject
+    @Autowired
     private CourseServiceImpl courseService;
 
-    @Inject
+    @Autowired
     private LectureServiceImpl lectureService;
 
-    @Inject
+    @Autowired
     private LecturerServiceImpl lecturerService;
 
-    @Inject
+    @Autowired
     private StudentServiceImpl studentService;
 
-    @Inject
+    @Autowired
     private UserServiceImpl userService;
 
     public void loadData()
@@ -48,6 +49,12 @@ public class DataLoader
         user1.setPasswordHash("admin");
         user1.setUserRole(UserRoles.ROLE_ADMIN.name());
         userService.registerUser(user1, user1.getPasswordHash());
+
+        User user2 = new User();
+        user2.setEmail("test@email.cz");
+        user2.setPasswordHash("test1");
+        user2.setUserRole(UserRoles.ROLE_ADMIN.name());
+        userService.registerUser(user2, user2.getPasswordHash());
 
         /////////////////////////////////////
         course("English B1","English for intermediate students","English","B1");

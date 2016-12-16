@@ -1,5 +1,7 @@
 package org.muni.fi.pa165.lang_school.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;

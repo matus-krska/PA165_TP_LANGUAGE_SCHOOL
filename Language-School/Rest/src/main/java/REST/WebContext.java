@@ -23,7 +23,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import ConfigMapper.BeanMappingConfiguration;
 import DTO.UserDTO;
 import REST.Mixin.*;
-import Config.DataLoaderConfig;
 
 /**
  * Web context
@@ -32,7 +31,7 @@ import Config.DataLoaderConfig;
  */
 @EnableWebMvc
 @Configuration
-@Import({BeanMappingConfiguration.class, DataLoaderConfig.class})
+@Import({BeanMappingConfiguration.class})
 @ComponentScan(basePackages = {"REST.Controllers", "REST.Assemblers"})
 public class WebContext extends WebMvcConfigurerAdapter {
     @Override

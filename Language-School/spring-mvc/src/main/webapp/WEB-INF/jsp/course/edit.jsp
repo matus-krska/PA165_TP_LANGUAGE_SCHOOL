@@ -10,7 +10,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>New course</title>
+    <title>Edit course</title>
 </head>
 <body>
 

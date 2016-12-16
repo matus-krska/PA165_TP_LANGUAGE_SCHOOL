@@ -1,6 +1,7 @@
 package DTO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class LectureDTO
     private String code;
     private String topic;
     private String description;
-    private String lectureTime;
+    private Date lectureTime;
     private CourseDTO course;
     private List<StudentDTO> students = new ArrayList<>();
 
@@ -69,12 +70,12 @@ public class LectureDTO
         this.description = description;
     }
 
-    public String getLectureTime()
+    public Date getLectureTime()
     {
         return lectureTime;
     }
 
-    public void setLectureTime(String lectureTime)
+    public void setLectureTime(Date lectureTime)
     {
         this.lectureTime = lectureTime;
     }

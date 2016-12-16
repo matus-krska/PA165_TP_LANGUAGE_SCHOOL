@@ -32,7 +32,7 @@ public class Lecturer
 
     @OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="LECTURER_LANGUAGE_ID")
-    private List<LecturerLanguage> taughtLanguages; 
+    private List<LectureLanguage> taughtLanguages;
 
     public Long getId() {
         return id;
@@ -58,11 +58,11 @@ public class Lecturer
         this.surname = surname;
     }
 
-    public List<LecturerLanguage> getTaughtLanguages() {
+    public List<LectureLanguage> getTaughtLanguages() {
         return taughtLanguages;
     }
 
-    public void setTaughtLanguages(List<LecturerLanguage> taughtLanguages) {
+    public void setTaughtLanguages(List<LectureLanguage> taughtLanguages) {
         this.taughtLanguages = taughtLanguages;
     }
     

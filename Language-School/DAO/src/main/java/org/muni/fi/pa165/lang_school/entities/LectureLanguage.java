@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="T_LECTURER_LANGUAGE")
-public class LecturerLanguage {
+public class LectureLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
@@ -94,7 +94,7 @@ public class LecturerLanguage {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final LecturerLanguage other = (LecturerLanguage) obj;
+        final LectureLanguage other = (LectureLanguage) obj;
         if ((this.languageTaught == null) ? (other.languageTaught != null) : !this.languageTaught.equals(other.languageTaught)) {
             return false;
         }
@@ -112,7 +112,7 @@ public class LecturerLanguage {
 
     @Override
     public String toString() {
-        return "LecturerLanguage{" + "id=" + id + ", lecturerId=" + lecturerId + ", languageTaught=" + languageTaught + ", nativeSpeaker=" + nativeSpeaker + '}';
+        return "LectureLanguage{" + "id=" + id + ", lecturerId=" + lecturerId + ", languageTaught=" + languageTaught + ", nativeSpeaker=" + nativeSpeaker + '}';
     }
     
     

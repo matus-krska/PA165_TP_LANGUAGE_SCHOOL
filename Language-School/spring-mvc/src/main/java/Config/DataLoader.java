@@ -1,20 +1,16 @@
 package Config;
 
-import Facade.CourseFacadeInterface;
 import ServiceImp.CourseServiceImpl;
-import ServiceImp.LectureServiceImpl;
+import ServiceImp.LectureLanguageServiceImpl;
 import ServiceImp.LecturerServiceImpl;
 import ServiceImp.StudentServiceImpl;
 import ServiceImp.UserServiceImpl;
 import org.muni.fi.pa165.lang_school.entities.Course;
-import org.muni.fi.pa165.lang_school.entities.Lecture;
 import org.muni.fi.pa165.lang_school.entities.User;
 import Enums.UserRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
 
 /**
  * Data loader of MVC
@@ -30,7 +26,7 @@ public class DataLoader
     private CourseServiceImpl courseService;
 
     @Autowired
-    private LectureServiceImpl lectureService;
+    private LectureLanguageServiceImpl lectureService;
 
     @Autowired
     private LecturerServiceImpl lecturerService;

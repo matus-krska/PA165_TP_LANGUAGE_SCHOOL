@@ -2,14 +2,9 @@ package FacadeImp;
 
 import ConfigMapper.BeanMapper;
 import DTO.CourseDTO;
-import DTO.LectureDTO;
 import Facade.CourseFacadeInterface;
 import ServiceImp.CourseServiceImpl;
-import ServiceImp.LectureServiceImpl;
-import org.apache.commons.lang3.Validate;
-import org.dozer.Mapper;
 import org.muni.fi.pa165.lang_school.entities.Course;
-import org.muni.fi.pa165.lang_school.entities.Lecture;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

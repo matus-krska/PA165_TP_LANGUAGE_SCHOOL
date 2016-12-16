@@ -2,7 +2,7 @@ package Security;
 
 import ConfigMapper.BeanMapper;
 import DTO.UserDTO;
-import FacadeImp.UserFacadeImpl;
+import Facade.UserFacadeInterface;
 import ServiceImp.UserServiceImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,11 +24,8 @@ import java.util.List;
 @Component
 public class AuthenticationProviderImpl implements AuthenticationProvider {
 
-	private UserServiceImpl userService;
-	private BeanMapper beanMapper;
-
 	@Inject
-	private UserFacadeImpl userFacade = new UserFacadeImpl(userService, beanMapper);
+	private UserFacadeInterface userFacade;
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {

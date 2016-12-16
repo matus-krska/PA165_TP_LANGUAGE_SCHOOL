@@ -9,6 +9,7 @@
 
     <artifactId>Rest</artifactId>
     <packaging>war</packaging>
+    <name>Rest</name>
 
     <build>
             <plugins>
@@ -39,7 +40,7 @@
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-api</artifactId>
                 <scope>provided</scope>
-                <version>8.0.39</version>
+                <version>LATEST</version>
         </dependency>
         <dependency>
                 <groupId>javax.inject</groupId>
@@ -101,5 +102,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <name>Rest</name>
 </project>

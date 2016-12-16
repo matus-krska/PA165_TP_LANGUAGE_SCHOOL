@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ConfigMapper.BeanMappingConfiguration;
 import DTO.UserDTO;
-import REST.Mixin.*;
+
 /**
  * Web context
  *

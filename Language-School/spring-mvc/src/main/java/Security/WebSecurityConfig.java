@@ -1,5 +1,6 @@
 package Security;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
  */
 @Configuration
 @EnableWebSecurity
+@ComponentScan(basePackages = {"Config", "Controllers", "Enums","Security"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Inject

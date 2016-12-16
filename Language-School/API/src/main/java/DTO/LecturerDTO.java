@@ -52,7 +52,7 @@ public class LecturerDTO
         return surname;
     }
 
-    public void setSurname(String description)
+    public void setSurname(String surname)
     {
         this.surname = surname;
     }

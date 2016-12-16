@@ -35,20 +35,20 @@ public class LecturerController
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("lecturers", lecturerFacade.getAllLecturers());
-        return "lecturer/lecturersList";
+        return "lecturer/list";
     }
 
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model) {
         model.addAttribute("lecturer", lecturerFacade.findById(id).get());
-        return "lecturer/lecturerView";
+        return "lecturer/view";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable long id, Model model) {
         model.addAttribute("lecturer", lecturerFacade.findById(id).get());
         logger.debug("edit");
-        return "lecturer/lecturerEdit";
+        return "lecturer/edit";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

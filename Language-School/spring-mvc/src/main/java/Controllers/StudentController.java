@@ -38,20 +38,20 @@ public class StudentController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("students", studentFacade.findAllStudents());
-        return "student/studentsList";
+        return "student/list";
     }
 
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model) {
         model.addAttribute("student", studentFacade.findById(id).get());
-        return "student/studentView";
+        return "student/view";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Long id, Model model) {
         model.addAttribute("student", studentFacade.findById(id).get());
         logger.debug("edit");
-        return "student/studentEdit";
+        return "student/edit";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

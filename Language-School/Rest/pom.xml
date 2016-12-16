@@ -29,13 +29,6 @@
             <artifactId>ServiceFacade</artifactId>
             <version>1</version>
         </dependency>
-        
-        <dependency>
-            <groupId>org.muni.fi.pa165</groupId>
-            <artifactId>Data</artifactId>
-            <version>1</version>
-        </dependency>
-
         <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-api</artifactId>

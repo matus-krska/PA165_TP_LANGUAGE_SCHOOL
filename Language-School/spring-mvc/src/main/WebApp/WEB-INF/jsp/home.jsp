@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-3">
             <h3>
-                <a href="${pageContext.request.contextPath}/students/list">Students</a>
+                <a href="${pageContext.request.contextPath}/student/list">Students</a>
             </h3>
         </div>
     </article>

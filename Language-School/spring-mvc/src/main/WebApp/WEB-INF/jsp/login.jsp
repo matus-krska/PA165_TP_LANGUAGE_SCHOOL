@@ -10,9 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Language School</title>
-
-
+    <title>PA165 - Language School</title>
 </head>
 
 <body>
@@ -37,11 +35,8 @@
                 <div class="col-sm-6 col-sm-offset-3 form-box">
                     <div class="form-top">
                         <div class="form-top-left">
-                            <h3>
-                                <strong>Login to our site</strong>
-                            </h3>
                             <p>
-                                <strong>Enter your username and password to log on:</strong>
+                                <strong>Enter your username and password to log in</strong>
                             </p>
                         </div>
                         <div class="form-top-right">
@@ -52,7 +47,7 @@
                     <div class="form-bottom">
                         <c:if test="${param.error != null}">
                             <div class="alert alert-danger">
-                                <p>Invalid username and password.</p>
+                                <p>Invalid username or password!</p>
                             </div>
                         </c:if>
                         <c:if test="${param.logout != null}">
@@ -64,17 +59,17 @@
                         <form role="form" action="${loginUrl}" method="post"
                               class="login-form">
                             <div class="form-group">
-                                <label class="sr-only" for="username">Username</label> <input
+                                <label class="sr-only" for="username">Username:</label> <input
                                     type="text" name="username" placeholder="Username..."
                                     class="form-username form-control" id="form-username">
                             </div>
                             <div class="form-group">
-                                <label class="sr-only" for="password">Password</label> <input
+                                <label class="sr-only" for="password">Password:</label> <input
                                     type="password" name="password" placeholder="Password..."
                                     class="form-password form-control" id="form-password">
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
-                            <button type="submit" class="btn">Sign in!</button>
+                            <button type="submit" class="btn">Log in</button>
                         </form>
                     </div>
                 </div>

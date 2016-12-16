@@ -70,7 +70,7 @@ public class LectureController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createCourse(@Valid @ModelAttribute("lecture") LectureDTO formBean,
+    public String createLecture(@Valid @ModelAttribute("lecture") LectureDTO formBean,
                                BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
                                UriComponentsBuilder uriBuilder) {
         logger.debug("create");

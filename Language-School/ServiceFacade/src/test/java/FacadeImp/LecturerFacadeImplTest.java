@@ -143,7 +143,7 @@ public class LecturerFacadeImplTest {
     @Test
     public void testFilterByName() {
         lecturerFacade.filterByName("Simon", "Hyben");
-        verify(lecturerService, times(1)).findByName(any(String.class), any(String.class));
+        verify(lecturerService, times(1)).findAllLecturers();
     }
 
     @Test(expectedExceptions = {IllegalArgumentException.class})

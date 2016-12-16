@@ -119,7 +119,7 @@ public class LectureFacadeImpl implements LectureFacadeInterface
     @Override
     public Optional<LectureDTO> findLectureByCodeAndTopic(String code, String topic)
     {
-        if (code == null)
+        if (code == null || topic == null)
             throw new IllegalArgumentException("Code parameter is null");
         try {
             Lecture entity = lectureService.findLectureByCodeAndTopic(code, topic);

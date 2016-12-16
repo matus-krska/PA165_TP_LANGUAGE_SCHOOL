@@ -10,10 +10,6 @@ import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
-/**
- * @author Lukáš Daubner (410034)
- *
- */
 @Component
 public class LecturerResourceAssembler implements ResourceAssembler<LecturerDTO, Resource<LecturerDTO>> {
 

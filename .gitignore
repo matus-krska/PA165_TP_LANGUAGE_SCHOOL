@@ -7,3 +7,6 @@
 /Language-School/spring-mvc/target/
 /Language-School/Data/target/
 /Language-School/Rest/target/
+*.xml
+Language-School/.idea/compiler.xml
+*.xml

@@ -10,12 +10,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Lecturer view</title>
+    <title>Student view</title>
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/lecturer/delete/${lecturer.id}" class="btn btn-primary">Delete</a>
-<a href="${pageContext.request.contextPath}/lecturer/edit/${lecturer.id}" class="btn btn-primary">Edit</a>
+<a href="${pageContext.request.contextPath}/student/delete/${student.id}" class="btn btn-primary">Delete</a>
+<a href="${pageContext.request.contextPath}/student/edit/${student.id}" class="btn btn-primary">Edit</a>
 
     <table class="table">
         <thead>
@@ -27,9 +27,9 @@
         </thead>
         <tbody>
         <tr>
-            <td>${lecturer.id}</td>
-            <td>${lecturer.name}</td>
-            <td>${lecturer.surname}</td>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.surname}</td>
         </tr>
         </tbody>
     </table>

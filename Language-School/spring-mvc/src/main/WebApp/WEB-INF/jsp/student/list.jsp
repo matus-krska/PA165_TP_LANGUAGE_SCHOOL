@@ -7,12 +7,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Lecturers list</title>
+    <title>Students list</title>
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/lecturer/new" class="btn btn-primary">
-    New lecturer
+<a href="${pageContext.request.contextPath}/student/new" class="btn btn-primary">
+    New student
 </a>
 
 <table class="table">
@@ -24,12 +24,12 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${lecturers}" var="lecturer">
+    <c:forEach items="${students}" var="student">
         <tr>
-            <td>${lecturer.id}</td>
-            <td>${lecturer.name}</td>
-            <td>${lecturer.surname}</td>
-            <td><a href="${pageContext.request.contextPath}/lecturer/view/${lecturer.id}">View</a></td>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.surname}</td>
+            <td><a href="${pageContext.request.contextPath}/student/view/${student.id}">View</a></td>
         </tr>
     </c:forEach>
     </tbody>

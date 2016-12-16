@@ -56,7 +56,8 @@ public class CourseFacadeImpl implements CourseFacadeInterface
         if (courseDTO == null)
             throw new IllegalArgumentException("CourseDTO parameter is null");
         try {
-            Optional<Course> course = Optional.ofNullable(courseService.updateCourse(courseService.findById(courseDTO.getId())));
+            Optional<Course> toUpdate = mapper.mapTo(courseDTO,Course.class);
+            Optional<Course> course = Optional.ofNullable(courseService.updateCourse(toUpdate.get()));
             return course.isPresent() ? mapper.mapTo(course.get(), CourseDTO.class) : Optional.empty();
         } catch (NoSuchElementException ex) {
             return Optional.empty();

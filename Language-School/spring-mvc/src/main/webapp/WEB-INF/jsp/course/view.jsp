@@ -14,8 +14,8 @@
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/course/delete/${course.id}">Delete</a>
-
+<a href="${pageContext.request.contextPath}/course/delete/${course.id}" class="btn btn-primary">Delete</a>
+<a href="${pageContext.request.contextPath}/course/edit/${course.id}" class="btn btn-primary">Edit</a>
 
     <table class="table">
         <thead>

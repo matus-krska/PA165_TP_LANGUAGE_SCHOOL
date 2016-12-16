@@ -71,7 +71,7 @@ public class CourseController
     public String editCourse(@PathVariable Long id, Model model) {
         model.addAttribute("course", courseFacade.findById(id).get());
         logger.debug("edit");
-        return "course/courseEdit";
+        return "course/edit";
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
@@ -79,8 +79,7 @@ public class CourseController
                                BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
                                UriComponentsBuilder uriBuilder) {
         logger.debug("update");
-        Optional<CourseDTO> toUpdate = courseFacade.findById(id);
-        Optional<CourseDTO> cdto = courseFacade.updateCourse(courseFacade.findById(id).get());
+        Optional<CourseDTO> cdto = courseFacade.updateCourse(formBean);
         return "redirect:" + uriBuilder.path("/course/list").buildAndExpand().encode().toUriString();
     }
 

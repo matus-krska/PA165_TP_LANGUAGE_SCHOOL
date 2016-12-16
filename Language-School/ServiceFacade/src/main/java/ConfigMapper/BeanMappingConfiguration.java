@@ -22,7 +22,7 @@ import org.modelmapper.ModelMapper;
  */
 @Configuration
 @Import(ApplicationContext.class)
-@ComponentScan(basePackages = { "ConfigMapper","Exception", "FacadeImp", "ServiceImp","Security"})
+@ComponentScan(basePackages = { "ConfigMapper", "Enums", "Exceptions", "FacadeImp", "ServiceImp","Security"})
 public class BeanMappingConfiguration {
 
     @Bean

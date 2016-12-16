@@ -15,7 +15,7 @@ import javax.inject.Inject;
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages = {"Config", "Controllers", "Enums","Security"})
+//@ComponentScan(basePackages = {"Config", "Controllers", "Enums","Security"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Inject

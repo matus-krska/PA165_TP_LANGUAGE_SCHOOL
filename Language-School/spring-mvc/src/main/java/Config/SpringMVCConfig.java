@@ -44,7 +44,7 @@ import javax.inject.Inject;
  */
 @EnableWebMvc
 @Configuration
-@Import({ BeanMappingConfiguration.class, DataLoader.class, WebSecurityConfig.class })
+@Import({ BeanMappingConfiguration.class, DataLoaderConfig.class, WebSecurityConfig.class })
 @ComponentScan(basePackages = {"Controllers"})
 public class SpringMVCConfig extends WebMvcConfigurerAdapter
 {
@@ -76,5 +76,13 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
+    }
+
+    /**
+     * Provides JSR-303 Validator.
+     */
+    @Bean
+    public Validator validator() {
+        return new LocalValidatorFactoryBean();
     }
 }

@@ -20,7 +20,7 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "T_USER")
 @Inheritance(strategy = InheritanceType.JOINED)
-@NamedQuery(name = "User.findAll", query = "SELECT u FROM USER u")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User {
 
     @Id
